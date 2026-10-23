@@ -51,7 +51,7 @@ If a session stops, type `continue` in the same conversation.
   - Files: README stub, `STATE.md`, `DECISIONS.md`, `CREDITS.md`.
   - `.gitignore`: `results/final_footage`, `*.mp4`, `*.grib*`, `data/`, `.env`, `*.pem`, `GO_LIVE`, `STOP`.
   - CHECK: first commit pushed; `git check-ignore` confirms `.pem` and `GO_LIVE` are ignored.
-- [ ] **0.2 Environment.** Python env with uv.
+- ⚠️ BLOCKED (no NVIDIA GPU on this machine — nvidia-smi missing; env itself done, running on CPU) **0.2 Environment.** Python env with uv.
   - CHECK: `nvidia-smi` works; log the free disk space (want >200 GB) and the CPU type. This box is ARM64, so expect some packages to need ARM builds.
 - [ ] **0.3 🧑 H1 — print once, don't wait for it.**
   1. Kalshi: create an API key in account settings and save the private key. It's shown only once.
