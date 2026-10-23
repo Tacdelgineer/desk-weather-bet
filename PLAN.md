@@ -46,7 +46,7 @@ If a session stops, type `continue` in the same conversation.
 
 ## Phase 0 — Setup
 
-- [ ] **0.1 Repo skeleton.**
+- [x] **0.1 Repo skeleton.**
   - Folders: `fetch/ model/ backtest/ bot/ video/ results/ logs/`.
   - Files: README stub, `STATE.md`, `DECISIONS.md`, `CREDITS.md`.
   - `.gitignore`: `results/final_footage`, `*.mp4`, `*.grib*`, `data/`, `.env`, `*.pem`, `GO_LIVE`, `STOP`.
