@@ -1,0 +1,12 @@
+results/final_footage
+*.mp4
+*.grib*
+data/
+.env
+*.pem
+GO_LIVE
+STOP
+.venv/
+__pycache__/
+*.pyc
+logs/*.log
