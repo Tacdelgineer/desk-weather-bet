@@ -70,3 +70,6 @@
 **2026-10-24 — 6.1** ([x])
 - Strands Decider 2B (official package, CPU; Ollama build needs MLX) answers bet/skip per candidate from a small JSON (city, forecast, sd, probability, price, fee, edge, station TRAIN error, spread, volume traded before bet time).
 - Hand call KXHIGHLAX-26JUN23-T69 → {bet 0.81, skip 0.19}; 2.47 s/call. Full run (3,262 candidates) in background → data/judge/calls.jsonl.
+
+**2026-10-24 — 2.2** ([x])
+- 9 runs (5/3/1 days before each reference time) from ECMWF's archived real-time AIFS Single (2025 = v1.x; see DECISIONS.md), msl over 5–50°N, 100–30°W, 6-hourly to +144 h. Tracker: lowest msl within 250 km of the extrapolated last centre (model/hurricanes.py).
