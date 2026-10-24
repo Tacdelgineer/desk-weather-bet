@@ -23,3 +23,6 @@
 **2026-10-24 — 3.4** ([x])
 - backtest/fees.py implements Kalshi's taker fee round_up(0.07·C·P·(1−P)); tests/test_fees.py checks the doc's worked examples (5¢×100 → $0.34; 50¢ → $0.02 / $1.75 per 100) plus the table rows. 3 tests pass.
 - Next: 1.1 (AIFS CPU test run in progress).
+
+**2026-10-24 — 2.1** ([x])
+- results/storms.json: MELISSA (Jamaica landfall 2025-10-28 17:25Z), IMELDA (Bermuda 11 km, 2025-10-02 03Z), ERIN (Outer Banks closest approach 322 km, 2025-08-21 09Z), from IBTrACS NA v04r01. Choice logged in DECISIONS.md.

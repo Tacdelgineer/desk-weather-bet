@@ -74,7 +74,7 @@ If a session stops, type `continue` in the same conversation.
 
 ## Phase 2 — Hurricanes (Act 1)
 
-- [ ] **2.1 Pick storms.** Choose 3 Atlantic hurricanes from 2025 with landfall and big news coverage, from IBTrACS. Log the choice.
+- [x] **2.1 Pick storms.** Choose 3 Atlantic hurricanes from 2025 with landfall and big news coverage, from IBTrACS. Log the choice.
 - [ ] **2.2 Run and track.** Run AIFS from 5, 3 and 1 day(s) before each landfall. Track the storm center every 6 h: the lowest sea-level pressure near the last position.
 - [ ] **2.3 Score.** Compare against the IBTrACS best tracks: km error at 24/48/72/120 h, plus landfall position error.
   - CHECK: one storm, one time step hand-checked against the printed IBTrACS row.
