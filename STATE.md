@@ -146,3 +146,8 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - Past start 2026-06-22 00Z (first backtest init) from ECMWF open data: data/aifs_runs/2026062200_60h.npz. Inputs via fetch/ifs_inputs.py (Google Cloud copy; AWS bucket throttled with 503 Slow Down) — identical to the earthkit-built input (max diff 1e-10).
 - 2025 start dates (e.g. 2025-10-01) are impossible for v2: open data before ~2026-05-15 lacks its wave/snow inputs (DECISIONS.md).
 - Next: 1.3.
+
+**2026-10-24 — 1.3** ([x])
+- results/timing.json: 60-h backtest run 69 s wall (28 s inputs, 35 s model), 3.0 s per 6-h step; 10-day run 170 s.
+- Estimates: backtest 120 runs 2.3 h (< 12 h → run all locally, archive kept for comparison), Isaias 3 runs 0.1 h, live week 0.13 h.
+- Next: 2.2 (hurricanes); 4.1 local backtest running in background (logs/4.1_local.log).
