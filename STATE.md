@@ -182,3 +182,7 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 **2026-10-24 — 2.2** ([x])
 - 2025 storms (MELISSA/IMELDA/ERIN) stay on ECMWF's archived real-time AIFS runs: AIFS v2 can't be started locally before ~2026-05-15 (open data lacks its wave/snow inputs; DECISIONS.md). Local test added: ISAIAS 2026 (only 2026 Atlantic hurricane to reach land), 3 runs (5/3/1 days before landfall, 144 h) on the DGX → data/aifs_local/fields via model/local_fields.py (N320 → 0.25°). Local vs archive msl over the box: MAE 0.03–0.05 hPa to 72 h.
 - Next: 2.3.
+
+**2026-10-24 — 2.3** ([x])
+- 2025 scores unchanged (results/hurricanes.json; hand check MELISSA 3-day +24 h = 37.0 km still valid). ISAIAS: results/isaias_local.json vs results/isaias_archive.json — landfall error 3-day 97.0 km local / 79.0 km archive, 1-day 32.6 / 32.6 km; 5-day run untrackable in both (pre-genesis disturbance, no low below 1010 hPa). Track is provisional IBTrACS.
+- Next: 2.4.
