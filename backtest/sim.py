@@ -149,6 +149,9 @@ def main():
             assert abs(s - r["test"]["pnl"]) < 0.005, (pl, s, r["test"]["pnl"])
     out["check_per_bet_sum_equals_total"] = True
     (ROOT / "results" / "backtest.json").write_text(json.dumps(out, indent=1))
+    pd.DataFrame([dict(player=pl, label=r["label"], threshold=r.get("threshold_used"), train_pnl=r.get("train_pnl"),
+                       **{k: v for k, v in r.get("test", {}).items() if k not in ("by_city", "equity_curve")})
+                  for pl, r in res.items()]).to_csv(ROOT / "results" / "backtest_summary.csv", index=False)
     for pl, r in res.items():
         t = r.get("test", {})
         print(f"{pl:9s} th={r.get('threshold_used')} TEST pnl={t.get('pnl')} bets={t.get('bets')} "
