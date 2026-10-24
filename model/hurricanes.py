@@ -82,8 +82,8 @@ def interp_track(tr, init, t):
     return float(np.interp(x, hrs, [p["lat"] for p in tr])), float(np.interp(x, hrs, [p["lon"] for p in tr]))
 
 
-def score(field_dir, field_suffix, source_label):
-    storms = json.loads((ROOT / "results" / "storms.json").read_text())
+def score(field_dir, field_suffix, source_label, storms_file=ROOT / "results" / "storms.json"):
+    storms = json.loads(Path(storms_file).read_text())
     res = {"source": source_label, "method": __doc__.strip(), "storms": []}
     for s in storms:
         bt = best_track(s["sid"])
@@ -115,7 +115,8 @@ def score(field_dir, field_suffix, source_label):
 
 
 if __name__ == "__main__":
-    out = score(sys.argv[1], sys.argv[2], sys.argv[3])
+    # usage: hurricanes.py <field_dir> <field_suffix> <source_label> <out.json> [storms.json]
+    out = score(*sys.argv[1:4], *sys.argv[5:6])
     Path(sys.argv[4]).write_text(json.dumps(out, indent=1, default=str))
     for s in out["storms"]:
         for r in s["runs"]:

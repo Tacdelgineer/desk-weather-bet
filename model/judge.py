@@ -2,9 +2,11 @@
 Ollama's strands-decider tags all need the MLX runtime, which Ollama doesn't ship for Linux arm64, so the same model
 is served with the official strands-decider package, on the GPU when there is one (see DECISIONS.md).
 Run in the judge env:  model/judge/.venv/bin/python model/judge.py [--limit N]
-Resume-safe: appends to data/judge/calls.jsonl and skips tickers already answered."""
+Resume-safe: appends to data/judge/calls.jsonl and skips inputs already answered (key = ticker + hash of the
+exact input JSON, so changed forecasts are asked again)."""
 import argparse
 import csv
+import hashlib
 import json
 import os
 import time
@@ -32,6 +34,10 @@ def ask(engine, state_json):
     return {k: float(v) for k, v in a.probabilities.items()}
 
 
+def key(ticker, state):
+    return f"{ticker}:{hashlib.sha256(state.encode()).hexdigest()[:16]}"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0)
@@ -39,8 +45,8 @@ def main():
     a = ap.parse_args()
     done = set()
     if OUT.exists():
-        done = {json.loads(l)["ticker"] for l in OUT.read_text().splitlines() if l.strip()}
-    rows = [r for r in csv.DictReader(open(a.inputs)) if r["ticker"] not in done]
+        done = {json.loads(l).get("key") for l in OUT.read_text().splitlines() if l.strip()}
+    rows = [r for r in csv.DictReader(open(a.inputs)) if key(r["ticker"], r["state"]) not in done]
     if a.limit:
         rows = rows[:a.limit]
     if not rows:
@@ -52,7 +58,7 @@ def main():
     with OUT.open("a") as f:
         for i, r in enumerate(rows, 1):
             p = ask(engine, r["state"])
-            f.write(json.dumps({"ticker": r["ticker"], "split": r["split"], "p": p}) + "\n")
+            f.write(json.dumps({"ticker": r["ticker"], "key": key(r["ticker"], r["state"]), "split": r["split"], "p": p}) + "\n")
             f.flush()
             if i % 50 == 0 or i == len(rows):
                 print(f"{i}/{len(rows)}  {(time.time() - t0) / i:.2f}s/call", flush=True)

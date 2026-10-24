@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from backtest.window import END, SPLIT  # noqa: E402
 from bot import live  # noqa: E402
 
 
@@ -40,11 +41,12 @@ of the public "Live picks log" issue, so nothing below can be changed after the 
 ## Who plays
 **{label}.** Chosen because {why}.
 
-TEST-window results (PAPER MONEY, 2026-08-22 → 2026-10-20), P&L per player:
+TEST-window results (PAPER MONEY, {SPLIT} → {END}), P&L per player:
 {chr(10).join(f"- {k}: ${v:+.2f}" for k, v in players.items())}
 
 ## The rule
-- Forecast: AIFS Single v2 run on this desk computer from that day's 00Z ECMWF open data; station high = max of
+- Forecast: AIFS Single v2 run on this desk computer (DGX Spark) from that day's 00Z ECMWF open data — the same
+  pipeline as the backtest; station high = max of
   the 6-hourly 2 m temperatures in the station's local-standard-time day, corrected per station with the TRAIN fit
   (results/corrections.json); spread = that station's TRAIN error spread.
 - Each morning at 16:00 UTC the bot looks at the **next day's** markets for the 6 cities (Los Angeles, NYC, Miami,

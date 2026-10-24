@@ -1,4 +1,5 @@
-"""Fetch ECMWF's archived real-time AIFS Single forecasts (open data, AWS bucket ecmwf-forecasts) — only the
+"""Fetch ECMWF's archived real-time AIFS Single forecasts (open data; Google Cloud copy since the move to the DGX,
+where the AWS bucket ecmwf-forecasts kept answering 503 Slow Down — same files) — only the
 fields we need, via byte ranges from each step's .index file.
 
   points mode : 2t at each city station's nearest 0.25° grid point -> data/aifs_archive/points/<init>.json
@@ -20,7 +21,7 @@ import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "aifs_archive"
-BUCKET = "https://ecmwf-forecasts.s3.eu-central-1.amazonaws.com"
+BUCKET = os.environ.get("AIFS_ARCHIVE_URL", "https://storage.googleapis.com/ecmwf-open-data")
 S = requests.Session()
 
 

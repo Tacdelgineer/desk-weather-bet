@@ -20,7 +20,10 @@ def load():
     inp = pd.read_csv(ROOT / "results" / "judge_inputs.csv")
     calls = pd.DataFrame([json.loads(l) for l in (ROOT / "data" / "judge" / "calls.jsonl").read_text().splitlines()])
     calls["p_bet"] = calls.p.map(lambda d: d["bet"])
-    df = inp.merge(calls[["ticker", "p_bet"]], on="ticker", how="inner")
+    sys.path.insert(0, str(ROOT / "model"))
+    from judge import key
+    inp["key"] = [key(t, s) for t, s in zip(inp.ticker, inp.state)]  # answers to exactly these inputs only
+    df = inp.merge(calls.drop_duplicates("key", keep="last")[["key", "p_bet"]], on="key", how="inner")
     cand = pd.read_csv(ROOT / "results" / "candidates.csv")
     cand = cand[cand.player == "aifs_cor"][["ticker", "city", "cost", "fee"]]
     return df.merge(cand, on="ticker", how="left"), len(inp)
