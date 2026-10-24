@@ -48,8 +48,10 @@ def pick_sector(t, lat, lon):
         f = ROOT / "data" / "goes" / "probe.nc"
         f.parent.mkdir(parents=True, exist_ok=True)
         f.write_bytes(requests.get(f"{BUCKET}/{ks[0]}", timeout=60).content)
-        g = h5netcdf.File(f, "r").variables["geospatial_lat_lon_extent"].attrs
-        if abs(float(g["geospatial_lat_center"]) - lat) < 6 and abs(float(g["geospatial_lon_center"]) - lon) < 6:
+        with h5netcdf.File(f, "r") as h:
+            g = h.variables["geospatial_lat_lon_extent"].attrs
+            clat, clon = float(g["geospatial_lat_center"]), float(g["geospatial_lon_center"])
+        if abs(clat - lat) < 6 and abs(clon - lon) < 6:
             return m
     return None
 
@@ -59,7 +61,8 @@ def render(nc, png, label):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    v = h5netcdf.File(nc, "r").variables["CMI"][:].astype(float)  # brightness temperature, K
+    with h5netcdf.File(nc, "r") as h:
+        v = h.variables["CMI"][:].astype(float)  # brightness temperature, K
     img = np.clip((300 - v) / (300 - 190), 0, 1)  # 190 K (cold tops) -> white, 300 K -> black
     fig = plt.figure(figsize=(19.2, 10.8), dpi=100, facecolor="black")
     ax = fig.add_axes([0, 0, 1, 1])
