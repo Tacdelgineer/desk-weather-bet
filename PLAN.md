@@ -116,7 +116,7 @@ If a session stops, type `continue` in the same conversation.
   - at most $1 per market;
   - tune the threshold on TRAIN, report on TEST.
   - CHECK: 5 random bets traced end to end (forecast → probability → price → fee → settlement → P&L) in `logs/handcheck.md`.
-- [ ] **5.3 Results.** For each player: P&L, number of bets, win rate, fees paid, P&L by city and equity curves. Save to `results/backtest.json` + CSV.
+- [x] **5.3 Results.** For each player: P&L, number of bets, win rate, fees paid, P&L by city and equity curves. Save to `results/backtest.json` + CSV.
   - CHECK: the per-bet P&L sums to the total.
 - [ ] **5.4 Robustness.** Rerun with fees ×1.5 and the threshold moved up and down. Note whether the conclusion still holds.
   - CHECK: table saved.

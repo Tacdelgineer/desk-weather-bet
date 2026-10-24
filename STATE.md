@@ -169,3 +169,8 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 **2026-10-24 — 5.2** ([x])
 - Same rule for all players (ask at bet time, taker fee, ≤ $1/market, threshold tuned on TRAIN). logs/handcheck.md regenerated: 5 random TEST bets recomputed from raw files — all match sim.py.
 - Next: 5.3.
+
+**2026-10-24 — 5.3** ([x])
+- results/backtest.json, backtest_summary.csv, backtest_bets.csv, candidates.csv (PAPER MONEY, TEST). Archive-forecast version kept in results/archive_forecasts/.
+- TEST P&L: GFS −$167.40 (410 bets), raw AIFS −$130.65 (254), corrected AIFS + rule −$129.11 (687). Market mid-price Brier 0.105 beats every model (0.130–0.150). Per-bet sums = totals (asserted).
+- Next: 5.4.
