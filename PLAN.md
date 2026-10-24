@@ -141,7 +141,7 @@ If a session stops, type `continue` in the same conversation.
   - Next morning: settle and update P&L.
   - Unit tests for every cap and for DRY_RUN.
   - CHECK: tests pass, and one full DRY_RUN is run by hand.
-- [ ] **7.3 Order test.** With demo keys, place and cancel one demo order. Without them, make a read-only balance call.
+- [x] **7.3 Order test.** With demo keys, place and cancel one demo order. Without them, make a read-only balance call.
   - CHECK: logged.
 - [ ] **7.4 🧑 H2 — GO_LIVE.** Print: "Read RULES.md. If you're OK with it, run: `echo 10 > GO_LIVE` in the repo folder." Until then, the daily job keeps running in DRY_RUN. ⏸
 - [ ] **7.5 Automate.** Only after 7.2's manual run worked: add a daily systemd user timer (or cron) for the morning run, plus the settle job.

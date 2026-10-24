@@ -77,3 +77,7 @@
 **2026-10-24 — 2.3** ([x])
 - Errors vs IBTrACS at 24/48/72/120 h + reference-time error, in results/hurricanes.json. Big miss reported: IMELDA 5-day run stalls the storm near GA/SC instead of turning to Bermuda (1,236 km at 120 h).
 - CHECK: MELISSA 3-day run +24 h: AIFS 16.00N 76.25W vs IBTrACS row 2025-10-26 12:00 16.3N 76.4W → hand haversine 37.0 km = scorer 37.0 km. (AIFS centre pressure 986 vs observed 952 hPa — model too weak.)
+
+**2026-10-24 — 7.3** ([x])
+- No demo keys in ~/.kalshi, so per CLAUDE.md only a read-only authenticated balance call on prod: OK (logs/live/order_test.json; no amounts logged). bot/order_test.py would place+cancel a 1¢ demo order via the same order_body() if demo keys are added.
+- Order shape follows Kalshi Create Order V2 (/portfolio/events/orders; NO buys = ask side at the YES price) — unit-tested, not yet exercised against an exchange.
