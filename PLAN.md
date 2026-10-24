@@ -123,7 +123,7 @@ If a session stops, type `continue` in the same conversation.
 
 ## Phase 6 — The judge (Act 4)
 
-- [ ] **6.1 Run the decision model.** Run Strands Decider 2B locally. For each candidate bet, give it a small JSON (city, forecast, probability, price, station error history, spread, volume) and the options bet/skip.
+- [x] **6.1 Run the decision model.** Run Strands Decider 2B locally. For each candidate bet, give it a small JSON (city, forecast, probability, price, station error history, spread, volume) and the options bet/skip.
   - CHECK: one call by hand returns probabilities.
 - [ ] **6.2 Judge vs rule.** On TEST, compare the judge with the one-line rule ("bet if edge > X cents", with X from TRAIN).
   - CHECK: `results/judge.json` saved.

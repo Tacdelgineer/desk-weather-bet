@@ -1,0 +1,83 @@
+[
+ {
+  "kind": "judge says bet",
+  "ticker": "KXHIGHTPHX-26OCT17-T84",
+  "state": {
+   "city": "Phoenix",
+   "station": "KPHX",
+   "market": "high above 84\u00b0F on 2026-10-17",
+   "bet_side": "YES",
+   "forecast_high_F": 88.6,
+   "forecast_error_sd_F": 2.23,
+   "model_probability_side_wins": 0.966,
+   "price_to_pay": 0.1,
+   "fee_per_contract": 0.0067,
+   "model_edge": 0.859,
+   "station_train_mae_corrected_F": 1.7,
+   "station_train_raw_bias_F": -2.12,
+   "bid_ask_spread": 0.01,
+   "volume_traded_before_bet": 308.0
+  },
+  "p_bet": 0.944,
+  "p_skip": 0.056,
+  "cutoff": 0.62,
+  "judge_action": "bet",
+  "rule_action": "bet",
+  "won": false,
+  "pnl": -0.96
+ },
+ {
+  "kind": "judge skips a bet the rule takes",
+  "ticker": "KXHIGHTPHX-26OCT08-B106.5",
+  "state": {
+   "city": "Phoenix",
+   "station": "KPHX",
+   "market": "high between 106\u00b0F and 107\u00b0F on 2026-10-08",
+   "bet_side": "YES",
+   "forecast_high_F": 105.6,
+   "forecast_error_sd_F": 2.23,
+   "model_probability_side_wins": 0.32,
+   "price_to_pay": 0.04,
+   "fee_per_contract": 0.003,
+   "model_edge": 0.277,
+   "station_train_mae_corrected_F": 1.7,
+   "station_train_raw_bias_F": -2.12,
+   "bid_ask_spread": 0.01,
+   "volume_traded_before_bet": 74.0
+  },
+  "p_bet": 0.61,
+  "p_skip": 0.39,
+  "cutoff": 0.62,
+  "judge_action": "skip",
+  "rule_action": "bet",
+  "won": false,
+  "pnl": -0.99
+ },
+ {
+  "kind": "close call",
+  "ticker": "KXHIGHCHI-26SEP20-B73.5",
+  "state": {
+   "city": "Chicago",
+   "station": "KMDW",
+   "market": "high between 73\u00b0F and 74\u00b0F on 2026-09-20",
+   "bet_side": "YES",
+   "forecast_high_F": 71.7,
+   "forecast_error_sd_F": 2.18,
+   "model_probability_side_wins": 0.255,
+   "price_to_pay": 0.17,
+   "fee_per_contract": 0.01,
+   "model_edge": 0.075,
+   "station_train_mae_corrected_F": 1.6,
+   "station_train_raw_bias_F": -1.71,
+   "bid_ask_spread": 0.01,
+   "volume_traded_before_bet": 420.0
+  },
+  "p_bet": 0.619,
+  "p_skip": 0.381,
+  "cutoff": 0.62,
+  "judge_action": "skip",
+  "rule_action": "skip",
+  "won": false,
+  "pnl": -0.9
+ }
+]

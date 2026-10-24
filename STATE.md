@@ -190,3 +190,8 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 **2026-10-24 — 2.4** ([x])
 - results/hurricanes.json (2025, archive) + results/isaias_local.json / isaias_archive.json saved; GOES loops (results/final_footage/goes_*.mp4) and the CREDITS.md line unchanged (NOAA data, hardware-independent).
 - Next: 6.1 judge run (GPU, in background).
+
+**2026-10-24 — 6.1** ([x])
+- Strands Decider 2B on the GB10 GPU (official package; Ollama's MLX-only builds can't run on Linux arm64, DECISIONS.md). Fresh run on the local-AIFS candidates: 3,225/3,225 inputs answered, 0.07 s/call (mini PC: 2.75 s). Cache keyed by input hash; mini-PC calls set aside in data/judge/.
+- Hand call KXHIGHLAX-26JUN23-T76 → {bet 0.487, skip 0.513} = batch answer.
+- Next: 6.2.
