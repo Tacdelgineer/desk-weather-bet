@@ -186,3 +186,7 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 **2026-10-24 — 2.3** ([x])
 - 2025 scores unchanged (results/hurricanes.json; hand check MELISSA 3-day +24 h = 37.0 km still valid). ISAIAS: results/isaias_local.json vs results/isaias_archive.json — landfall error 3-day 97.0 km local / 79.0 km archive, 1-day 32.6 / 32.6 km; 5-day run untrackable in both (pre-genesis disturbance, no low below 1010 hPa). Track is provisional IBTrACS.
 - Next: 2.4.
+
+**2026-10-24 — 2.4** ([x])
+- results/hurricanes.json (2025, archive) + results/isaias_local.json / isaias_archive.json saved; GOES loops (results/final_footage/goes_*.mp4) and the CREDITS.md line unchanged (NOAA data, hardware-independent).
+- Next: 6.1 judge run (GPU, in background).
