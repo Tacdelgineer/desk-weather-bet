@@ -156,3 +156,8 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - Backtest forecasts rerun locally on the DGX (1.3: 2.3 h < 12 h): 120 AIFS v2 runs, D-1 00Z, 60 h (model/backtest_runs.py, 0 failures) → data/aifs_local/points → results/aifs_highs.csv (720 station-days, nearest N320 point, max of 4 six-hourly 2t). Archive version kept: results/aifs_highs_archive.csv.
 - Hand check LA 2026-06-25: raw N320 point 33.86N 118.40W, samples 60.75/65.68/67.79/62.56 °F → high 67.79 (archive 71.76, Kalshi 72).
 - Next: 4.3.
+
+**2026-10-24 — 4.3** ([x])
+- Refit on TRAIN with local forecasts (results/corrections.json, forecasts.csv). TEST MAE °F: GFS 3.28, raw AIFS 3.49, corrected AIFS 2.13 (archive-based run was 3.25 / 2.42). tests/test_split.py passes (fit() refuses TEST dates).
+- Correction still hurts NYC on TEST (1.24 → 1.78); LA raw bias −4.6 °F (coastal grid point) fixed to 2.79 MAE.
+- Next: 5.1.

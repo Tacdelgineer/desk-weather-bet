@@ -105,7 +105,7 @@ If a session stops, type `continue` in the same conversation.
   - CHECK: one city and one day by hand first, then all.
 - [x] **4.2 Free-forecast baseline.** Get GFS forecasts for the same stations and dates from Open-Meteo's historical-forecast data.
   - CHECK: one day by hand matches.
-- [ ] **4.3 Station correction (TRAIN only).** For each station, fit `actual_high ≈ a + b × model_high` and measure how spread out the errors are. Save before/after error in °F for the "trap" chapter.
+- [x] **4.3 Station correction (TRAIN only).** For each station, fit `actual_high ≈ a + b × model_high` and measure how spread out the errors are. Save before/after error in °F for the "trap" chapter.
   - CHECK: TEST error printed, and the assert proves no TEST data was used in fitting.
 
 ## Phase 5 — The backtest (Act 3)
