@@ -53,7 +53,7 @@ If a session stops, type `continue` in the same conversation.
   - CHECK: first commit pushed; `git check-ignore` confirms `.pem` and `GO_LIVE` are ignored.
 - [x] **0.2 Environment.** Python env with uv.
   - CHECK: `nvidia-smi` works; log the free disk space (want >200 GB) and the CPU type. This box is ARM64, so expect some packages to need ARM builds.
-- ⏸ WAITING (ElevenLabs key/voice ID not in env; Kalshi key + $10 + git push confirmed) **0.3 🧑 H1 — print once, don't wait for it.**
+- [x] **0.3 🧑 H1 — print once, don't wait for it.**
   1. Kalshi: create an API key in account settings and save the private key. It's shown only once.
   2. Put the key file at `~/.kalshi/prod.pem` and the key ID in `~/.kalshi/prod_key_id`.
   3. Make sure the account has $10.

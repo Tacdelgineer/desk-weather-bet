@@ -132,3 +132,7 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - DGX Spark: aarch64 (10× Cortex-X925 + 10× Cortex-A725), NVIDIA GB10, nvidia-smi works (driver 580, CUDA 13.0), 2.0 TB free disk.
 - Envs rebuilt with uv for aarch64: main (uv.lock), model/aifs (torch 2.14.1+cu130 — 2.7 has CVEs), model/judge (torch 2.14.1+cu130). OSV: 0 known vulns in all three locks.
 - Next: 0.3.
+
+**2026-10-24 — 0.3** ([x])
+- ElevenLabs key + voice ID present in this machine's environment; Kalshi prod key OK (read-only), balance ≥ $10 (yes/no check only); git push via SSH remote. No demo key (optional).
+- Next: 1.1.
