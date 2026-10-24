@@ -73,3 +73,7 @@
 
 **2026-10-24 — 2.2** ([x])
 - 9 runs (5/3/1 days before each reference time) from ECMWF's archived real-time AIFS Single (2025 = v1.x; see DECISIONS.md), msl over 5–50°N, 100–30°W, 6-hourly to +144 h. Tracker: lowest msl within 250 km of the extrapolated last centre (model/hurricanes.py).
+
+**2026-10-24 — 2.3** ([x])
+- Errors vs IBTrACS at 24/48/72/120 h + reference-time error, in results/hurricanes.json. Big miss reported: IMELDA 5-day run stalls the storm near GA/SC instead of turning to Bermuda (1,236 km at 120 h).
+- CHECK: MELISSA 3-day run +24 h: AIFS 16.00N 76.25W vs IBTrACS row 2025-10-26 12:00 16.3N 76.4W → hand haversine 37.0 km = scorer 37.0 km. (AIFS centre pressure 986 vs observed 952 hPa — model too weak.)
