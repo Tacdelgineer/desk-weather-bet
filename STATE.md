@@ -39,3 +39,7 @@
 **2026-10-24 — 3.3** ([x])
 - NWS Daily Climate Report highs (IEM archive) vs Kalshi settled values: 718/720 match (99.72%). Mismatches: Miami 2026-08-29 (Kalshi 90, NWS 85), Phoenix 2026-09-27 (NWS value missing 'M'). results/settlement_check.json, results/nws_cli.csv.
 - Backtest settles on Kalshi's own value (what actually paid out).
+
+**2026-10-24 — 4.3** ([x])
+- backtest/correct.py: per station actual ≈ a + b·model fitted on TRAIN only (assert_train_only; tests/test_split.py proves fit() raises on TEST dates). results/corrections.json + results/forecasts.csv.
+- TEST MAE °F: GFS 3.28, raw AIFS 3.25, corrected AIFS 2.42 (TRAIN 3.83 / 2.89 / 1.58). Correction hurts LA (3.22→4.08) and NYC (1.24→1.90) on TEST — reported, not hidden.
