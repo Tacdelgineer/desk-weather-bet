@@ -1,6 +1,6 @@
-"""Run AIFS Single v2 on CPU from ECMWF open data, following the model card's demo notebook.
+"""Run AIFS Single v2 (GPU on the DGX, CPU elsewhere) from ECMWF open data, following the model card's demo notebook.
 
-usage: uv --project model/aifs run python model/run_aifs.py --date 2026-10-23T00 --lead 240 [--source ecmwf|aws]
+usage: uv --project model/aifs run python model/run_aifs.py --date 2026-10-23T00 --lead 240 [--source gcs|ecmwf|aws]
 Writes data/aifs_runs/<YYYYMMDDHH>_<lead>h.npz with 2t/msl/10u/10v (+ any max-temp field) per 6-h step on the N320 grid.
 Skips if the output already exists (safe to re-run).
 """
@@ -34,12 +34,20 @@ SOIL_LEVELS = [1, 2]
 KEEP = ["2t", "msl", "10u", "10v", "mx2t", "mx2t6", "mn2t", "mn2t6", "tp"]
 
 
-def get_open_data(date, source, param, levelist=(), **kw):
+def flash_attn_origin():
+    import flash_attn
+    return "CPU/GPU stand-in model/cpu_flash" if "cpu_flash" in flash_attn.__file__ else f"flash-attn {flash_attn.__version__}"
+
+
+def get_open_data(date, source, param, levelist=(), group=None, **kw):
     import earthkit.data as ekd
     import earthkit.regrid as ekr
     fields = defaultdict(list)
     for d in [date - dt.timedelta(hours=6), date]:
-        data = ekd.from_source("ecmwf-open-data", date=d, param=param, levelist=list(levelist), source=source, **kw)
+        if source == "gcs":  # local GRIB from fetch/ifs_inputs.py (Google Cloud copy of the same open data)
+            data = ekd.from_source("file", str(ROOT / "data" / "ifs_grib" / f"{d:%Y%m%d%H}" / f"{group}.grib2"))
+        else:
+            data = ekd.from_source("ecmwf-open-data", date=d, param=param, levelist=list(levelist), source=source, **kw)
         for f in data:
             v = f.to_numpy()
             assert v.shape == (721, 1440), v.shape
@@ -53,10 +61,14 @@ def get_open_data(date, source, param, levelist=(), **kw):
 def build_input(date, source):
     import earthkit.data as ekd
     fields = {}
-    fields.update(get_open_data(date, source, PARAM_SFC, levtype="sfc"))
-    fields.update(get_open_data(date, source, PARAM_WAVE, stream="wave"))
-    soil = get_open_data(date, source, PARAM_SOIL, levelist=SOIL_LEVELS)
-    fields.update(get_open_data(date, source, PARAM_PL, levelist=LEVELS))
+    if source == "gcs":
+        sys.path.insert(0, str(ROOT))
+        from fetch.ifs_inputs import fetch_init
+        fetch_init(date)
+    fields.update(get_open_data(date, source, PARAM_SFC, group="sfc", levtype="sfc"))
+    fields.update(get_open_data(date, source, PARAM_WAVE, group="wave", stream="wave"))
+    soil = get_open_data(date, source, PARAM_SOIL, levelist=SOIL_LEVELS, group="sol")
+    fields.update(get_open_data(date, source, PARAM_PL, levelist=LEVELS, group="pl"))
     missing = [p for p in PARAM_SFC + PARAM_WAVE if p not in fields]
     missing += [f"{p}_{l}" for p in PARAM_PL for l in LEVELS if f"{p}_{l}" not in fields]
     missing += [f"{p}_{l}" for p in PARAM_SOIL for l in SOIL_LEVELS if f"{p}_{l}" not in soil]
@@ -80,8 +92,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", required=True, help="init time, e.g. 2026-10-23T00")
     ap.add_argument("--lead", type=int, default=240, help="hours")
-    ap.add_argument("--source", default="ecmwf", help="ecmwf (recent days) or aws (archive)")
+    ap.add_argument("--source", default="gcs", help="gcs (Google Cloud copy, via fetch/ifs_inputs.py; default), ecmwf or aws")
     ap.add_argument("--input-only", action="store_true", help="just download + cache the initial conditions")
+    ap.add_argument("--no-input-cache", action="store_true", help="don't write data/aifs_inputs/<init>.npz")
+    ap.add_argument("--device", help="cuda or cpu (default: cuda if available)")
     ap.add_argument("--also-save", type=int, default=0, help="also write a <init>_<N>h.npz once step N is reached")
     a = ap.parse_args()
     date = dt.datetime.strptime(a.date, "%Y-%m-%dT%H")
@@ -96,6 +110,8 @@ def main():
     cache = INPUTS / f"{date:%Y%m%d%H}.npz"
     if cache.exists():
         fields = dict(np.load(cache))
+    elif a.no_input_cache:  # backtest: the GRIB files in data/ifs_grib are the cache (~0.2 GB vs 0.8 GB per init)
+        fields = build_input(date, a.source)
     else:
         fields = build_input(date, a.source)
         INPUTS.mkdir(parents=True, exist_ok=True)
@@ -108,11 +124,13 @@ def main():
 
     import faulthandler
     import torch
+    device = a.device or ("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"device {device}, flash_attn from {flash_attn_origin()}", flush=True)
     torch.set_num_threads(int(os.environ.get("AIFS_THREADS", os.cpu_count() or 4)))
     if os.environ.get("AIFS_STACKS"):
         faulthandler.dump_traceback_later(int(os.environ["AIFS_STACKS"]), repeat=True)
     from anemoi.inference.runners.simple import SimpleRunner
-    runner = SimpleRunner(str(CKPT), device="cpu")
+    runner = SimpleRunner(str(CKPT), device=device)
     keep = defaultdict(list)
     steps = []
     t1 = time.time()

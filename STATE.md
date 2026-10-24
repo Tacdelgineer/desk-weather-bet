@@ -123,3 +123,12 @@ input download), no systemd timers or cron installed (bot/systemd/ holds unit dr
 
 **Next on DGX:** redo 0.2, 1.1 (10-day local run + LA check), 1.2, 1.3 timing; finish 6.1 full judge run
 (resumes from data/judge/calls.jsonl if copied), then 6.2, 6.3, 7.1, 7.2, 7.4, 7.5.
+
+---
+## ON THE DGX SPARK (from 2026-10-24)
+Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weather AI or the hardware re-opened (see DECISIONS.md).
+
+**2026-10-24 — 0.2** ([x])
+- DGX Spark: aarch64 (10× Cortex-X925 + 10× Cortex-A725), NVIDIA GB10, nvidia-smi works (driver 580, CUDA 13.0), 2.0 TB free disk.
+- Envs rebuilt with uv for aarch64: main (uv.lock), model/aifs (torch 2.14.1+cu130 — 2.7 has CVEs), model/judge (torch 2.14.1+cu130). OSV: 0 known vulns in all three locks.
+- Next: 0.3.

@@ -51,7 +51,7 @@ If a session stops, type `continue` in the same conversation.
   - Files: README stub, `STATE.md`, `DECISIONS.md`, `CREDITS.md`.
   - `.gitignore`: `results/final_footage`, `*.mp4`, `*.grib*`, `data/`, `.env`, `*.pem`, `GO_LIVE`, `STOP`.
   - CHECK: first commit pushed; `git check-ignore` confirms `.pem` and `GO_LIVE` are ignored.
-- ⚠️ BLOCKED (no NVIDIA GPU on this machine — nvidia-smi missing; env itself done, running on CPU) **0.2 Environment.** Python env with uv.
+- [x] **0.2 Environment.** Python env with uv.
   - CHECK: `nvidia-smi` works; log the free disk space (want >200 GB) and the CPU type. This box is ARM64, so expect some packages to need ARM builds.
 - ⏸ WAITING (ElevenLabs key/voice ID not in env; Kalshi key + $10 + git push confirmed) **0.3 🧑 H1 — print once, don't wait for it.**
   1. Kalshi: create an API key in account settings and save the private key. It's shown only once.
@@ -69,16 +69,16 @@ If a session stops, type `continue` in the same conversation.
 - [ ] **1.2 Past start dates.** Rerun AIFS for one past date (e.g. 2025-10-01 00z), using start data from ECMWF's open-data copy on AWS (it goes back to April 2024).
   - CHECK: a forecast exists for that date.
   - If this is impossible, fall back to archived AIFS forecasts (ECMWF's archive, from Feb 2024). Log it in DECISIONS.md and say so in the next report.
-- [x] **1.3 Timing.** Measure the time per forecast run and estimate total runtime for every run in this plan.
+- [ ] **1.3 Timing.** Measure the time per forecast run and estimate total runtime for every run in this plan.
   - CHECK: the numbers are in STATE.md. If the total is over 24 h, shrink the window and log it.
 
 ## Phase 2 — Hurricanes (Act 1)
 
 - [x] **2.1 Pick storms.** Choose 3 Atlantic hurricanes from 2025 with landfall and big news coverage, from IBTrACS. Log the choice.
-- [x] **2.2 Run and track.** Run AIFS from 5, 3 and 1 day(s) before each landfall. Track the storm center every 6 h: the lowest sea-level pressure near the last position.
-- [x] **2.3 Score.** Compare against the IBTrACS best tracks: km error at 24/48/72/120 h, plus landfall position error.
+- [ ] **2.2 Run and track.** Run AIFS from 5, 3 and 1 day(s) before each landfall. Track the storm center every 6 h: the lowest sea-level pressure near the last position.
+- [ ] **2.3 Score.** Compare against the IBTrACS best tracks: km error at 24/48/72/120 h, plus landfall position error.
   - CHECK: one storm, one time step hand-checked against the printed IBTrACS row.
-- [x] **2.4 Save and gather footage.**
+- [ ] **2.4 Save and gather footage.**
   - Save `results/hurricanes.json` (tracks + errors).
   - Download real NOAA GOES satellite loops for the cold open; add the credit line to CREDITS.md.
   - CHECK: files exist and the credits are written.
@@ -101,29 +101,29 @@ If a session stops, type `continue` in the same conversation.
 
 ## Phase 4 — Forecasts for the backtest
 
-- [x] **4.1 AIFS daily highs.** Run AIFS once per day in the window, using the run that was available before bet time. Take each station's nearest grid point. Daily high = max of the 6-hourly 2 m temperatures, plus any max-temperature field the model outputs.
+- [ ] **4.1 AIFS daily highs.** Run AIFS once per day in the window, using the run that was available before bet time. Take each station's nearest grid point. Daily high = max of the 6-hourly 2 m temperatures, plus any max-temperature field the model outputs.
   - CHECK: one city and one day by hand first, then all.
 - [x] **4.2 Free-forecast baseline.** Get GFS forecasts for the same stations and dates from Open-Meteo's historical-forecast data.
   - CHECK: one day by hand matches.
-- [x] **4.3 Station correction (TRAIN only).** For each station, fit `actual_high ≈ a + b × model_high` and measure how spread out the errors are. Save before/after error in °F for the "trap" chapter.
+- [ ] **4.3 Station correction (TRAIN only).** For each station, fit `actual_high ≈ a + b × model_high` and measure how spread out the errors are. Save before/after error in °F for the "trap" chapter.
   - CHECK: TEST error printed, and the assert proves no TEST data was used in fitting.
 
 ## Phase 5 — The backtest (Act 3)
 
-- [x] **5.1 Probabilities.** Turn each forecast into a probability for each temperature bracket: a normal curve around the corrected high, using that station's error spread.
-- [x] **5.2 Simulate betting.** Every player uses the same rules:
+- [ ] **5.1 Probabilities.** Turn each forecast into a probability for each temperature bracket: a normal curve around the corrected high, using that station's error spread.
+- [ ] **5.2 Simulate betting.** Every player uses the same rules:
   - buy YES or NO at the ask if `probability − price − fee > threshold`;
   - at most $1 per market;
   - tune the threshold on TRAIN, report on TEST.
   - CHECK: 5 random bets traced end to end (forecast → probability → price → fee → settlement → P&L) in `logs/handcheck.md`.
-- [x] **5.3 Results.** For each player: P&L, number of bets, win rate, fees paid, P&L by city and equity curves. Save to `results/backtest.json` + CSV.
+- [ ] **5.3 Results.** For each player: P&L, number of bets, win rate, fees paid, P&L by city and equity curves. Save to `results/backtest.json` + CSV.
   - CHECK: the per-bet P&L sums to the total.
-- [x] **5.4 Robustness.** Rerun with fees ×1.5 and the threshold moved up and down. Note whether the conclusion still holds.
+- [ ] **5.4 Robustness.** Rerun with fees ×1.5 and the threshold moved up and down. Note whether the conclusion still holds.
   - CHECK: table saved.
 
 ## Phase 6 — The judge (Act 4)
 
-- [x] **6.1 Run the decision model.** Run Strands Decider 2B locally. For each candidate bet, give it a small JSON (city, forecast, probability, price, station error history, spread, volume) and the options bet/skip.
+- [ ] **6.1 Run the decision model.** Run Strands Decider 2B locally. For each candidate bet, give it a small JSON (city, forecast, probability, price, station error history, spread, volume) and the options bet/skip.
   - CHECK: one call by hand returns probabilities.
 - [ ] **6.2 Judge vs rule.** On TEST, compare the judge with the one-line rule ("bet if edge > X cents", with X from TRAIN).
   - CHECK: `results/judge.json` saved.

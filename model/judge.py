@@ -1,6 +1,6 @@
-"""6.1 — ask Strands Decider 2B (StrandsAgents/strands-decider-2B-qwen3.5-v1-2610, CPU) bet-or-skip for each candidate.
-Ollama's strands-decider:2b needs the MLX runtime, which this machine lacks, so the same model is served with the
-official strands-decider package (see DECISIONS.md).
+"""6.1 — ask Strands Decider 2B (StrandsAgents/strands-decider-2B-qwen3.5-v1-2610) bet-or-skip for each candidate.
+Ollama's strands-decider tags all need the MLX runtime, which Ollama doesn't ship for Linux arm64, so the same model
+is served with the official strands-decider package, on the GPU when there is one (see DECISIONS.md).
 Run in the judge env:  model/judge/.venv/bin/python model/judge.py [--limit N]
 Resume-safe: appends to data/judge/calls.jsonl and skips tickers already answered."""
 import argparse
@@ -20,8 +20,9 @@ OPTIONS = {"bet": "place the bet: the forecast edge over the price and fee looks
 
 
 def load():
+    import torch
     from strands_decider.infer import load_engine
-    return load_engine(CKPT, device="cpu")
+    return load_engine(CKPT, device="cuda" if torch.cuda.is_available() else "cpu")
 
 
 def ask(engine, state_json):

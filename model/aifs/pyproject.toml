@@ -2,15 +2,15 @@
 name = "aifs-env"
 version = "0.1"
 requires-python = ">=3.12,<3.13"
-# Pins from ecmwf/aifs-single-2.0 pyproject.toml, minus flash-attn (CUDA-only; no NVIDIA GPU here)
-# and with CPU torch instead of torch==2.7+cu.
+# Pins from ecmwf/aifs-single-2.0 pyproject.toml, except torch (2.7 has known CVEs; 2.14.1 has none, see DECISIONS.md). DGX Spark (aarch64, GB10): CUDA torch 2.14.1+cu130 from
+# pytorch.org; flash-attn has no aarch64 wheel, see DECISIONS.md for what runs instead.
 dependencies = [
   "anemoi-graphs==0.6.4",
   "anemoi-models==0.9.3",
   "anemoi-transform==0.1.16.post2",
   "anemoi-utils==0.4.35.post3",
   "earthkit-data<1",
-  "torch==2.7.*",
+  "torch==2.14.1",
   "torch-geometric==2.6.1",
   "anemoi-inference[huggingface]==0.8.3",
   "anemoi-plugins-ecmwf-inference[opendata]==0.2.1",
@@ -19,11 +19,11 @@ dependencies = [
 ]
 
 [tool.uv]
-environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+environments = ["sys_platform == 'linux' and platform_machine == 'aarch64'"]
 index-strategy = "unsafe-best-match"
 [[tool.uv.index]]
-name = "pytorch-cpu"
-url = "https://download.pytorch.org/whl/cpu"
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
 explicit = true
 [tool.uv.sources]
-torch = { index = "pytorch-cpu" }
+torch = { index = "pytorch-cu130" }
