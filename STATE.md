@@ -50,3 +50,8 @@
 **2026-10-24 — 5.2** ([x])
 - Same rule for all players: buy YES/NO at the ask if p − price − fee/contract > threshold, ≤ $1 incl. fee per market, threshold tuned on TRAIN (grid 0–0.30), reported on TEST. Assumes full fill at the quoted ask.
 - CHECK: logs/handcheck.md traces 5 random bets end to end, recomputed independently from raw files — all match.
+
+**2026-10-24 — 5.3** ([x])
+- results/backtest.json, backtest_summary.csv, backtest_bets.csv, candidates.csv (PAPER MONEY, TEST window).
+- TEST P&L: GFS −$167.40 (410 bets), raw AIFS −$150.50 (261), corrected AIFS + rule −$284.14 (1,148; TRAIN was +$127). Market mid-price Brier 0.105 beats every model (0.136–0.150).
+- CHECK: per-bet P&L sums equal totals (asserted in sim.py).
