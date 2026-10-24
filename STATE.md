@@ -46,3 +46,7 @@
 
 **2026-10-24 — 5.1** ([x])
 - backtest/sim.py bracket_prob(): Normal(mu, sigma) around each player's high with ±0.5°F integer continuity (between / greater / less brackets). Sigma = station's TRAIN error spread.
+
+**2026-10-24 — 5.2** ([x])
+- Same rule for all players: buy YES/NO at the ask if p − price − fee/contract > threshold, ≤ $1 incl. fee per market, threshold tuned on TRAIN (grid 0–0.30), reported on TEST. Assumes full fill at the quoted ask.
+- CHECK: logs/handcheck.md traces 5 random bets end to end, recomputed independently from raw files — all match.
