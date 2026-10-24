@@ -174,3 +174,7 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - results/backtest.json, backtest_summary.csv, backtest_bets.csv, candidates.csv (PAPER MONEY, TEST). Archive-forecast version kept in results/archive_forecasts/.
 - TEST P&L: GFS −$167.40 (410 bets), raw AIFS −$130.65 (254), corrected AIFS + rule −$129.11 (687). Market mid-price Brier 0.105 beats every model (0.130–0.150). Per-bet sums = totals (asserted).
 - Next: 5.4.
+
+**2026-10-24 — 5.4** ([x])
+- results/robustness.csv/.json: fees ×1.5, threshold −0.02/+0.02/+0.05 and combined. No player profitable on TEST in any case (best: raw AIFS −$108.36 at +0.05). Conclusion holds.
+- Next: 6.1 (judge on GPU).
