@@ -66,3 +66,7 @@
 **2026-10-24 — 4.1** ([x])
 - results/aifs_highs.csv: 720 station-days; D-1 00Z AIFS run (ECMWF archived real-time AIFS Single v2, see DECISIONS.md), nearest 0.25° grid point, max of the 4 six-hourly 2 m temps inside the local-standard-time day (open data has no max-temp field).
 - Hand check LA 2026-06-25: samples 61.2/68.8/71.8/63.9°F → high 71.8°F (Kalshi settled 72).
+
+**2026-10-24 — 6.1** ([x])
+- Strands Decider 2B (official package, CPU; Ollama build needs MLX) answers bet/skip per candidate from a small JSON (city, forecast, sd, probability, price, fee, edge, station TRAIN error, spread, volume traded before bet time).
+- Hand call KXHIGHLAX-26JUN23-T69 → {bet 0.81, skip 0.19}; 2.47 s/call. Full run (3,262 candidates) in background → data/judge/calls.jsonl.
