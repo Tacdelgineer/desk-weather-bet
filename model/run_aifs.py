@@ -81,6 +81,8 @@ def main():
     ap.add_argument("--date", required=True, help="init time, e.g. 2026-10-23T00")
     ap.add_argument("--lead", type=int, default=240, help="hours")
     ap.add_argument("--source", default="ecmwf", help="ecmwf (recent days) or aws (archive)")
+    ap.add_argument("--input-only", action="store_true", help="just download + cache the initial conditions")
+    ap.add_argument("--also-save", type=int, default=0, help="also write a <init>_<N>h.npz once step N is reached")
     a = ap.parse_args()
     date = dt.datetime.strptime(a.date, "%Y-%m-%dT%H")
     OUT.mkdir(parents=True, exist_ok=True)
@@ -101,6 +103,8 @@ def main():
         os.replace(cache.with_suffix(".tmp.npz"), cache)
     t_in = time.time() - t0
     print(f"input ready in {t_in:.0f}s", flush=True)
+    if a.input_only:
+        return
 
     import faulthandler
     import torch
@@ -118,14 +122,22 @@ def main():
             if k in state["fields"]:
                 keep[k].append(np.asarray(state["fields"][k], dtype=np.float32))
         print(f"step +{steps[-1]}h  {time.time() - t1:.0f}s", flush=True)
+        if a.also_save and steps[-1] == a.also_save:
+            part = OUT / f"{date:%Y%m%d%H}_{a.also_save}h.npz"
+            if not part.exists():
+                save(part, steps, keep, state, date, t_in, time.time() - t1)
     t_run = time.time() - t1
+    save(out, steps, keep, state, date, t_in, t_run)
+
+
+def save(out, steps, keep, state, date, t_in, t_run):
     lat, lon = state["latitudes"], state["longitudes"]
     tmp = out.with_suffix(".tmp.npz")
     np.savez_compressed(tmp, steps=np.array(steps), lat=lat.astype(np.float32), lon=lon.astype(np.float32),
                         init=np.array(date.isoformat()), t_input=t_in, t_run=t_run,
                         **{k: np.stack(v) for k, v in keep.items()})
     os.replace(tmp, out)
-    print(f"saved {out.name}: fields={list(keep)} steps={len(steps)} run={t_run:.0f}s")
+    print(f"saved {out.name}: fields={list(keep)} steps={len(steps)} run={t_run:.0f}s", flush=True)
 
 
 if __name__ == "__main__":

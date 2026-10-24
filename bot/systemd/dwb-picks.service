@@ -1,0 +1,11 @@
+[Unit]
+Description=desk-weather-bet: settle, choose picks, post to issue, order only if GO_LIVE
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/Projects/desk-weather-bet
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=%h/.local/bin/uv run python bot/live.py picks
+StandardOutput=append:%h/Projects/desk-weather-bet/logs/timer_picks.log
+StandardError=append:%h/Projects/desk-weather-bet/logs/timer_picks.log
+TimeoutStartSec=6h

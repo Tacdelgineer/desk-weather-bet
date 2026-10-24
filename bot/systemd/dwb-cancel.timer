@@ -1,0 +1,9 @@
+[Unit]
+Description=desk-weather-bet daily cancel (19:05:00 UTC)
+
+[Timer]
+OnCalendar=*-*-* 19:05:00 UTC
+Persistent=true
+
+[Install]
+WantedBy=timers.target

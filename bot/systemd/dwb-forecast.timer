@@ -1,0 +1,10 @@
+[Unit]
+Description=desk-weather-bet daily forecast (08:30 UTC, retry 10:30 if missing)
+
+[Timer]
+OnCalendar=*-*-* 08:30:00 UTC
+OnCalendar=*-*-* 10:30:00 UTC
+Persistent=true
+
+[Install]
+WantedBy=timers.target
