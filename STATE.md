@@ -30,3 +30,8 @@
 **2026-10-24 — 4.2** ([x])
 - results/gfs_highs.csv: GFS (Open-Meteo single-run API, gfs_global) run D-1 00Z, hourly 2 m temp at station, max over the local-standard-time day; 720 rows.
 - Hand check LA 2026-06-25: 24 hourly values, max 71.5°F at 19Z = csv value (Kalshi settled 72).
+
+**2026-10-24 — 3.2** ([x])
+- results/markets.csv: 4,320 bracket markets (720 events = 6 cities × 120 dates), settled values, ask/bid at bet time (16:00 UTC day before) from hourly candles; raw cache in data/kalshi/.
+- Kalshi markets usually open 14:00 UTC the day before (median 2 h before bet time); 7 events (42 markets) opened after bet time → no quote, excluded.
+- CHECK: KXHIGHLAX-26JUN25-B72.5 ours ask 0.30/bid 0.29 = Kalshi candle 0.30/0.29; KXHIGHNY-26OCT15-B68.5 0.04/0.03 = 0.04/0.03.
