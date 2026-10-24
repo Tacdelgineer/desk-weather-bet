@@ -1,0 +1,15 @@
+{
+ "machine": "x86_64 Intel i9-12900HK, 20 threads, 15 GB RAM, no NVIDIA GPU (CPU inference)",
+ "measured_run": "AIFS Single v2, init 2026-10-23T12, lead 12 h (2 steps), logs/1.1_test.log",
+ "input_download_s": 168,
+ "step1_incl_model_load_s": 498,
+ "step2_s": 528,
+ "seconds_per_6h_step": 528,
+ "estimates_hours": {
+  "backtest_local_120_runs_x_10_steps": 176.0,
+  "hurricanes_local_9_runs_x_24_steps": 31.7,
+  "live_week_7_runs_x_10_steps": 10.3,
+  "ten_day_forecast_40_steps": 5.9
+ },
+ "decision": "total local runtime > 24 h -> backtest and hurricanes use ECMWF's archived real-time AIFS forecasts; live bot runs AIFS locally (see DECISIONS.md)"
+}
