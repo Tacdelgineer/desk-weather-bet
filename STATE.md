@@ -55,3 +55,6 @@
 - results/backtest.json, backtest_summary.csv, backtest_bets.csv, candidates.csv (PAPER MONEY, TEST window).
 - TEST P&L: GFS −$167.40 (410 bets), raw AIFS −$150.50 (261), corrected AIFS + rule −$284.14 (1,148; TRAIN was +$127). Market mid-price Brier 0.105 beats every model (0.136–0.150).
 - CHECK: per-bet P&L sums equal totals (asserted in sim.py).
+
+**2026-10-24 — 5.4** ([x])
+- results/robustness.csv/.json: fees ×1.5 and TRAIN threshold shifted −0.02/+0.02/+0.05. No player is profitable on TEST in any case (best: GFS/raw AIFS ≈ −$126 at +0.05). Conclusion holds.
