@@ -131,7 +131,7 @@ def field(init, steps, box, params=("msl", "10u", "10v")):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("mode", choices=["points", "field"])
+    ap.add_argument("mode", choices=["points", "field", "points-all"])
     ap.add_argument("--init", required=True, help="YYYY-MM-DDTHH")
     ap.add_argument("--steps", default="24-60", help="a-b (every 6 h) or comma list")
     ap.add_argument("--box", default="5,45,-100,-50")
@@ -142,7 +142,17 @@ def main():
         steps = list(range(lo, hi + 1, 6))
     else:
         steps = [int(x) for x in a.steps.split(",")]
-    if a.mode == "points":
+    if a.mode == "points-all":  # every backtest init (D-1 00Z), 8 threads
+        from concurrent.futures import ThreadPoolExecutor
+        sys.path.insert(0, str(ROOT))
+        from backtest.window import DAYS
+        inits = [dt.datetime(d.year, d.month, d.day) - dt.timedelta(days=1) for d in DAYS]
+        with ThreadPoolExecutor(8) as ex:
+            for i, r in zip(inits, ex.map(lambda i: points(i, steps), inits)):
+                print(f"{i:%Y-%m-%dT%H}", r, flush=True)
+        (ROOT / "results" / ".done").mkdir(parents=True, exist_ok=True)
+        (ROOT / "results" / ".done" / "aifs_archive_points").touch()
+    elif a.mode == "points":
         print(a.init, points(init, steps))
     else:
         print(a.init, field(init, steps, tuple(float(x) for x in a.box.split(","))))

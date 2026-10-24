@@ -71,6 +71,16 @@ def quote_at(candles, t):
 def main():
     cities = json.loads((ROOT / "results" / "cities.json").read_text())
     k = Kalshi(auth=False)
+    from concurrent.futures import ThreadPoolExecutor
+    jobs = [(c["series"], d) for c in cities for d in DAYS
+            if not (CACHE / c["series"] / f"{event_ticker(c['series'], d)}.json").exists()]
+    def safe(j):
+        try:
+            fetch_event(Kalshi(auth=False), *j)
+        except Exception:  # noqa: BLE001 — recorded as missing below
+            pass
+    with ThreadPoolExecutor(4) as ex:
+        list(ex.map(safe, jobs))
     rows, missing = [], []
     for c in cities:
         for d in DAYS:
