@@ -26,3 +26,7 @@
 
 **2026-10-24 — 2.1** ([x])
 - results/storms.json: MELISSA (Jamaica landfall 2025-10-28 17:25Z), IMELDA (Bermuda 11 km, 2025-10-02 03Z), ERIN (Outer Banks closest approach 322 km, 2025-08-21 09Z), from IBTrACS NA v04r01. Choice logged in DECISIONS.md.
+
+**2026-10-24 — 4.2** ([x])
+- results/gfs_highs.csv: GFS (Open-Meteo single-run API, gfs_global) run D-1 00Z, hourly 2 m temp at station, max over the local-standard-time day; 720 rows.
+- Hand check LA 2026-06-25: 24 hourly values, max 71.5°F at 19Z = csv value (Kalshi settled 72).

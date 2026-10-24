@@ -103,7 +103,7 @@ If a session stops, type `continue` in the same conversation.
 
 - [ ] **4.1 AIFS daily highs.** Run AIFS once per day in the window, using the run that was available before bet time. Take each station's nearest grid point. Daily high = max of the 6-hourly 2 m temperatures, plus any max-temperature field the model outputs.
   - CHECK: one city and one day by hand first, then all.
-- [ ] **4.2 Free-forecast baseline.** Get GFS forecasts for the same stations and dates from Open-Meteo's historical-forecast data.
+- [x] **4.2 Free-forecast baseline.** Get GFS forecasts for the same stations and dates from Open-Meteo's historical-forecast data.
   - CHECK: one day by hand matches.
 - [ ] **4.3 Station correction (TRAIN only).** For each station, fit `actual_high ≈ a + b × model_high` and measure how spread out the errors are. Save before/after error in °F for the "trap" chapter.
   - CHECK: TEST error printed, and the assert proves no TEST data was used in fitting.
