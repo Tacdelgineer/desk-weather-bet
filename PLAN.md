@@ -85,7 +85,7 @@ If a session stops, type `continue` in the same conversation.
 
 ## Phase 3 — Kalshi data
 
-- [ ] **3.1 Cities and stations.** List the daily-high series (`KXHIGH*`) and pick 6 US cities by volume. Read each market's rules for its settlement station.
+- [x] **3.1 Cities and stations.** List the daily-high series (`KXHIGH*`) and pick 6 US cities by volume. Read each market's rules for its settlement station.
   - CHECK: `results/cities.json` maps city → station → series.
 - [ ] **3.2 Market history.** For the window, pull:
   - every settled bracket market;
