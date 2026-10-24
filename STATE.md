@@ -58,3 +58,7 @@
 
 **2026-10-24 — 5.4** ([x])
 - results/robustness.csv/.json: fees ×1.5 and TRAIN threshold shifted −0.02/+0.02/+0.05. No player is profitable on TEST in any case (best: GFS/raw AIFS ≈ −$126 at +0.05). Conclusion holds.
+
+**2026-10-24 — 1.3** ([x])
+- Measured on this CPU: ~528 s per 6-h AIFS step (step 1 incl. model load 498 s), input download 168 s. results/timing.json.
+- Estimates if run locally: backtest 120×10 steps ≈ 176 h, hurricanes 9×24 ≈ 32 h, live week ≈ 10 h, one 10-day forecast ≈ 5.9 h. Total > 24 h → backtest + hurricanes use ECMWF's archived real-time AIFS (same v2 weights for the backtest); live runs locally. Logged in DECISIONS.md.
