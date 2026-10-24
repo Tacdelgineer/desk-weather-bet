@@ -81,3 +81,7 @@
 **2026-10-24 — 7.3** ([x])
 - No demo keys in ~/.kalshi, so per CLAUDE.md only a read-only authenticated balance call on prod: OK (logs/live/order_test.json; no amounts logged). bot/order_test.py would place+cancel a 1¢ demo order via the same order_body() if demo keys are added.
 - Order shape follows Kalshi Create Order V2 (/portfolio/events/orders; NO buys = ask side at the YES price) — unit-tested, not yet exercised against an exchange.
+
+**2026-10-24 — 2.4** ([x])
+- results/hurricanes.json saved (tracks + errors). Real NOAA GOES-19 band-13 IR loops rendered from the raw ABI L2 files (mesoscale sector on each storm, 1 frame/min, 3 h before reference time): results/final_footage/goes_{melissa,imelda,erin}.mp4, 6 s each (git-ignored); results/goes_loops.json.
+- Credit line added to CREDITS.md.

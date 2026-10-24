@@ -78,7 +78,7 @@ If a session stops, type `continue` in the same conversation.
 - [x] **2.2 Run and track.** Run AIFS from 5, 3 and 1 day(s) before each landfall. Track the storm center every 6 h: the lowest sea-level pressure near the last position.
 - [x] **2.3 Score.** Compare against the IBTrACS best tracks: km error at 24/48/72/120 h, plus landfall position error.
   - CHECK: one storm, one time step hand-checked against the printed IBTrACS row.
-- [ ] **2.4 Save and gather footage.**
+- [x] **2.4 Save and gather footage.**
   - Save `results/hurricanes.json` (tracks + errors).
   - Download real NOAA GOES satellite loops for the cold open; add the credit line to CREDITS.md.
   - CHECK: files exist and the credits are written.
