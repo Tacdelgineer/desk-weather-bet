@@ -125,7 +125,7 @@ If a session stops, type `continue` in the same conversation.
 
 - [x] **6.1 Run the decision model.** Run Strands Decider 2B locally. For each candidate bet, give it a small JSON (city, forecast, probability, price, station error history, spread, volume) and the options bet/skip.
   - CHECK: one call by hand returns probabilities.
-- [ ] **6.2 Judge vs rule.** On TEST, compare the judge with the one-line rule ("bet if edge > X cents", with X from TRAIN).
+- [x] **6.2 Judge vs rule.** On TEST, compare the judge with the one-line rule ("bet if edge > X cents", with X from TRAIN).
   - CHECK: `results/judge.json` saved.
 - [ ] **6.3 Explainer examples.** Save 3 example decisions with the judge's probabilities for the 60-second explainer scene.
 

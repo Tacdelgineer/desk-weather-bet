@@ -195,3 +195,7 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - Strands Decider 2B on the GB10 GPU (official package; Ollama's MLX-only builds can't run on Linux arm64, DECISIONS.md). Fresh run on the local-AIFS candidates: 3,225/3,225 inputs answered, 0.07 s/call (mini PC: 2.75 s). Cache keyed by input hash; mini-PC calls set aside in data/judge/.
 - Hand call KXHIGHLAX-26JUN23-T76 → {bet 0.487, skip 0.513} = batch answer.
 - Next: 6.2.
+
+**2026-10-24 — 6.2** ([x])
+- results/judge.json (PAPER MONEY, TEST): judge (P(bet) > 0.62, cut-off tuned on TRAIN) −$93.15 on 1,176 bets (win 61.5%) vs one-line rule (edge > 0.09) −$129.11 on 687 bets. Judge loses less but still loses; corr(P(bet), edge) = 0.35.
+- Next: 6.3.
