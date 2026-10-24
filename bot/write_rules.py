@@ -26,10 +26,10 @@ def main():
                  judge_cutoff=jd["judge_cutoff_train"] if chosen == "aifs_cor_judge" else None,
                  test_pnl=players, caps=dict(total_budget_max=live.MAX_BUDGET, per_market=live.MAX_PER_MARKET,
                                              new_orders_per_day=live.MAX_NEW_ORDERS_PER_DAY, order_type=live.ORDER_TYPE,
-                                             cancel_unfilled_after_hours=live.CANCEL_AFTER_HOURS),
-                 issue=None)
-    old = json.loads(live.RULES.read_text()) if live.RULES.exists() else {}
-    rules["issue"] = old.get("issue")
+                                             cancel_unfilled_after_hours=live.CANCEL_AFTER_HOURS))
+    corr = json.loads((ROOT / "results" / "corrections.json").read_text())  # frozen into the lock with the rules
+    rules["corrections"] = {st: {k: corr[st]["aifs_high"][k] for k in ("a", "b", "sigma")} for st in corr
+                            if not st.startswith("_")}
     live.RULES.write_text(json.dumps(rules, indent=1))
     label = {"aifs_cor": "corrected AIFS + one-line rule", "aifs_cor_judge": "corrected AIFS + decision-model judge",
              "gfs": "free GFS forecast", "aifs_raw": "raw AIFS"}[chosen]
@@ -48,7 +48,7 @@ TEST-window results (PAPER MONEY, {SPLIT} → {END}), P&L per player:
 - Forecast: AIFS Single v2 run on this desk computer (DGX Spark) from that day's 00Z ECMWF open data — the same
   pipeline as the backtest; station high = max of
   the 6-hourly 2 m temperatures in the station's local-standard-time day, corrected per station with the TRAIN fit
-  (results/corrections.json); spread = that station's TRAIN error spread.
+  (results/corrections.json, copied into RULES.json); spread = that station's TRAIN error spread.
 - Each morning at 16:00 UTC the bot looks at the **next day's** markets for the 6 cities (Los Angeles, NYC, Miami,
   Chicago Midway, Phoenix, San Francisco) — the earliest market for each date, never same-day.
 - Buy YES or NO at the current ask only if model probability − price − fee per contract > **{rules['threshold']:.2f}**

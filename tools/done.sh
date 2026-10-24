@@ -14,10 +14,10 @@ python3 - "$id" "$new" "$extra" <<'PY'
 import re, sys, pathlib
 tid, new, extra = sys.argv[1], sys.argv[2], sys.argv[3]
 p = pathlib.Path("PLAN.md"); s = p.read_text()
-pat = re.compile(r"^- (\[ \]|\[x\]|⏸|⚠️)( \*\*" + re.escape(tid) + r" )", re.M)
+pat = re.compile(r"^- (\[ \]|\[x\]|⏸[^*\n]*|⚠️[^*\n]*)\s*(\*\*" + re.escape(tid) + r" )", re.M)  # marks may carry a note
 m = pat.search(s)
 if not m: sys.exit(f"task {tid} not found")
-rep = f"- {new}" + (f" {extra}" if extra else "") + m.group(2)
+rep = f"- {new}" + (f" {extra}" if extra else "") + " " + m.group(2)
 s = s[:m.start()] + rep + s[m.end():]
 p.write_text(s)
 PY

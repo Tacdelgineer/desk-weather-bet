@@ -1,6 +1,7 @@
 """Unit tests for every hard cap in bot/live.py and for DRY_RUN."""
 import datetime as dt
 import json
+from types import SimpleNamespace
 
 import pytest
 
@@ -148,3 +149,17 @@ def test_dry_run_places_no_orders(sandbox, monkeypatch):
     assert res["mode"] == "DRY_RUN" and len(res["would_order"]) == 2
     assert not any(c[0] == "POST" for c in k.calls)
     assert live.load_ledger()["orders"] == []
+
+
+def test_issue_posts_only_as_channel_account(sandbox, monkeypatch, tmp_path):
+    monkeypatch.setattr(live, "ISSUE_FILE", tmp_path / "LIVE_ISSUE")
+    assert live.post_issue("x").startswith("no issue configured")
+    (tmp_path / "LIVE_ISSUE").write_text("1\n")
+    calls = []
+
+    def fake_run(cmd, **kw):
+        calls.append(cmd)
+        return SimpleNamespace(stdout="SomeoneElse\n", stderr="", returncode=0)
+    monkeypatch.setattr(live.subprocess, "run", fake_run)
+    assert live.post_issue("x").startswith("not posted")
+    assert not any("comment" in c for c in calls)

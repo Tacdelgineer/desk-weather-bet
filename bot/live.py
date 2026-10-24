@@ -190,10 +190,13 @@ def choose(cands, rules):
 
 
 def candidates_for(market_day, highs, rules, kalshi):
-    corr = json.loads((ROOT / "results" / "corrections.json").read_text())
+    corr = rules.get("corrections")  # the locked copy; falls back to the results file before rules exist
+    if corr is None:
+        corr = {k: v["aifs_high"] for k, v in json.loads((ROOT / "results" / "corrections.json").read_text()).items()
+                if not k.startswith("_")}
     out = []
     for st, h in highs.items():
-        c = corr[st]["aifs_high"]
+        c = corr[st]
         mu, sigma = c["a"] + c["b"] * h["raw_high_F"], c["sigma"]
         ms = kalshi.get("/markets", event_ticker=event_ticker(h["series"], market_day), limit=100).get("markets", [])
         for m in ms:
@@ -217,12 +220,20 @@ def candidates_for(market_day, highs, rules, kalshi):
     return out
 
 
+REPO = "Tacdelgineer/desk-weather-bet"
+ISSUE_FILE = ROOT / "LIVE_ISSUE"   # issue number of the "Live picks log"; kept outside RULES.* so adding it can't break the lock
+POST_AS = "Tacdelgineer"            # only the channel account posts (never a personal account; CLAUDE.md: no usernames)
+
+
 def post_issue(text):
-    issue = json.loads(RULES.read_text()).get("issue") if RULES.exists() else None
+    issue = ISSUE_FILE.read_text().strip() if ISSUE_FILE.exists() else ""
     if not issue:
-        return "no issue configured"
-    r = subprocess.run(["gh", "issue", "comment", str(issue), "--repo", "Tacdelgineer/desk-weather-bet",
-                        "--body", text], cwd=ROOT, capture_output=True, text=True)
+        return "no issue configured (LIVE_ISSUE missing)"
+    who = subprocess.run(["gh", "api", "user", "--jq", ".login"], capture_output=True, text=True).stdout.strip()
+    if who != POST_AS:
+        return f"not posted: gh is not logged in as {POST_AS}"
+    r = subprocess.run(["gh", "issue", "comment", issue, "--repo", REPO, "--body", text], cwd=ROOT,
+                       capture_output=True, text=True)
     return r.stdout.strip() or r.stderr.strip()[:200]
 
 
