@@ -62,3 +62,7 @@
 **2026-10-24 — 1.3** ([x])
 - Measured on this CPU: ~528 s per 6-h AIFS step (step 1 incl. model load 498 s), input download 168 s. results/timing.json.
 - Estimates if run locally: backtest 120×10 steps ≈ 176 h, hurricanes 9×24 ≈ 32 h, live week ≈ 10 h, one 10-day forecast ≈ 5.9 h. Total > 24 h → backtest + hurricanes use ECMWF's archived real-time AIFS (same v2 weights for the backtest); live runs locally. Logged in DECISIONS.md.
+
+**2026-10-24 — 4.1** ([x])
+- results/aifs_highs.csv: 720 station-days; D-1 00Z AIFS run (ECMWF archived real-time AIFS Single v2, see DECISIONS.md), nearest 0.25° grid point, max of the 4 six-hourly 2 m temps inside the local-standard-time day (open data has no max-temp field).
+- Hand check LA 2026-06-25: samples 61.2/68.8/71.8/63.9°F → high 71.8°F (Kalshi settled 72).

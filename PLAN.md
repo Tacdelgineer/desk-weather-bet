@@ -101,7 +101,7 @@ If a session stops, type `continue` in the same conversation.
 
 ## Phase 4 — Forecasts for the backtest
 
-- [ ] **4.1 AIFS daily highs.** Run AIFS once per day in the window, using the run that was available before bet time. Take each station's nearest grid point. Daily high = max of the 6-hourly 2 m temperatures, plus any max-temperature field the model outputs.
+- [x] **4.1 AIFS daily highs.** Run AIFS once per day in the window, using the run that was available before bet time. Take each station's nearest grid point. Daily high = max of the 6-hourly 2 m temperatures, plus any max-temperature field the model outputs.
   - CHECK: one city and one day by hand first, then all.
 - [x] **4.2 Free-forecast baseline.** Get GFS forecasts for the same stations and dates from Open-Meteo's historical-forecast data.
   - CHECK: one day by hand matches.
