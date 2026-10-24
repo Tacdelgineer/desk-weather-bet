@@ -62,7 +62,12 @@ def render(nc, png, label):
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     with h5netcdf.File(nc, "r") as h:
-        v = h.variables["CMI"][:].astype(float)  # brightness temperature, K
+        var = h.variables["CMI"]
+        raw = var[:]
+        a = var.attrs
+        v = raw.astype(float) * float(a.get("scale_factor", 1.0)) + float(a.get("add_offset", 0.0))  # brightness temp, K
+        if "_FillValue" in a:
+            v[raw == a["_FillValue"]] = np.nan
     img = np.clip((300 - v) / (300 - 190), 0, 1)  # 190 K (cold tops) -> white, 300 K -> black
     fig = plt.figure(figsize=(19.2, 10.8), dpi=100, facecolor="black")
     ax = fig.add_axes([0, 0, 1, 1])
