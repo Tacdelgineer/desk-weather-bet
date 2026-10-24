@@ -1,0 +1,29 @@
+[project]
+name = "aifs-env"
+version = "0.1"
+requires-python = ">=3.12,<3.13"
+# Pins from ecmwf/aifs-single-2.0 pyproject.toml, minus flash-attn (CUDA-only; no NVIDIA GPU here)
+# and with CPU torch instead of torch==2.7+cu.
+dependencies = [
+  "anemoi-graphs==0.6.4",
+  "anemoi-models==0.9.3",
+  "anemoi-transform==0.1.16.post2",
+  "anemoi-utils==0.4.35.post3",
+  "earthkit-data<1",
+  "torch==2.7.*",
+  "torch-geometric==2.6.1",
+  "anemoi-inference[huggingface]==0.8.3",
+  "anemoi-plugins-ecmwf-inference[opendata]==0.2.1",
+  "earthkit-regrid==0.5.1",
+  "ecmwf-opendata==0.3.29",
+]
+
+[tool.uv]
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+index-strategy = "unsafe-best-match"
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
