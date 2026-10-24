@@ -110,7 +110,7 @@ If a session stops, type `continue` in the same conversation.
 
 ## Phase 5 — The backtest (Act 3)
 
-- [ ] **5.1 Probabilities.** Turn each forecast into a probability for each temperature bracket: a normal curve around the corrected high, using that station's error spread.
+- [x] **5.1 Probabilities.** Turn each forecast into a probability for each temperature bracket: a normal curve around the corrected high, using that station's error spread.
 - [ ] **5.2 Simulate betting.** Every player uses the same rules:
   - buy YES or NO at the ask if `probability − price − fee > threshold`;
   - at most $1 per market;

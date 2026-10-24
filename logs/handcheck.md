@@ -1,48 +1,48 @@
 # Hand check — 5 random TEST bets (player: corrected AIFS + rule), PAPER MONEY
 
-## KXHIGHCHI-26SEP22-B62.5 — NO
-- forecast: AIFS run 2026-09-21T00:00:00, 6-hourly 2 m temps in the local day: 09-22T06Z=58.42;09-22T12Z=55.48;09-22T18Z=59.52;09-23T00Z=59.9 → raw high 59.90°F
-- correction (KMDW, TRAIN fit): -4.518 + 1.0918 × 59.90 = 60.88°F, sigma 1.91
-- bracket: between floor=62.0 cap=63.0 (62° to 63°) → P(YES) = 0.2879, P(NO) = 0.7121
-- price at bet time (candle ending 2026-09-21 16:00:00Z): NO ask = $0.63
-- size: 1 contracts, cost $0.63, fee round_up(0.07×1×0.63×0.37) = $0.02; edge = 0.7121 − 0.63 − 0.0200 = 0.0621 > threshold 0.04
-- settlement: Kalshi settled high 64.00°F, result NO → WIN
+## KXHIGHMIA-26SEP22-B87.5 — NO
+- forecast: AIFS run 2026-09-21T00:00:00, 6-hourly 2 m temps in the local day: 09-22T06Z=78.56;09-22T12Z=78.67;09-22T18Z=85.19;09-23T00Z=80.72 → raw high 85.19°F
+- correction (KMIA, TRAIN fit): 37.148 + 0.6204 × 85.19 = 90.00°F, sigma 1.30
+- bracket: between floor=87.0 cap=88.0 (87° to 88°) → P(YES) = 0.1214, P(NO) = 0.8786
+- price at bet time (candle ending 2026-09-21 16:00:00Z): NO ask = $0.58
+- size: 1 contracts, cost $0.58, fee round_up(0.07×1×0.58×0.42) = $0.02; edge = 0.8786 − 0.58 − 0.0200 = 0.2786 > threshold 0.09
+- settlement: Kalshi settled high 89.00°F, result NO → WIN
+- P&L: 1 × $1 − $0.58 − $0.02 = **$+0.40** (sim.py: $+0.40) ✓
+
+## KXHIGHCHI-26SEP08-B85.5 — NO
+- forecast: AIFS run 2026-09-07T00:00:00, 6-hourly 2 m temps in the local day: 09-08T06Z=64.84;09-08T12Z=62.0;09-08T18Z=81.07;09-09T00Z=80.64 → raw high 81.07°F
+- correction (KMDW, TRAIN fit): 2.240 + 0.9935 × 81.07 = 82.79°F, sigma 2.18
+- bracket: between floor=85.0 cap=86.0 (85° to 86°) → P(YES) = 0.1715, P(NO) = 0.8285
+- price at bet time (candle ending 2026-09-07 16:00:00Z): NO ask = $0.63
+- size: 1 contracts, cost $0.63, fee round_up(0.07×1×0.63×0.37) = $0.02; edge = 0.8285 − 0.63 − 0.0200 = 0.1785 > threshold 0.09
+- settlement: Kalshi settled high 87.00°F, result NO → WIN
 - P&L: 1 × $1 − $0.63 − $0.02 = **$+0.35** (sim.py: $+0.35) ✓
 
-## KXHIGHTSFO-26OCT07-B83.5 — YES
-- forecast: AIFS run 2026-10-06T00:00:00, 6-hourly 2 m temps in the local day: 10-07T12Z=61.26;10-07T18Z=75.49;10-08T00Z=79.83;10-08T06Z=65.26 → raw high 79.83°F
-- correction (KSFO, TRAIN fit): 12.367 + 0.8479 × 79.83 = 80.05°F, sigma 3.14
-- bracket: between floor=83.0 cap=84.0 (83° to 84°) → P(YES) = 0.1395, P(YES) = 0.1395
-- price at bet time (candle ending 2026-10-06 16:00:00Z): YES ask = $0.07
-- size: 13 contracts, cost $0.91, fee round_up(0.07×13×0.07×0.93) = $0.06; edge = 0.1395 − 0.07 − 0.0046 = 0.0649 > threshold 0.04
-- settlement: Kalshi settled high 76.00°F, result NO → LOSS
-- P&L: $0 − $0.91 − $0.06 = **$-0.97** (sim.py: $-0.97) ✓
+## KXHIGHNY-26OCT09-B69.5 — NO
+- forecast: AIFS run 2026-10-08T00:00:00, 6-hourly 2 m temps in the local day: 10-09T06Z=52.23;10-09T12Z=50.44;10-09T18Z=71.06;10-10T00Z=59.5 → raw high 71.06°F
+- correction (KNYC, TRAIN fit): 10.988 + 0.8691 × 71.06 = 72.75°F, sigma 1.86
+- bracket: between floor=69.0 cap=70.0 (69° to 70°) → P(YES) = 0.1021, P(NO) = 0.8979
+- price at bet time (candle ending 2026-10-08 16:00:00Z): NO ask = $0.70
+- size: 1 contracts, cost $0.70, fee round_up(0.07×1×0.70×0.30) = $0.02; edge = 0.8979 − 0.70 − 0.0200 = 0.1779 > threshold 0.09
+- settlement: Kalshi settled high 70.00°F, result YES → LOSS
+- P&L: $0 − $0.70 − $0.02 = **$-0.72** (sim.py: $-0.72) ✓
 
-## KXHIGHLAX-26AUG24-B82.5 — YES
-- forecast: AIFS run 2026-08-23T00:00:00, 6-hourly 2 m temps in the local day: 08-24T12Z=69.95;08-24T18Z=82.36;08-25T00Z=85.79;08-25T06Z=76.18 → raw high 85.79°F
-- correction (KLAX, TRAIN fit): 23.671 + 0.6889 × 85.79 = 82.77°F, sigma 2.01
-- bracket: between floor=82.0 cap=83.0 (82° to 83°) → P(YES) = 0.3775, P(YES) = 0.3775
-- price at bet time (candle ending 2026-08-23 16:00:00Z): YES ask = $0.24
-- size: 3 contracts, cost $0.72, fee round_up(0.07×3×0.24×0.76) = $0.04; edge = 0.3775 − 0.24 − 0.0133 = 0.1242 > threshold 0.04
-- settlement: Kalshi settled high 84.00°F, result NO → LOSS
-- P&L: $0 − $0.72 − $0.04 = **$-0.76** (sim.py: $-0.76) ✓
+## KXHIGHLAX-26AUG28-B84.5 — YES
+- forecast: AIFS run 2026-08-27T00:00:00, 6-hourly 2 m temps in the local day: 08-28T12Z=72.36;08-28T18Z=80.34;08-29T00Z=82.67;08-29T06Z=75.04 → raw high 82.67°F
+- correction (KLAX, TRAIN fit): 12.635 + 0.8895 × 82.67 = 86.17°F, sigma 1.98
+- bracket: between floor=84.0 cap=85.0 (84° to 85°) → P(YES) = 0.2790, P(YES) = 0.2790
+- price at bet time (candle ending 2026-08-27 16:00:00Z): YES ask = $0.16
+- size: 5 contracts, cost $0.80, fee round_up(0.07×5×0.16×0.84) = $0.05; edge = 0.2790 − 0.16 − 0.0100 = 0.1090 > threshold 0.09
+- settlement: Kalshi settled high 86.00°F, result NO → LOSS
+- P&L: $0 − $0.80 − $0.05 = **$-0.85** (sim.py: $-0.85) ✓
 
-## KXHIGHLAX-26SEP05-T80 — NO
-- forecast: AIFS run 2026-09-04T00:00:00, 6-hourly 2 m temps in the local day: 09-05T12Z=65.17;09-05T18Z=76.78;09-06T00Z=79.95;09-06T06Z=72.06 → raw high 79.95°F
-- correction (KLAX, TRAIN fit): 23.671 + 0.6889 × 79.95 = 78.75°F, sigma 2.01
-- bracket: greater floor=80.0 cap=nan (81° or above) → P(YES) = 0.1921, P(NO) = 0.8079
-- price at bet time (candle ending 2026-09-04 16:00:00Z): NO ask = $0.59
-- size: 1 contracts, cost $0.59, fee round_up(0.07×1×0.59×0.41) = $0.02; edge = 0.8079 − 0.59 − 0.0200 = 0.1979 > threshold 0.04
-- settlement: Kalshi settled high 81.00°F, result YES → LOSS
-- P&L: $0 − $0.59 − $0.02 = **$-0.61** (sim.py: $-0.61) ✓
-
-## KXHIGHMIA-26SEP23-T89 — YES
-- forecast: AIFS run 2026-09-22T00:00:00, 6-hourly 2 m temps in the local day: 09-23T06Z=79.53;09-23T12Z=79.05;09-23T18Z=82.91;09-24T00Z=80.16 → raw high 82.91°F
-- correction (KMIA, TRAIN fit): 25.064 + 0.7717 × 82.91 = 89.05°F, sigma 1.30
-- bracket: greater floor=89.0 cap=nan (90° or above) → P(YES) = 0.3635, P(YES) = 0.3635
-- price at bet time (candle ending 2026-09-22 16:00:00Z): YES ask = $0.09
-- size: 10 contracts, cost $0.90, fee round_up(0.07×10×0.09×0.91) = $0.06; edge = 0.3635 − 0.09 − 0.0060 = 0.2675 > threshold 0.04
-- settlement: Kalshi settled high 83.00°F, result NO → LOSS
-- P&L: $0 − $0.90 − $0.06 = **$-0.96** (sim.py: $-0.96) ✓
+## KXHIGHTPHX-26OCT07-B103.5 — NO
+- forecast: AIFS run 2026-10-06T00:00:00, 6-hourly 2 m temps in the local day: 10-07T12Z=76.31;10-07T18Z=93.51;10-08T00Z=101.52;10-08T06Z=86.26 → raw high 101.52°F
+- correction (KPHX, TRAIN fit): 27.175 + 0.7641 × 101.52 = 104.75°F, sigma 2.23
+- bracket: between floor=103.0 cap=104.0 (103° to 104°) → P(YES) = 0.2986, P(NO) = 0.7014
+- price at bet time (candle ending 2026-10-06 16:00:00Z): NO ask = $0.57
+- size: 1 contracts, cost $0.57, fee round_up(0.07×1×0.57×0.43) = $0.02; edge = 0.7014 − 0.57 − 0.0200 = 0.1114 > threshold 0.09
+- settlement: Kalshi settled high 102.00°F, result NO → WIN
+- P&L: 1 × $1 − $0.57 − $0.02 = **$+0.41** (sim.py: $+0.41) ✓
 
 All 5 recomputed independently match sim.py: YES

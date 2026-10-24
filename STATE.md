@@ -161,3 +161,7 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - Refit on TRAIN with local forecasts (results/corrections.json, forecasts.csv). TEST MAE °F: GFS 3.28, raw AIFS 3.49, corrected AIFS 2.13 (archive-based run was 3.25 / 2.42). tests/test_split.py passes (fit() refuses TEST dates).
 - Correction still hurts NYC on TEST (1.24 → 1.78); LA raw bias −4.6 °F (coastal grid point) fixed to 2.79 MAE.
 - Next: 5.1.
+
+**2026-10-24 — 5.1** ([x])
+- Rerun on local-AIFS forecasts: backtest/sim.py bracket_prob() unchanged — Normal(mu, sigma) with ±0.5 °F integer continuity; sigma = station TRAIN spread.
+- Next: 5.2.

@@ -1,4 +1,4 @@
 player,label,threshold,train_pnl,pnl,bets,win_rate,fees,staked,roi
 gfs,free GFS forecast,0.22,-13.37,-167.4,410,0.273,18.32,337.4,-0.4961
-aifs_raw,raw AIFS,0.3,-6.23,-150.5,261,0.169,13.62,228.5,-0.6586
-aifs_cor,corrected AIFS + one-line rule,0.04,135.31,-284.14,1148,0.394,45.12,965.14,-0.2944
+aifs_raw,raw AIFS,0.3,10.55,-130.65,254,0.201,12.95,220.65,-0.5921
+aifs_cor,corrected AIFS + one-line rule,0.09,121.36,-129.11,687,0.399,27.41,567.11,-0.2277
