@@ -1,0 +1,22 @@
+{
+ "compared": 720,
+ "total": 720,
+ "matches": 718,
+ "match_rate": 0.9972,
+ "mismatches": [
+  {
+   "city": "Miami",
+   "date": "2026-08-29",
+   "settled_high": "90.0",
+   "nws_high": "85",
+   "product": "202608300910-KMFL-CDUS42-CLIMIA"
+  },
+  {
+   "city": "Phoenix",
+   "date": "2026-09-27",
+   "settled_high": "97.0",
+   "nws_high": "M",
+   "product": "202609280832-KPSR-CDUS45-CLIPHX"
+  }
+ ]
+}

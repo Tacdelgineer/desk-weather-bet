@@ -94,7 +94,7 @@ If a session stops, type `continue` in the same conversation.
   
   Bet time = the morning before the market's date (same as live). Also record when Kalshi opens each date's markets.
   - CHECK: for one market, print our recorded ask next to Kalshi's candle; they match.
-- [ ] **3.3 Cross-check settlement.** Pull the NWS Daily Climate Report highs for the same stations and dates.
+- [x] **3.3 Cross-check settlement.** Pull the NWS Daily Climate Report highs for the same stations and dates.
   - CHECK: at least 98% match; mismatches listed.
 - [x] **3.4 Fees.** Find Kalshi's current fee formula in its docs and implement `fee()`.
   - CHECK: unit tests pass on 2 worked examples from the docs.
