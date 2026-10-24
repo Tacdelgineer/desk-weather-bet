@@ -1,0 +1,10 @@
+{
+ "files": [
+  "goes_melissa.mp4",
+  "goes_imelda.mp4",
+  "goes_erin.mp4"
+ ],
+ "band": 13,
+ "source": "https://noaa-goes19.s3.amazonaws.com",
+ "hours_before_ref": 3
+}
