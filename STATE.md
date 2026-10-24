@@ -199,3 +199,7 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 **2026-10-24 — 6.2** ([x])
 - results/judge.json (PAPER MONEY, TEST): judge (P(bet) > 0.62, cut-off tuned on TRAIN) −$93.15 on 1,176 bets (win 61.5%) vs one-line rule (edge > 0.09) −$129.11 on 687 bets. Judge loses less but still loses; corr(P(bet), edge) = 0.35.
 - Next: 6.3.
+
+**2026-10-24 — 6.3** ([x])
+- results/judge_examples.json: 3 TEST decisions with the judge's probabilities (a judge bet, a skip the rule would take, a close call).
+- Next: 7.1.

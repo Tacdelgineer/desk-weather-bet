@@ -127,7 +127,7 @@ If a session stops, type `continue` in the same conversation.
   - CHECK: one call by hand returns probabilities.
 - [x] **6.2 Judge vs rule.** On TEST, compare the judge with the one-line rule ("bet if edge > X cents", with X from TRAIN).
   - CHECK: `results/judge.json` saved.
-- [ ] **6.3 Explainer examples.** Save 3 example decisions with the judge's probabilities for the 60-second explainer scene.
+- [x] **6.3 Explainer examples.** Save 3 example decisions with the judge's probabilities for the 60-second explainer scene.
 
 ## Phase 7 — Lock the rules, then go live (Act 5)
 
