@@ -66,7 +66,7 @@ If a session stops, type `continue` in the same conversation.
 
 - [x] **1.1 Install and run once.** Install `anemoi-inference` and AIFS Single v2, following the model card's demo notebook. If a package won't build on ARM64 (e.g. a fast-attention library), use the documented fallback and log it.
   - CHECK: a 10-day forecast from today's ECMWF open data exists, and Los Angeles' 2 m temperature looks sane (print 3 values next to current NWS observations).
-- [ ] **1.2 Past start dates.** Rerun AIFS for one past date (e.g. 2025-10-01 00z), using start data from ECMWF's open-data copy on AWS (it goes back to April 2024).
+- [x] **1.2 Past start dates.** Rerun AIFS for one past date (e.g. 2025-10-01 00z), using start data from ECMWF's open-data copy on AWS (it goes back to April 2024).
   - CHECK: a forecast exists for that date.
   - If this is impossible, fall back to archived AIFS forecasts (ECMWF's archive, from Feb 2024). Log it in DECISIONS.md and say so in the next report.
 - [ ] **1.3 Timing.** Measure the time per forecast run and estimate total runtime for every run in this plan.

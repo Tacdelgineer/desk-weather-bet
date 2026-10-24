@@ -141,3 +141,8 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - AIFS Single v2 on the GB10 GPU (flash-attn stand-in, no aarch64 wheel). 10-day run from 2026-10-23 00Z open data: data/aifs_runs/2026102300_240h.npz, 170 s wall.
 - LA check (results/aifs_la_sanity.json): AIFS vs KLAX obs 17.8/16, 16.7/16, 19.3/21, 21.0/21 °C. GPU vs mini-PC CPU from the same input: 2t RMS diff 0.005 K (results/aifs_gpu_vs_cpu.json).
 - Next: 1.2.
+
+**2026-10-24 — 1.2** ([x])
+- Past start 2026-06-22 00Z (first backtest init) from ECMWF open data: data/aifs_runs/2026062200_60h.npz. Inputs via fetch/ifs_inputs.py (Google Cloud copy; AWS bucket throttled with 503 Slow Down) — identical to the earthkit-built input (max diff 1e-10).
+- 2025 start dates (e.g. 2025-10-01) are impossible for v2: open data before ~2026-05-15 lacks its wave/snow inputs (DECISIONS.md).
+- Next: 1.3.
