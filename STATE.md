@@ -85,3 +85,41 @@
 **2026-10-24 — 2.4** ([x])
 - results/hurricanes.json saved (tracks + errors). Real NOAA GOES-19 band-13 IR loops rendered from the raw ABI L2 files (mesoscale sector on each storm, 1 frame/min, 3 h before reference time): results/final_footage/goes_{melissa,imelda,erin}.mp4, 6 s each (git-ignored); results/goes_loops.json.
 - Credit line added to CREDITS.md.
+
+---
+## MOVED TO DGX (2026-10-24)
+
+Work so far ran on a GPU-less x86 mini PC (i9-12900HK, 15 GB RAM), not the DGX Spark. Stopped here on the user's
+instruction: all background jobs killed (judge run at 835/3,262 calls in data/judge/calls.jsonl — partial; 1.2
+input download), no systemd timers or cron installed (bot/systemd/ holds unit drafts only).
+
+**Where each forecast came from**
+- **Local AIFS v2 run (this mini PC, CPU, flash-attn stand-in model/cpu_flash):** only the 1.1 smoke test,
+  init 2026-10-23 12Z, 12 h lead (data/aifs_runs/2026102312_12h.npz) and its LA sanity check
+  (results/aifs_la_sanity.json). Not a 10-day run; 1.1 is NOT done.
+- **ECMWF archive (real-time open data on AWS, ecmwf-forecasts bucket):** all backtest AIFS forecasts
+  (D-1 00Z runs, AIFS Single v2 operational) and all hurricane forecasts (2025 runs, AIFS Single v1.x).
+- **Other:** GFS baseline = Open-Meteo single-run API (gfs_global, D-1 00Z). No weather model ran for Kalshi,
+  NWS, IBTrACS or GOES data.
+
+**Per completed task — does its output depend on where the weather AI ran?**
+- 0.1 repo skeleton — no.
+- 0.2 env (⚠️) — yes: machine-specific (no NVIDIA GPU, x86). Redo on DGX (ARM64 + GPU, real flash-attn).
+- 1.3 timing — YES: measured CPU speed (~528 s/step) on this mini PC. Redo on DGX; the decision to use the
+  archive for the backtest/hurricanes should be revisited with DGX timings.
+- 2.1 storm choice — no (IBTrACS).
+- 2.2/2.3 hurricane tracks + scores — no local run: ECMWF archive (AIFS v1.x real-time). Would change only if
+  hurricanes are rerun locally on DGX (note: v2 on 2025 storms may be in-sample, see DECISIONS.md).
+- 2.4 GOES loops + hurricanes.json — no (NOAA data; hurricanes.json from archive).
+- 3.1–3.4 cities, Kalshi history, NWS check, fees — no.
+- 4.1 AIFS daily highs — no local run: ECMWF archive (AIFS Single v2, D-1 00Z). Would change if the backtest
+  is rerun locally on DGX.
+- 4.2 GFS baseline — no (Open-Meteo).
+- 4.3 station correction — depends on 4.1's source (archive), not on this machine.
+- 5.1–5.4 backtest + robustness — depend on 4.1/4.3 (archive AIFS) and GFS; not on this machine.
+- 6.1 judge hand call — model ran on this CPU (official strands-decider package; Ollama build needed MLX).
+  Probabilities shouldn't depend on hardware beyond last digits; try Ollama on DGX. Full run incomplete.
+- 7.3 order test — no (read-only balance call; no demo keys).
+
+**Next on DGX:** redo 0.2, 1.1 (10-day local run + LA check), 1.2, 1.3 timing; finish 6.1 full judge run
+(resumes from data/judge/calls.jsonl if copied), then 6.2, 6.3, 7.1, 7.2, 7.4, 7.5.
