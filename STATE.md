@@ -19,3 +19,7 @@
 **2026-10-24 — 3.1** ([x])
 - results/cities.json: 6 cities by 30-day volume → station (from market rules) → series, with station lat/lon from api.weather.gov.
 - Settlement source in rules is The Weather Company for the NWS climate station (logged in DECISIONS.md).
+
+**2026-10-24 — 3.4** ([x])
+- backtest/fees.py implements Kalshi's taker fee round_up(0.07·C·P·(1−P)); tests/test_fees.py checks the doc's worked examples (5¢×100 → $0.34; 50¢ → $0.02 / $1.75 per 100) plus the table rows. 3 tests pass.
+- Next: 1.1 (AIFS CPU test run in progress).
