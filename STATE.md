@@ -136,3 +136,8 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 **2026-10-24 — 0.3** ([x])
 - ElevenLabs key + voice ID present in this machine's environment; Kalshi prod key OK (read-only), balance ≥ $10 (yes/no check only); git push via SSH remote. No demo key (optional).
 - Next: 1.1.
+
+**2026-10-24 — 1.1** ([x])
+- AIFS Single v2 on the GB10 GPU (flash-attn stand-in, no aarch64 wheel). 10-day run from 2026-10-23 00Z open data: data/aifs_runs/2026102300_240h.npz, 170 s wall.
+- LA check (results/aifs_la_sanity.json): AIFS vs KLAX obs 17.8/16, 16.7/16, 19.3/21, 21.0/21 °C. GPU vs mini-PC CPU from the same input: 2t RMS diff 0.005 K (results/aifs_gpu_vs_cpu.json).
+- Next: 1.2.
