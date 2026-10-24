@@ -1,0 +1,229 @@
+{
+ "what": "Our DGX AIFS runs vs ECMWF's archived real-time AIFS Single v2 runs (same model weights, same D-1 00Z start).",
+ "why_different": "Differences come from the start data (we start from 0.25\u00b0 open data, ECMWF from its full-resolution analysis), the grids (we read the nearest N320 point, the archive is regridded to 0.25\u00b0) and GPU arithmetic.",
+ "n_inits": 120,
+ "t2m_6hourly_local_minus_archive_F": {
+  "n": 5040,
+  "mean": -0.789,
+  "mae": 1.228,
+  "rms": 1.732,
+  "max_abs": 7.429
+ },
+ "t2m_6hourly_by_station_F": {
+  "KLAX": {
+   "n": 840,
+   "mean": -2.513,
+   "mae": 2.671,
+   "rms": 3.272,
+   "max_abs": 7.429
+  },
+  "KMDW": {
+   "n": 840,
+   "mean": -0.41,
+   "mae": 1.008,
+   "rms": 1.252,
+   "max_abs": 3.724
+  },
+  "KMIA": {
+   "n": 840,
+   "mean": -0.36,
+   "mae": 0.884,
+   "rms": 1.067,
+   "max_abs": 3.244
+  },
+  "KNYC": {
+   "n": 840,
+   "mean": -0.908,
+   "mae": 1.013,
+   "rms": 1.178,
+   "max_abs": 3.65
+  },
+  "KPHX": {
+   "n": 840,
+   "mean": 0.353,
+   "mae": 0.523,
+   "rms": 0.682,
+   "max_abs": 2.579
+  },
+  "KSFO": {
+   "n": 840,
+   "mean": -0.897,
+   "mae": 1.269,
+   "rms": 1.652,
+   "max_abs": 4.957
+  }
+ },
+ "daily_high_local_minus_archive_F": {
+  "n": 720,
+  "mean": -0.566,
+  "mae": 1.786,
+  "rms": 2.412,
+  "max_abs": 7.43
+ },
+ "daily_high_by_station_F": {
+  "KLAX": {
+   "n": 120,
+   "mean": -4.293,
+   "mae": 4.333,
+   "rms": 4.707,
+   "max_abs": 7.43
+  },
+  "KMDW": {
+   "n": 120,
+   "mean": 1.049,
+   "mae": 1.121,
+   "rms": 1.294,
+   "max_abs": 2.54
+  },
+  "KMIA": {
+   "n": 120,
+   "mean": 1.699,
+   "mae": 1.702,
+   "rms": 1.796,
+   "max_abs": 3.24
+  },
+  "KNYC": {
+   "n": 120,
+   "mean": -0.027,
+   "mae": 0.555,
+   "rms": 0.765,
+   "max_abs": 2.39
+  },
+  "KPHX": {
+   "n": 120,
+   "mean": 0.548,
+   "mae": 0.63,
+   "rms": 0.744,
+   "max_abs": 2.08
+  },
+  "KSFO": {
+   "n": 120,
+   "mean": -2.374,
+   "mae": 2.374,
+   "rms": 2.592,
+   "max_abs": 4.96
+  }
+ },
+ "daily_high_mae_vs_settled_F": {
+  "TEST": {
+   "local": 3.49,
+   "archive": 3.248,
+   "n": 360
+  },
+  "TRAIN": {
+   "local": 3.031,
+   "archive": 2.888,
+   "n": 360
+  }
+ },
+ "field_2t_conus_local_minus_archive": [
+  {
+   "init": "2026-06-22T00",
+   "step": 24,
+   "mean_F": -0.013,
+   "mae_F": 0.341,
+   "rms_F": 0.636,
+   "max_abs_F": 9.973,
+   "n_points": 24885
+  },
+  {
+   "init": "2026-06-22T00",
+   "step": 36,
+   "mean_F": -0.01,
+   "mae_F": 0.251,
+   "rms_F": 0.455,
+   "max_abs_F": 5.194,
+   "n_points": 24885
+  },
+  {
+   "init": "2026-06-22T00",
+   "step": 48,
+   "mean_F": 0.012,
+   "mae_F": 0.344,
+   "rms_F": 0.643,
+   "max_abs_F": 10.802,
+   "n_points": 24885
+  },
+  {
+   "init": "2026-06-22T00",
+   "step": 60,
+   "mean_F": -0.009,
+   "mae_F": 0.252,
+   "rms_F": 0.456,
+   "max_abs_F": 4.955,
+   "n_points": 24885
+  },
+  {
+   "init": "2026-08-21T00",
+   "step": 24,
+   "mean_F": 0.006,
+   "mae_F": 0.357,
+   "rms_F": 0.63,
+   "max_abs_F": 8.92,
+   "n_points": 24885
+  },
+  {
+   "init": "2026-08-21T00",
+   "step": 36,
+   "mean_F": 0.021,
+   "mae_F": 0.257,
+   "rms_F": 0.455,
+   "max_abs_F": 4.441,
+   "n_points": 24885
+  },
+  {
+   "init": "2026-08-21T00",
+   "step": 48,
+   "mean_F": -0.01,
+   "mae_F": 0.345,
+   "rms_F": 0.62,
+   "max_abs_F": 10.802,
+   "n_points": 24885
+  },
+  {
+   "init": "2026-08-21T00",
+   "step": 60,
+   "mean_F": 0.005,
+   "mae_F": 0.261,
+   "rms_F": 0.454,
+   "max_abs_F": 5.532,
+   "n_points": 24885
+  },
+  {
+   "init": "2026-10-19T00",
+   "step": 24,
+   "mean_F": -0.018,
+   "mae_F": 0.277,
+   "rms_F": 0.507,
+   "max_abs_F": 5.816,
+   "n_points": 24885
+  },
+  {
+   "init": "2026-10-19T00",
+   "step": 36,
+   "mean_F": 0.024,
+   "mae_F": 0.245,
+   "rms_F": 0.453,
+   "max_abs_F": 5.776,
+   "n_points": 24885
+  },
+  {
+   "init": "2026-10-19T00",
+   "step": 48,
+   "mean_F": -0.01,
+   "mae_F": 0.278,
+   "rms_F": 0.507,
+   "max_abs_F": 5.829,
+   "n_points": 24885
+  },
+  {
+   "init": "2026-10-19T00",
+   "step": 60,
+   "mean_F": 0.019,
+   "mae_F": 0.242,
+   "rms_F": 0.449,
+   "max_abs_F": 5.958,
+   "n_points": 24885
+  }
+ ]
+}

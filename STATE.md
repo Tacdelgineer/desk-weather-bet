@@ -178,3 +178,7 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 **2026-10-24 — 5.4** ([x])
 - results/robustness.csv/.json: fees ×1.5, threshold −0.02/+0.02/+0.05 and combined. No player profitable on TEST in any case (best: raw AIFS −$108.36 at +0.05). Conclusion holds.
 - Next: 6.1 (judge on GPU).
+
+**2026-10-24 — 2.2** ([x])
+- 2025 storms (MELISSA/IMELDA/ERIN) stay on ECMWF's archived real-time AIFS runs: AIFS v2 can't be started locally before ~2026-05-15 (open data lacks its wave/snow inputs; DECISIONS.md). Local test added: ISAIAS 2026 (only 2026 Atlantic hurricane to reach land), 3 runs (5/3/1 days before landfall, 144 h) on the DGX → data/aifs_local/fields via model/local_fields.py (N320 → 0.25°). Local vs archive msl over the box: MAE 0.03–0.05 hPa to 72 h.
+- Next: 2.3.
