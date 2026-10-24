@@ -131,7 +131,7 @@ If a session stops, type `continue` in the same conversation.
 
 ## Phase 7 — Lock the rules, then go live (Act 5)
 
-- [ ] **7.1 Lock the rules.**
+- ⏸ WAITING (rules locked + tagged; issue needs gh logged in as Tacdelgineer → bot/open_issue.sh) **7.1 Lock the rules.**
   1. Write RULES.md in plain English: which player goes live, the threshold, the caps and the dates. Pick the best player on TEST; if nothing wins, use corrected AIFS + rule, and say so.
   2. Commit, tag `rules-locked`, push.
   3. Open a GitHub issue named "Live picks log". Post RULES.md's SHA-256 and the commit hash as the first comment. GitHub comment times are set by the server and can't be back-dated; plain git commit dates can be.

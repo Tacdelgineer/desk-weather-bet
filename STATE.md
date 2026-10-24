@@ -203,3 +203,8 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 **2026-10-24 — 6.3** ([x])
 - results/judge_examples.json: 3 TEST decisions with the judge's probabilities (a judge bet, a skip the rule would take, a close call).
 - Next: 7.1.
+
+**2026-10-24 — 7.1** (⏸)
+- RULES.md + RULES.json written (corrected AIFS + one-line rule, edge > 0.09; no player made money on TEST, best was the judge at −$93.15 — said so in RULES.md). Station corrections frozen into RULES.json. Committed, tagged rules-locked, pushed; RULES.md SHA-256 84e0aa5e…11ed3.
+- Issue NOT opened: gh on this machine is logged in to a personal account, and posting from it would tie a personal username to the channel repo. bot/open_issue.sh does step 3 once gh is logged in as Tacdelgineer (🧑). live.py posts picks only as Tacdelgineer.
+- Next: 7.2.
