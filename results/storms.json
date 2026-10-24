@@ -1,0 +1,5 @@
+[
+ {"name": "MELISSA", "sid": "2025294N14290", "ref_event": "landfall, Jamaica (Cat 5, 160 kt)", "ref_time": "2025-10-28T17:25", "ref_kind": "landfall"},
+ {"name": "IMELDA", "sid": "2025270N21285", "ref_event": "closest approach to Bermuda, 11 km (Cat 1, 80 kt)", "ref_time": "2025-10-02T03:00", "ref_kind": "closest_approach"},
+ {"name": "ERIN", "sid": "2025223N17337", "ref_event": "closest approach to Cape Hatteras / Outer Banks, 322 km (Cat 2, 90 kt)", "ref_time": "2025-08-21T09:00", "ref_kind": "closest_approach"}
+]
