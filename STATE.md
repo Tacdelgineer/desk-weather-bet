@@ -165,3 +165,7 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 **2026-10-24 — 5.1** ([x])
 - Rerun on local-AIFS forecasts: backtest/sim.py bracket_prob() unchanged — Normal(mu, sigma) with ±0.5 °F integer continuity; sigma = station TRAIN spread.
 - Next: 5.2.
+
+**2026-10-24 — 5.2** ([x])
+- Same rule for all players (ask at bet time, taker fee, ≤ $1/market, threshold tuned on TRAIN). logs/handcheck.md regenerated: 5 random TEST bets recomputed from raw files — all match sim.py.
+- Next: 5.3.
