@@ -43,3 +43,6 @@
 **2026-10-24 — 4.3** ([x])
 - backtest/correct.py: per station actual ≈ a + b·model fitted on TRAIN only (assert_train_only; tests/test_split.py proves fit() raises on TEST dates). results/corrections.json + results/forecasts.csv.
 - TEST MAE °F: GFS 3.28, raw AIFS 3.25, corrected AIFS 2.42 (TRAIN 3.83 / 2.89 / 1.58). Correction hurts LA (3.22→4.08) and NYC (1.24→1.90) on TEST — reported, not hidden.
+
+**2026-10-24 — 5.1** ([x])
+- backtest/sim.py bracket_prob(): Normal(mu, sigma) around each player's high with ±0.5°F integer continuity (between / greater / less brackets). Sigma = station's TRAIN error spread.
