@@ -72,7 +72,7 @@ Everything serves that question:
   - The only money number that may appear anywhere is this test's P&L.
 - **You never place an order yourself,** in chat or with one-off commands. Only `bot/live.py` places orders, and only when ALL of these are true:
   - a `GO_LIVE` file exists in the repo root (the user creates it; it holds the budget in dollars);
-  - RULES.md is committed and tagged `rules-locked`;
+  - RULES.md is committed and tagged with the current lock tag (`rules-locked-v2`; `rules-locked` = v1, superseded);
   - the caps below aren't hit;
   - no `STOP` file exists.
 - **Hard caps inside live.py** are constants, each with a unit test:

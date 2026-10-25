@@ -70,3 +70,34 @@ landing at 85.5 °F, next to the NWS sheet with "79" highlighted.
 
 **On screen:** four equity curves on a PAPER MONEY board, all ending below zero, with the market's Brier bar
 standing above the models.
+
+---
+
+## 2026-10-24 — v2 backtest: the judge flips to +$2.94, and the guards remove most of the loss
+
+**What happened.** Same TRAIN/TEST split, re-run with the v2 correction and guards (PAPER MONEY, TEST):
+
+| player | v1 TEST P&L (bets) | v2 TEST P&L (bets) | source |
+|---|---|---|---|
+| free GFS forecast | −$167.40 (410) | −$66.03 (193) | results/v1_vs_v2.csv |
+| raw AIFS | −$130.65 (254) | −$12.41 (19) | same |
+| corrected AIFS + rule | −$129.11 (687) | −$106.46 (379) | same |
+| corrected AIFS + judge | −$93.15 (1,176) | **+$2.94** (310) | same |
+
+- The judge's +$2.94 comes on $261.06 staked: a return of +1.1%, 83.5% of bets won, cut-off P(bet) > 0.77 tuned on
+  TRAIN (results/judge.json). By city: Chicago +$3.62, NYC +$3.08, LA +$2.18, SF +$1.26, Phoenix −$2.83,
+  Miami −$4.37 (same file).
+- The guards skipped bets that would have lost a lot. For corrected AIFS + rule they skipped 272 bets worth −$71.64
+  (227 for the GFS gap, 45 for the edge cap). For GFS they skipped 217 bets worth −$101.37, all on the edge cap.
+  Source: results/v1_vs_v2.json, `guard_skips_test`.
+- Error and accuracy: the v2 correction's TEST error is 1.928 °F, against 2.133 °F for v1 (results/corrections.json).
+  Its Brier score is 0.122, against 0.130 for v1. The market's price is still better at 0.105 (results/v1_vs_v2.json).
+- Under PLAN.md's pre-written rule ("pick the best player on TEST"), the judge becomes the live player in RULES.md v2.
+  **Caveat:** v2 was designed after seeing TEST, so this +$2.94 isn't an unseen result. It reads as about break-even.
+- A second, smaller bug turned up while wiring the judge for live. v1's live.py would have sent the judge different
+  input fields than the backtest did (`mu`, `p_side`… instead of `forecast_high_F`, `model_probability_side_wins`…).
+  Now both build the input with `backtest.judge_inputs.judge_state`, and a test (tests/test_guards.py) checks the
+  fields match. It never ran live, because v1's live player was the rule.
+
+**On screen:** the v1 → v2 P&L bars side by side on a PAPER MONEY board, the judge's bar crossing zero by a hair, with
+a "designed after seeing TEST" stamp across it.

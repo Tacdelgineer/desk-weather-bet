@@ -34,7 +34,7 @@ Every task has a CHECK. Don't tick a task until its CHECK passes. 🧑 = needs t
 | 2 | 3–6 | backtest + judge results saved | high |
 | 3 | 7.1–7.5 | rules locked, bot tested, daily timer running (DRY_RUN until GO_LIVE) | high |
 | — | 7.6 | the live week: 7 calendar days. The user only creates GO_LIVE | — |
-| 4 | 8–9 | footage, script and voice done; live chapters 09–10 left as slots | medium |
+| 4 | 8–9 | footage, script and voice done; live chapters 10–11 left as slots | medium |
 | 5 | 10 | live results in, full render with recording slots, packaging | medium |
 
 Start each session with one line (Claude Code reads CLAUDE.md on its own):
@@ -152,11 +152,22 @@ If a session stops, type `continue` in the same conversation.
 
 - [ ] **8.1 Outline.** Write the chapter outline to `video/OUTLINE.md`, from the chapter list below.
 - [ ] **8.2 Rooms.** Build rooms from the results files, including the new EVIDENCE room type.
+  - Chapter 09 ("the bug"), all numbers from results/evidence/v1-bug/summary.json and results/v1_vs_v2.json:
+    - **extrapolation room** (riso): Phoenix's 60 TRAIN dots (`scatter_train.KPHX`, raw AIFS vs actual), the v1 line
+      (`v1_a`, `v1_b`) drawn across them, then extended past the cloud down to the October raw high (`raw_high_F`),
+      landing on `v1_corrected_F`; GFS (`gfs_F`) and NWS (`nws_pfm_max_F`) marked on the same axis. Label PAPER MONEY.
+    - **EVIDENCE shot**: the real NWS Point Forecast Matrix text (results/evidence/v1-bug/nws_pfm_PSR_2026-10-23.txt,
+      Phoenix, 4:01 PM MST issuance) with the yellow highlighter across the Sat 10/24 max, next to the bot's dry-run log
+      line (results/evidence/v1-bug/2026-10-23_picks.json, the KPHX pick); source labels in the corner.
+    - **tags room** (CRT terminal): a real recording of `git tag -n` / `git show rules-locked-v2 --stat` showing
+      `rules-locked` (v1, superseded) → `rules-locked-v2`, then the issue's first comment with both SHA-256s.
+    - **stat card**: "bot 85.5 °F · NWS 79 °F" (`v1_corrected_F`, `nws_pfm_max_F`) with "edge 0.85 at 6¢" (`picks[0]`),
+      and a second card with v1 vs v2 TEST P&L for the live player (results/v1_vs_v2.json).
 - [ ] **8.3 Claude-made recordings,** 1920×1080 at 30 fps.
   - VHS terminal recordings of real commands: an AIFS run, `nvidia-smi`, a live.py DRY_RUN.
   - Playwright recordings of public pages: one Kalshi temperature market, one NWS climate report, the AIFS model card, the GitHub picks issue.
   - CHECK: every file plays.
-- [ ] **8.4 Render.** Footage, stat cards and charts, following the naming contract, plus ORDER.txt. Leave chapter 09–10 slots for the live result.
+- [ ] **8.4 Render.** Footage, stat cards and charts, following the naming contract, plus ORDER.txt. Leave chapter 10–11 slots for the live result.
   - Every manual recording gets a placeholder slate, the same as the Kalshi video. Each slate is a full-screen card that says `📼 RECORDING SLOT`, what to record, and how many seconds.
   - Only two slots:
     - the user's Kalshi account showing the live orders and fills;
@@ -176,7 +187,7 @@ If a session stops, type `continue` in the same conversation.
 
 ## Phase 10 — Assembly and packaging
 
-- [ ] **10.1 After the live week.** Render chapters 09–10 with the live numbers, then rerun the fact check.
+- [ ] **10.1 After the live week.** Render chapters 10–11 with the live numbers, then rerun the fact check.
 - [ ] **10.2 Full render.** Use ffmpeg to put the voice and footage together following the Shots lists, recording slates included, and set loudness to −14 LUFS → `results/full_render.mp4`. Also write `video/RECORDINGS.md`: each slot's timestamp, what to record and its length.
   - CHECK: the video plays end to end, and the slot timestamps match the file.
 - [ ] **10.3 Packaging.**
@@ -203,5 +214,6 @@ If a session stops, type `continue` in the same conversation.
 | 06 | the fix | before/after error |
 | 07 | backtest | the players, PAPER MONEY, fees, the number |
 | 08 | the judge | decision models in 60 s; judge vs one-line rule |
-| 09 | real money | the $10 week, timestamped picks, fills, result |
-| 10 | verdict | what it means, the repo, the call to action |
+| 09 | the bug — I almost went live with this | a scatter of Phoenix's TRAIN days with the fitted line extended past them to the October day; NWS vs bot as an EVIDENCE shot; the v1 → v2 git tags |
+| 10 | real money | the $10 week, timestamped picks, fills, result |
+| 11 | verdict | what it means, the repo, the call to action |

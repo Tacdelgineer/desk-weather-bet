@@ -25,6 +25,14 @@
    "mae_raw_test": 2.643,
    "mae_corrected_test": 4.341,
    "bias_raw_test": -1.46
+  },
+  "aifs_rolling30": {
+   "mae_test": 2.554,
+   "mae_train": 1.593,
+   "days_with_forecast": {
+    "TEST": 60,
+    "TRAIN": 39
+   }
   }
  },
  "KMDW": {
@@ -53,6 +61,14 @@
    "mae_raw_test": 2.025,
    "mae_corrected_test": 2.169,
    "bias_raw_test": 0.285
+  },
+  "aifs_rolling30": {
+   "mae_test": 1.693,
+   "mae_train": 1.661,
+   "days_with_forecast": {
+    "TEST": 60,
+    "TRAIN": 39
+   }
   }
  },
  "KMIA": {
@@ -81,6 +97,14 @@
    "mae_raw_test": 2.025,
    "mae_corrected_test": 2.104,
    "bias_raw_test": 1.448
+  },
+  "aifs_rolling30": {
+   "mae_test": 1.462,
+   "mae_train": 1.341,
+   "days_with_forecast": {
+    "TEST": 60,
+    "TRAIN": 39
+   }
   }
  },
  "KNYC": {
@@ -109,6 +133,14 @@
    "mae_raw_test": 3.967,
    "mae_corrected_test": 2.833,
    "bias_raw_test": 3.243
+  },
+  "aifs_rolling30": {
+   "mae_test": 1.323,
+   "mae_train": 1.635,
+   "days_with_forecast": {
+    "TEST": 60,
+    "TRAIN": 39
+   }
   }
  },
  "KPHX": {
@@ -137,6 +169,14 @@
    "mae_raw_test": 2.748,
    "mae_corrected_test": 2.09,
    "bias_raw_test": -1.642
+  },
+  "aifs_rolling30": {
+   "mae_test": 2.547,
+   "mae_train": 2.347,
+   "days_with_forecast": {
+    "TEST": 60,
+    "TRAIN": 39
+   }
   }
  },
  "KSFO": {
@@ -165,17 +205,35 @@
    "mae_raw_test": 6.277,
    "mae_corrected_test": 4.13,
    "bias_raw_test": 6.18
+  },
+  "aifs_rolling30": {
+   "mae_test": 1.99,
+   "mae_train": 2.557,
+   "days_with_forecast": {
+    "TEST": 60,
+    "TRAIN": 39
+   }
   }
  },
  "_overall_test_mae_F": {
   "gfs_mu": 3.281,
   "aifs_raw_mu": 3.49,
-  "aifs_cor_mu": 2.133
+  "aifs_cor_mu": 1.928,
+  "aifs_fit_mu": 2.133
  },
  "_overall_train_mae_F": {
   "gfs_mu": 3.833,
   "aifs_raw_mu": 3.031,
-  "aifs_cor_mu": 1.565
+  "aifs_cor_mu": 1.856,
+  "aifs_fit_mu": 1.565
+ },
+ "_columns": {
+  "aifs_cor_mu": "v2: raw + rolling 30-day bias (past data only; NaN if < 20 of 30 days)",
+  "aifs_fit_mu": "v1: a + b \u00d7 raw, fit on TRAIN"
+ },
+ "_rolling_days_with_forecast": {
+  "TEST": 360,
+  "TRAIN": 234
  },
  "_fit_dates": {
   "train_only": true,

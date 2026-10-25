@@ -1,0 +1,182 @@
+{
+ "table": [
+  {
+   "case": "base",
+   "player": "gfs",
+   "threshold": 0.22,
+   "test_pnl": -66.03,
+   "bets": 193,
+   "roi": -0.4431
+  },
+  {
+   "case": "base",
+   "player": "aifs_raw",
+   "threshold": 0.28,
+   "test_pnl": -12.41,
+   "bets": 19,
+   "roi": -0.8612
+  },
+  {
+   "case": "base",
+   "player": "aifs_cor",
+   "threshold": 0.09,
+   "test_pnl": -106.46,
+   "bets": 379,
+   "roi": -0.3429
+  },
+  {
+   "case": "fees x1.5",
+   "player": "gfs",
+   "threshold": 0.22,
+   "test_pnl": -77.27,
+   "bets": 189,
+   "roi": -0.5211
+  },
+  {
+   "case": "fees x1.5",
+   "player": "aifs_raw",
+   "threshold": 0.28,
+   "test_pnl": -12.92,
+   "bets": 24,
+   "roi": -0.6829
+  },
+  {
+   "case": "fees x1.5",
+   "player": "aifs_cor",
+   "threshold": 0.09,
+   "test_pnl": -110.69,
+   "bets": 357,
+   "roi": -0.3706
+  },
+  {
+   "case": "threshold -0.02",
+   "player": "gfs",
+   "threshold": 0.2,
+   "test_pnl": -100.75,
+   "bets": 270,
+   "roi": -0.4781
+  },
+  {
+   "case": "threshold -0.02",
+   "player": "aifs_raw",
+   "threshold": 0.26,
+   "test_pnl": -20.52,
+   "bets": 39,
+   "roi": -0.6951
+  },
+  {
+   "case": "threshold -0.02",
+   "player": "aifs_cor",
+   "threshold": 0.07,
+   "test_pnl": -130.41,
+   "bets": 486,
+   "roi": -0.3249
+  },
+  {
+   "case": "threshold +0.02",
+   "player": "gfs",
+   "threshold": 0.24,
+   "test_pnl": -54.14,
+   "bets": 129,
+   "roi": -0.5353
+  },
+  {
+   "case": "threshold +0.02",
+   "player": "aifs_raw",
+   "threshold": 0.3,
+   "test_pnl": 0.0,
+   "bets": 0,
+   "roi": null
+  },
+  {
+   "case": "threshold +0.02",
+   "player": "aifs_cor",
+   "threshold": 0.11,
+   "test_pnl": -80.26,
+   "bets": 297,
+   "roi": -0.3286
+  },
+  {
+   "case": "threshold +0.05",
+   "player": "gfs",
+   "threshold": 0.27,
+   "test_pnl": -24.88,
+   "bets": 60,
+   "roi": -0.5307
+  },
+  {
+   "case": "threshold +0.05",
+   "player": "aifs_raw",
+   "threshold": 0.33,
+   "test_pnl": 0.0,
+   "bets": 0,
+   "roi": null
+  },
+  {
+   "case": "threshold +0.05",
+   "player": "aifs_cor",
+   "threshold": 0.14,
+   "test_pnl": -53.07,
+   "bets": 184,
+   "roi": -0.356
+  },
+  {
+   "case": "fees x1.5, threshold +0.05",
+   "player": "gfs",
+   "threshold": 0.27,
+   "test_pnl": -26.98,
+   "bets": 64,
+   "roi": -0.5398
+  },
+  {
+   "case": "fees x1.5, threshold +0.05",
+   "player": "aifs_raw",
+   "threshold": 0.33,
+   "test_pnl": 0.0,
+   "bets": 0,
+   "roi": null
+  },
+  {
+   "case": "fees x1.5, threshold +0.05",
+   "player": "aifs_cor",
+   "threshold": 0.14,
+   "test_pnl": -51.06,
+   "bets": 168,
+   "roi": -0.3646
+  }
+ ],
+ "any_case_profitable_on_test": false,
+ "conclusion": "No player makes money on TEST in any case",
+ "best_player_per_case": [
+  {
+   "case": "base",
+   "player": "aifs_raw",
+   "test_pnl": -12.41
+  },
+  {
+   "case": "fees x1.5",
+   "player": "aifs_raw",
+   "test_pnl": -12.92
+  },
+  {
+   "case": "fees x1.5, threshold +0.05",
+   "player": "aifs_raw",
+   "test_pnl": 0.0
+  },
+  {
+   "case": "threshold +0.02",
+   "player": "aifs_raw",
+   "test_pnl": 0.0
+  },
+  {
+   "case": "threshold +0.05",
+   "player": "aifs_raw",
+   "test_pnl": 0.0
+  },
+  {
+   "case": "threshold -0.02",
+   "player": "aifs_raw",
+   "test_pnl": -20.52
+  }
+ ]
+}

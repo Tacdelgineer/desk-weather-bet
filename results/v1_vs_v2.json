@@ -1,0 +1,117 @@
+{
+ "label": "PAPER MONEY",
+ "split": "same TRAIN/TEST split (TEST 2026-08-22 \u2192 2026-10-20)",
+ "v1": {
+  "rules_tag": "rules-locked",
+  "correction": "a + b \u00d7 raw, fit on TRAIN",
+  "players": {
+   "gfs": {
+    "pnl": -167.4,
+    "bets": 410,
+    "win_rate": 0.273,
+    "threshold": 0.22
+   },
+   "aifs_raw": {
+    "pnl": -130.65,
+    "bets": 254,
+    "win_rate": 0.201,
+    "threshold": 0.3
+   },
+   "aifs_cor": {
+    "pnl": -129.11,
+    "bets": 687,
+    "win_rate": 0.399,
+    "threshold": 0.09
+   },
+   "aifs_cor_judge": {
+    "pnl": -93.15,
+    "bets": 1176,
+    "win_rate": 0.615,
+    "threshold": 0.62
+   }
+  },
+  "brier_test": {
+   "market_mid": 0.1054,
+   "n_markets": 2160,
+   "gfs": 0.1498,
+   "aifs_raw": 0.1501,
+   "aifs_cor": 0.1298
+  },
+  "test_mae_F": {
+   "gfs_mu": 3.281,
+   "aifs_raw_mu": 3.49,
+   "aifs_cor_mu": 2.133
+  },
+  "any_robustness_case_profitable": false,
+  "guard_skips_test": {
+   "gfs": null,
+   "aifs_raw": null,
+   "aifs_cor": null
+  }
+ },
+ "v2": {
+  "rules_tag": "rules-locked-v2",
+  "correction": "raw + mean(actual \u2212 raw) over the 30 days before the run date; guards: |corrected \u2212 GFS| \u2264 4 \u00b0F, edge \u2264 0.30",
+  "players": {
+   "gfs": {
+    "pnl": -66.03,
+    "bets": 193,
+    "win_rate": 0.368,
+    "threshold": 0.22
+   },
+   "aifs_raw": {
+    "pnl": -12.41,
+    "bets": 19,
+    "win_rate": 0.105,
+    "threshold": 0.28
+   },
+   "aifs_cor": {
+    "pnl": -106.46,
+    "bets": 379,
+    "win_rate": 0.375,
+    "threshold": 0.09
+   },
+   "aifs_cor_judge": {
+    "pnl": 2.94,
+    "bets": 310,
+    "win_rate": 0.835,
+    "threshold": 0.77
+   }
+  },
+  "brier_test": {
+   "market_mid": 0.1054,
+   "n_markets": 2160,
+   "gfs": 0.1498,
+   "aifs_raw": 0.1501,
+   "aifs_cor": 0.122
+  },
+  "test_mae_F": {
+   "gfs_mu": 3.281,
+   "aifs_raw_mu": 3.49,
+   "aifs_cor_mu": 1.928,
+   "aifs_fit_mu": 2.133
+  },
+  "any_robustness_case_profitable": false,
+  "guard_skips_test": {
+   "gfs": {
+    "n": 217,
+    "pnl_if_taken": -101.37,
+    "gfs_gap": 0,
+    "edge_cap": 217
+   },
+   "aifs_raw": {
+    "n": 273,
+    "pnl_if_taken": -132.14,
+    "gfs_gap": 198,
+    "edge_cap": 75
+   },
+   "aifs_cor": {
+    "n": 272,
+    "pnl_if_taken": -71.64,
+    "gfs_gap": 227,
+    "edge_cap": 45
+   }
+  }
+ },
+ "note": "v2 was designed after seeing v1's TEST results, so TEST is no longer unseen for v2; the live week is the only truly unseen test (DECISIONS.md)."
+}

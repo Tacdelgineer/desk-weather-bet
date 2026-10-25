@@ -23,5 +23,5 @@ p.write_text(s)
 PY
 printf '\n**%s — %s** %s\n%s\n' "$(date -u +%F)" "$id" "($new)" "$note" >> STATE.md
 git add -A
-git commit -qm "$id: $(echo "$note" | head -1 | cut -c1-60)"
+git commit -qm "$id: $(echo "$note" | head -1 | cut -c1-60)" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 git push -q origin main

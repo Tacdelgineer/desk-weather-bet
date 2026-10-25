@@ -1,12 +1,13 @@
 {
- "player": "aifs_cor",
- "threshold": 0.09,
- "judge_cutoff": null,
+ "version": "v2",
+ "player": "aifs_cor_judge",
+ "threshold": 0.0,
+ "judge_cutoff": 0.77,
  "test_pnl": {
-  "gfs": -167.4,
-  "aifs_raw": -130.65,
-  "aifs_cor": -129.11,
-  "aifs_cor_judge": -93.15
+  "gfs": -66.03,
+  "aifs_raw": -12.41,
+  "aifs_cor": -106.46,
+  "aifs_cor_judge": 2.94
  },
  "caps": {
   "total_budget_max": 10.0,
@@ -15,36 +16,13 @@
   "order_type": "limit",
   "cancel_unfilled_after_hours": 3
  },
- "corrections": {
-  "KLAX": {
-   "a": 12.634509258573356,
-   "b": 0.8894878236219449,
-   "sigma": 1.9785631547205484
-  },
-  "KMDW": {
-   "a": 2.240369860935604,
-   "b": 0.9935331740218557,
-   "sigma": 2.1763342051418055
-  },
-  "KMIA": {
-   "a": 37.14750498652425,
-   "b": 0.6203792230913123,
-   "sigma": 1.3019678312595815
-  },
-  "KNYC": {
-   "a": 10.988463982407826,
-   "b": 0.8691256383359024,
-   "sigma": 1.859651190393654
-  },
-  "KPHX": {
-   "a": 27.174916710495314,
-   "b": 0.7641254412281033,
-   "sigma": 2.233873932419332
-  },
-  "KSFO": {
-   "a": 3.4538934727287476,
-   "b": 1.0138277592341434,
-   "sigma": 2.8657352408937355
-  }
+ "correction": {
+  "method": "rolling bias: raw AIFS + mean(actual - raw) over the 30 days before the run date",
+  "window_days": 30,
+  "min_days": 20
+ },
+ "guards": {
+  "max_gap_vs_gfs_F": 4.0,
+  "max_edge": 0.3
  }
 }

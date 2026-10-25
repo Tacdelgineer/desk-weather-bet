@@ -6,8 +6,12 @@ Daily jobs (UTC):
                     post them to the "Live picks log" issue, and place limit orders ONLY if every gate is open
   cancel    ~19:05  cancel any of today's orders still resting (unfilled after 3 h)
 
-Default is DRY_RUN: without GO_LIVE (or with STOP, or without the rules-locked tag) it logs exactly what it would
-have ordered and orders nothing.
+Default is DRY_RUN: without GO_LIVE (or with STOP, or without the current lock tag RULES_TAG) it logs exactly what it
+would have ordered and orders nothing.
+
+v2 (RULES.md at tag rules-locked-v2): station correction = rolling 30-day bias from past data only, plus two guards
+(corrected high within 4 °F of GFS, edge ≤ 0.30) — backtest/rolling.py, shared with the backtest. v1 (tag
+rules-locked) used a TRAIN-fit line that extrapolated badly in October (video/JOURNAL.md 2026-10-24).
 
   uv run python bot/live.py forecast|picks|cancel|settle [--date YYYY-MM-DD]
 """
@@ -26,6 +30,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from backtest.fees import fee  # noqa: E402
+from backtest.judge_inputs import judge_state  # noqa: E402
+from backtest.rolling import guard, rolling_correction, window  # noqa: E402
 from backtest.sim import bracket_prob  # noqa: E402
 
 # ---- hard caps (constants; each has a unit test in tests/test_live.py) ----
@@ -39,6 +45,8 @@ CANCEL_AFTER_HOURS = 3
 LEDGER = ROOT / "results" / "live_ledger.json"
 LOGDIR = ROOT / "logs" / "live"
 RULES = ROOT / "RULES.json"     # machine-readable copy of the locked rules (committed with RULES.md)
+RULES_TAG = "rules-locked-v2"  # current lock; rules-locked = v1, superseded (kept)
+HISTORY = ROOT / "results" / "live_history.csv"  # station-days after the backtest window: settled high + raw AIFS
 
 
 class CapError(Exception):
@@ -58,12 +66,12 @@ def budget():
 
 
 def rules_locked():
-    """RULES.md committed, tagged rules-locked, and unchanged since the tag."""
+    """RULES.md committed, tagged RULES_TAG, and unchanged since the tag."""
     try:
-        subprocess.run(["git", "rev-parse", "-q", "--verify", "refs/tags/rules-locked"], cwd=ROOT, check=True,
+        subprocess.run(["git", "rev-parse", "-q", "--verify", f"refs/tags/{RULES_TAG}"], cwd=ROOT, check=True,
                        capture_output=True)
         for f in ("RULES.md", "RULES.json"):
-            subprocess.run(["git", "diff", "--quiet", "rules-locked", "--", f], cwd=ROOT, check=True)
+            subprocess.run(["git", "diff", "--quiet", RULES_TAG, "--", f], cwd=ROOT, check=True)
             subprocess.run(["git", "diff", "--quiet", "--", f], cwd=ROOT, check=True)
         return True
     except subprocess.CalledProcessError:
@@ -78,7 +86,7 @@ def live_mode():
     if (ROOT / "STOP").exists():
         why.append("STOP file present")
     if not rules_locked():
-        why.append("RULES.md not committed+tagged rules-locked (or changed since)")
+        why.append(f"RULES.md not committed+tagged {RULES_TAG} (or changed since)")
     return (not why), why
 
 
@@ -163,6 +171,61 @@ def station_highs(init, market_day):
     return out
 
 
+# ---------------- correction history + GFS ----------------
+def settled_high(kalshi, series, d):
+    """Kalshi's settled high for one station-day (any finalized market in the event), or None."""
+    for m in kalshi.get("/markets", event_ticker=event_ticker(series, d), limit=100).get("markets", []):
+        if m.get("status") in ("finalized", "settled") and m.get("expiration_value") not in (None, ""):
+            return float(m["expiration_value"])
+    return None
+
+
+def station_history(run_date, kalshi):
+    """{station: [(date, settled high, raw AIFS high), ...]} for the 30 days before run_date. Backtest days come from
+    results/forecasts.csv; later days from results/live_history.csv, filled in from our own AIFS runs and Kalshi's
+    settled values (cached once both are known)."""
+    import pandas as pd
+    a, b = window(run_date)
+    days = [a + dt.timedelta(days=i) for i in range((b - a).days + 1)]
+    cities = json.loads((ROOT / "results" / "cities.json").read_text())
+    fc = pd.read_csv(ROOT / "results" / "forecasts.csv")
+    known = {(r.station, r.date): (r.actual, r.aifs_raw_mu) for r in fc.itertuples()}
+    cache = {}
+    if HISTORY.exists():
+        cache = {(r.station, r.date): (r.actual, r.raw) for r in pd.read_csv(HISTORY).itertuples()}
+    out = {c["station"]: [] for c in cities}
+    for d in days:
+        need = [c for c in cities if (c["station"], str(d)) not in known and (c["station"], str(d)) not in cache]
+        init = dt.datetime(d.year, d.month, d.day) - dt.timedelta(days=1)
+        highs = station_highs(init, d) if need and forecast_path(init).exists() else {}
+        for c in need:
+            raw = highs.get(c["station"], {}).get("raw_high_F")
+            act = settled_high(kalshi, c["series"], d)
+            if raw is not None and act is not None:
+                cache[(c["station"], str(d))] = (act, raw)
+        for c in cities:
+            v = known.get((c["station"], str(d))) or cache.get((c["station"], str(d)))
+            if v:
+                out[c["station"]].append((d, *v))
+    HISTORY.parent.mkdir(parents=True, exist_ok=True)
+    HISTORY.write_text("station,date,actual,raw\n" + "".join(f"{k[0]},{k[1]},{v[0]},{v[1]}\n"
+                                                             for k, v in sorted(cache.items())))
+    return out
+
+
+def gfs_highs(market_day):
+    """GFS high per station for market_day, from the run of the day before at 00Z (same as the backtest baseline)."""
+    from fetch.gfs import day_max, run_series
+    out = {}
+    run = dt.datetime(market_day.year, market_day.month, market_day.day) - dt.timedelta(days=1)
+    for c in json.loads((ROOT / "results" / "cities.json").read_text()):
+        try:
+            out[c["station"]] = day_max(run_series(c, run), market_day, c["tz"])[0]
+        except Exception:  # noqa: BLE001 — a missing GFS value makes guard (a) skip that station's picks
+            out[c["station"]] = None
+    return out
+
+
 # ---------------- picks ----------------
 MON = "JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC".split()
 
@@ -172,9 +235,9 @@ def event_ticker(series, d):
 
 
 def choose(cands, rules):
-    """Locked rule: candidates with edge > threshold (and judge P(bet) > cut-off if the judge player is live),
-    best edge first, one per market, at most MAX_NEW_ORDERS_PER_DAY."""
-    ok = [c for c in cands if c["edge"] > rules["threshold"]]
+    """Locked rule: candidates with edge > threshold (and judge P(bet) > cut-off if the judge player is live) that
+    pass both guards (backtest/rolling.guard), best edge first, one per market, at most MAX_NEW_ORDERS_PER_DAY."""
+    ok = [c for c in cands if c["edge"] > rules["threshold"] and not guard(c["mu"], c.get("gfs_F"), c["edge"])]
     if rules.get("judge_cutoff") is not None:
         ok = [c for c in ok if c.get("p_bet", 0) > rules["judge_cutoff"]]
     ok.sort(key=lambda c: -c["edge"])
@@ -189,15 +252,18 @@ def choose(cands, rules):
     return out
 
 
-def candidates_for(market_day, highs, rules, kalshi):
-    corr = rules.get("corrections")  # the locked copy; falls back to the results file before rules exist
-    if corr is None:
-        corr = {k: v["aifs_high"] for k, v in json.loads((ROOT / "results" / "corrections.json").read_text()).items()
-                if not k.startswith("_")}
+def corrections_for(run_date, kalshi):
+    """{station: dict(bias, sigma, n) or None} — v2 rolling correction, past data only."""
+    return {st: rolling_correction(h, run_date) for st, h in station_history(run_date, kalshi).items()}
+
+
+def candidates_for(market_day, highs, corr, gfs, kalshi):
     out = []
     for st, h in highs.items():
-        c = corr[st]
-        mu, sigma = c["a"] + c["b"] * h["raw_high_F"], c["sigma"]
+        c = corr.get(st)
+        if c is None:
+            continue  # fewer than MIN_DAYS of the 30 days: skip this station
+        mu, sigma = h["raw_high_F"] + c["bias"], c["sigma"]
         ms = kalshi.get("/markets", event_ticker=event_ticker(h["series"], market_day), limit=100).get("markets", [])
         for m in ms:
             if m.get("status") not in ("active", "open"):
@@ -213,10 +279,17 @@ def candidates_for(market_day, highs, rules, kalshi):
                 if n == 0:
                     continue
                 f = fee(price, n)
+                e = pw - price - f / n
+                edge = round(e, 4)
+                state = judge_state(h["city"], st, m["strike_type"], m.get("floor_strike"), m.get("cap_strike"),
+                                    str(market_day), side, mu, sigma, pw, price, f / n, e, -c["bias"], c["n"], ya - yb,
+                                    float(m.get("volume_fp") or 0))
                 out.append(dict(ticker=m["ticker"], city=h["city"], station=st, side=side, price=price, contracts=n,
-                                fee=f, max_cost=round(n * price + f, 4), p_side=round(pw, 4),
-                                edge=round(pw - price - f / n, 4), mu=round(mu, 2), sigma=round(sigma, 2),
-                                raw_high_F=h["raw_high_F"], yes_sub_title=m.get("yes_sub_title")))
+                                fee=f, max_cost=round(n * price + f, 4), p_side=round(pw, 4), edge=edge,
+                                mu=round(mu, 2), sigma=round(sigma, 2), raw_high_F=h["raw_high_F"],
+                                bias_30d=round(c["bias"], 2), days_30d=c["n"], gfs_F=gfs.get(st),
+                                guard=guard(mu, gfs.get(st), edge), yes_sub_title=m.get("yes_sub_title"),
+                                judge_state=json.dumps(state)))
     return out
 
 
@@ -268,13 +341,13 @@ def job_picks(day, kalshi=None, now=None):
     from bot.kalshi import Kalshi
     now = now or dt.datetime.now(dt.timezone.utc)
     market_day = day + dt.timedelta(days=1)
-    rules = json.loads(RULES.read_text()) if RULES.exists() else {"threshold": 0.04, "judge_cutoff": None,
-                                                                  "player": "aifs_cor (rules not written yet)"}
+    rules = json.loads(RULES.read_text())
     is_live, why = live_mode()
     total_budget = budget() if is_live else 0.0
     led = load_ledger()
     res = {"day": str(day), "market_day": str(market_day), "mode": "LIVE" if is_live else "DRY_RUN",
-           "dry_run_reasons": why, "player": rules.get("player"), "threshold": rules["threshold"]}
+           "dry_run_reasons": why, "rules": rules.get("version", "v1"), "player": rules.get("player"),
+           "threshold": rules["threshold"]}
     init = dt.datetime(day.year, day.month, day.day, 0)
     if not forecast_path(init).exists():
         res["picks"] = []
@@ -282,17 +355,29 @@ def job_picks(day, kalshi=None, now=None):
         return res
     public = Kalshi(auth=False)
     highs = station_highs(init, market_day)
-    cands = candidates_for(market_day, highs, rules, public)
+    corr = corrections_for(day, public)
+    gfs = gfs_highs(market_day)
+    for st, h in highs.items():
+        c = corr.get(st)
+        h.update(gfs_F=gfs.get(st), bias_30d=round(c["bias"], 2) if c else None, sigma_30d=round(c["sigma"], 2) if c
+                 else None, days_30d=c["n"] if c else 0, mu=round(h["raw_high_F"] + c["bias"], 2) if c else None)
+    cands = candidates_for(market_day, highs, corr, gfs, public)
     if rules.get("judge_cutoff") is not None:
         cands = judge_annotate(cands)
     picks = choose(cands, rules)
-    res.update(highs=highs, n_candidates=len(cands), picks=picks)
+    over = [c for c in cands if c["edge"] > rules["threshold"]]
+    res.update(highs=highs, n_candidates=len(cands), n_over_threshold=len(over),
+               guarded=[dict({k: c.get(k) for k in ("ticker", "side", "price", "edge", "mu", "gfs_F")}, guard=guard(c["mu"], c.get("gfs_F"), c["edge"]))
+                        for c in over if guard(c["mu"], c.get("gfs_F"), c["edge"])], picks=picks)
     for p in picks:
-        led["picks"].append(dict(p, day=str(day), market_day=str(market_day), mode=res["mode"], at=now.isoformat()))
+        led["picks"].append(dict(p, day=str(day), market_day=str(market_day), mode=res["mode"], at=now.isoformat(),
+                                 rules=res["rules"]))
     save_ledger(led)
-    lines = [f"**{market_day} picks** ({res['mode']}{' — ' + ', '.join(why) if why else ''}) · run at {now:%Y-%m-%d %H:%M} UTC · AIFS init {init:%Y-%m-%d %H}Z"]
+    lines = [f"**{market_day} picks** ({res['mode']}{' — ' + ', '.join(why) if why else ''}) · rules {res['rules']} · run at {now:%Y-%m-%d %H:%M} UTC · AIFS init {init:%Y-%m-%d %H}Z"]
     lines += [f"- {p['ticker']} **{p['side'].upper()}** @ ${p['price']:.2f} × {p['contracts']} (max ${p['max_cost']:.2f}) · "
-              f"model P={p['p_side']:.2f}, edge {p['edge']:+.3f} · forecast {p['mu']}°F ± {p['sigma']}" for p in picks] or ["- no pick passes the locked rule today"]
+              f"model P={p['p_side']:.2f}, edge {p['edge']:+.3f}" + (f", judge P(bet)={p['p_bet']:.2f}" if "p_bet" in p else "") + f" · forecast {p['mu']}°F ± {p['sigma']} (GFS {p['gfs_F']}°F)" for p in picks] or ["- no pick passes the locked rule today"]
+    if res["guarded"]:
+        lines.append(f"- {len(res['guarded'])} candidate(s) over the threshold skipped by the guards (GFS gap > 4 °F or edge > 0.30)")
     res["issue"] = post_issue("\n".join(lines))
     if is_live:
         live = kalshi or Kalshi(env="prod")
@@ -309,13 +394,12 @@ def job_picks(day, kalshi=None, now=None):
 
 
 def judge_annotate(cands):
-    """Ask the decision model about each candidate (only used if RULES picked the judge player)."""
+    """Ask the decision model about each candidate (only used if RULES picked the judge player). The input JSON is
+    built by backtest.judge_inputs.judge_state, the same function the backtest used."""
     import tempfile
     import csv
     rows = [dict(ticker=c["ticker"] + ":" + c["side"], date="", split="LIVE", side=c["side"], edge=c["edge"], pnl=0,
-                 won="", state=json.dumps({k: c[k] for k in ("city", "station", "side", "mu", "sigma", "p_side",
-                                                             "price", "fee", "edge", "yes_sub_title")}))
-            for c in cands if c["edge"] > 0]
+                 won="", state=c["judge_state"]) for c in cands if c["edge"] > 0 and not c["guard"]]
     if not rows:
         return cands
     with tempfile.NamedTemporaryFile("w", suffix=".csv", delete=False) as f:

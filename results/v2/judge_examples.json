@@ -1,0 +1,83 @@
+[
+ {
+  "kind": "judge says bet",
+  "ticker": "KXHIGHLAX-26SEP07-T83",
+  "state": {
+   "city": "Los Angeles",
+   "station": "KLAX",
+   "market": "high above 83\u00b0F on 2026-09-07",
+   "bet_side": "YES",
+   "forecast_high_F": 87.5,
+   "forecast_error_sd_F": 1.65,
+   "model_probability_side_wins": 0.992,
+   "price_to_pay": 0.79,
+   "fee_per_contract": 0.02,
+   "model_edge": 0.182,
+   "station_30d_raw_bias_F": -4.9,
+   "station_30d_days": 30,
+   "bid_ask_spread": 0.01,
+   "volume_traded_before_bet": 428.03
+  },
+  "p_bet": 0.944,
+  "p_skip": 0.056,
+  "cutoff": 0.77,
+  "judge_action": "bet",
+  "rule_action": "bet",
+  "won": true,
+  "pnl": 0.19
+ },
+ {
+  "kind": "judge skips a bet the rule takes",
+  "ticker": "KXHIGHTPHX-26AUG23-T108",
+  "state": {
+   "city": "Phoenix",
+   "station": "KPHX",
+   "market": "high below 108\u00b0F on 2026-08-23",
+   "bet_side": "YES",
+   "forecast_high_F": 108.5,
+   "forecast_error_sd_F": 2.15,
+   "model_probability_side_wins": 0.329,
+   "price_to_pay": 0.03,
+   "fee_per_contract": 0.0023,
+   "model_edge": 0.296,
+   "station_30d_raw_bias_F": -1.73,
+   "station_30d_days": 30,
+   "bid_ask_spread": 0.01,
+   "volume_traded_before_bet": 19.98
+  },
+  "p_bet": 0.744,
+  "p_skip": 0.256,
+  "cutoff": 0.77,
+  "judge_action": "skip",
+  "rule_action": "bet",
+  "won": false,
+  "pnl": -1.0
+ },
+ {
+  "kind": "close call",
+  "ticker": "KXHIGHCHI-26SEP15-B86.5",
+  "state": {
+   "city": "Chicago",
+   "station": "KMDW",
+   "market": "high between 86\u00b0F and 87\u00b0F on 2026-09-15",
+   "bet_side": "NO",
+   "forecast_high_F": 83.6,
+   "forecast_error_sd_F": 1.65,
+   "model_probability_side_wins": 0.882,
+   "price_to_pay": 0.84,
+   "fee_per_contract": 0.01,
+   "model_edge": 0.032,
+   "station_30d_raw_bias_F": -2.58,
+   "station_30d_days": 30,
+   "bid_ask_spread": 0.03,
+   "volume_traded_before_bet": 310.0
+  },
+  "p_bet": 0.77,
+  "p_skip": 0.23,
+  "cutoff": 0.77,
+  "judge_action": "skip",
+  "rule_action": "skip",
+  "won": true,
+  "pnl": 0.15
+ }
+]

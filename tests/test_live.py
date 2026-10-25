@@ -37,7 +37,7 @@ def pick(ticker="KXHIGHNY-26OCT25-B60.5", price=0.30, side="yes"):
     n = live.size_for(price, live.MAX_PER_MARKET)
     f = live.fee(price, n)
     return dict(ticker=ticker, side=side, price=price, contracts=n, fee=f, max_cost=round(n * price + f, 4), edge=0.1,
-                p_side=0.45, mu=60.0, sigma=2.0)
+                p_side=0.45, mu=60.0, sigma=2.0, gfs_F=60.5)
 
 
 def test_constants():
@@ -140,7 +140,9 @@ def test_dry_run_places_no_orders(sandbox, monkeypatch):
     monkeypatch.setattr(live, "forecast_path", lambda init: sandbox / "f.npz")
     (sandbox / "f.npz").write_text("x")
     monkeypatch.setattr(live, "station_highs", lambda init, d: {})
-    monkeypatch.setattr(live, "candidates_for", lambda d, h, r, k: [pick(), pick("OTHER", 0.2, "no")])
+    monkeypatch.setattr(live, "candidates_for", lambda d, h, c, g, k: [pick(), pick("OTHER", 0.2, "no")])
+    monkeypatch.setattr(live, "corrections_for", lambda d, k: {})
+    monkeypatch.setattr(live, "gfs_highs", lambda d: {})
     monkeypatch.setattr(live, "post_issue", lambda text: "posted")
     monkeypatch.setattr("bot.kalshi.Kalshi", lambda *a, **k: FakeKalshi())
     (sandbox / "RULES.json").write_text(json.dumps({"threshold": 0.04, "judge_cutoff": None, "player": "x"}))

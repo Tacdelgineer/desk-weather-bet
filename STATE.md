@@ -208,3 +208,9 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - RULES.md + RULES.json written (corrected AIFS + one-line rule, edge > 0.09; no player made money on TEST, best was the judge at −$93.15 — said so in RULES.md). Station corrections frozen into RULES.json. Committed, tagged rules-locked, pushed; RULES.md SHA-256 84e0aa5e…11ed3.
 - Issue NOT opened: gh on this machine is logged in to a personal account, and posting from it would tie a personal username to the channel repo. bot/open_issue.sh does step 3 once gh is logged in as Tacdelgineer (🧑). live.py posts picks only as Tacdelgineer.
 - Next: 7.2.
+
+**2026-10-24 — v1 bug → v2 rules** (user instruction; 7.2 resumed)
+- By-hand DRY_RUN (v1) found the station-correction bug: Phoenix raw 76.31 → 85.49 °F vs GFS 77.3 / NWS 79; edges 0.70–0.85 at 1–6¢. Journal + evidence: video/JOURNAL.md, results/evidence/v1-bug/. CLAUDE.md now requires a JOURNAL entry for every surprise.
+- v2 = rolling 30-day bias (past data only, ≥ 20 days) + guards (≤ 4 °F from GFS, edge ≤ 0.30), in backtest/rolling.py, used by the backtest and live.py; tests/test_guards.py. Re-ran 4.3, 5.2–5.4, 6.1 inputs/6.2 on the same split: results/v1/ vs results/v2/, results/v1_vs_v2.json/.csv. TEST: GFS −$66.03, raw −$12.41, rule −$106.46, judge +$2.94 (v1: −167.40 / −130.65 / −129.11 / −93.15). handcheck (v2) matches.
+- RULES.md v2 (live player = corrected AIFS + judge, PLAN rule), tag rules-locked-v2; v1 tag kept. v2 designed after seeing TEST (DECISIONS.md).
+- Next: 7.1 issue (bot/open_issue.sh), then v2 DRY_RUN, then 7.5.

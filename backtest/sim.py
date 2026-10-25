@@ -6,6 +6,7 @@ Bet rule (at the ask at bet time, taker fee): buy YES if p - ask_yes - fee/contr
 (1-p) - ask_no - fee/contract > threshold (ask_no = 1 - yes_bid); at most one side and $1 (incl. fee) per market.
 Fill assumption: a $1 order fills in full at the quoted ask (candles have no depth) — stated in results.
 Threshold: tuned on TRAIN (grid 0.00–0.30), reported on TEST.
+Guards (v2, backtest/rolling.py, same for every player): skip if the player's high is > 4 °F from GFS, or edge > 0.30.
 """
 import json
 import math
@@ -19,6 +20,7 @@ from scipy.stats import norm
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from backtest.fees import fee  # noqa: E402
+from backtest.rolling import guard  # noqa: E402
 from backtest.window import assert_train_only  # noqa: E402
 
 PLAYERS = {"gfs": "free GFS forecast", "aifs_raw": "raw AIFS", "aifs_cor": "corrected AIFS + one-line rule"}
@@ -70,6 +72,7 @@ def candidates(markets, fc, fee_mult=1.0):
                     best = dict(side=side, price=price, contracts=c, fee=f, edge=edge, p_side=pwin, won=won,
                                 pnl=round((c if won else 0) - c * price - f, 4), cost=round(c * price + f, 4))
             if best:
+                best["guard"] = guard(mu, r.gfs_mu, best["edge"])
                 rows.append(dict(player=pl, city=r.city, station=r.station, date=r.date, split=r.split,
                                  ticker=r.ticker, strike_type=r.strike_type, floor=r.floor, cap=r.cap, mu=mu,
                                  sigma=sg, p_yes=p, yes_ask=r.yes_ask, no_ask=r.no_ask, actual=r.actual,
@@ -123,7 +126,7 @@ def run(fee_mult=1.0, th_shift=0.0, extra_players=None):
     cand = candidates(markets, fc, fee_mult)
     res, allbets = {}, []
     for pl in PLAYERS:
-        c = cand[cand.player == pl]
+        c = cand[(cand.player == pl) & (cand.guard == "")]
         th, train_pnl, train_n = pick_threshold(c[c.split == "TRAIN"]) or (None, None, 0)
         if th is None:
             res[pl] = dict(label=PLAYERS[pl], threshold=None, note="no threshold with enough TRAIN bets")
@@ -131,8 +134,12 @@ def run(fee_mult=1.0, th_shift=0.0, extra_players=None):
         th_used = round(th + th_shift, 2)
         test = c[(c.split == "TEST") & (c.edge > th_used)]
         allbets.append(test.assign(threshold=th_used))
+        g = cand[(cand.player == pl) & (cand.split == "TEST") & (cand.guard != "") & (cand.edge > th_used)]
         res[pl] = dict(label=PLAYERS[pl], threshold_train=th, threshold_used=th_used,
-                       train_pnl=round(float(train_pnl), 2), train_bets=int(train_n), test=summarize(test))
+                       train_pnl=round(float(train_pnl), 2), train_bets=int(train_n), test=summarize(test),
+                       test_skipped_by_guard=dict(n=int(len(g)), pnl_if_taken=round(float(g.pnl.sum()), 2),
+                                                  gfs_gap=int(g.guard.str.contains("from GFS").sum()),
+                                                  edge_cap=int(g.guard.str.startswith("edge").sum())))
     return res, cand, (pd.concat(allbets) if allbets else pd.DataFrame()), markets, fc
 
 
@@ -155,7 +162,7 @@ def main():
     for pl, r in res.items():
         t = r.get("test", {})
         print(f"{pl:9s} th={r.get('threshold_used')} TEST pnl={t.get('pnl')} bets={t.get('bets')} "
-              f"win={t.get('win_rate')} fees={t.get('fees')} roi={t.get('roi')}")
+              f"win={t.get('win_rate')} fees={t.get('fees')} roi={t.get('roi')} guarded={r.get('test_skipped_by_guard')}")
     print("Brier TEST:", out["accuracy_brier_test"])
 
 
