@@ -214,3 +214,6 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - v2 = rolling 30-day bias (past data only, ≥ 20 days) + guards (≤ 4 °F from GFS, edge ≤ 0.30), in backtest/rolling.py, used by the backtest and live.py; tests/test_guards.py. Re-ran 4.3, 5.2–5.4, 6.1 inputs/6.2 on the same split: results/v1/ vs results/v2/, results/v1_vs_v2.json/.csv. TEST: GFS −$66.03, raw −$12.41, rule −$106.46, judge +$2.94 (v1: −167.40 / −130.65 / −129.11 / −93.15). handcheck (v2) matches.
 - RULES.md v2 (live player = corrected AIFS + judge, PLAN rule), tag rules-locked-v2; v1 tag kept. v2 designed after seeing TEST (DECISIONS.md).
 - Next: 7.1 issue (bot/open_issue.sh), then v2 DRY_RUN, then 7.5.
+
+**2026-10-25 — 7.1** ([x])
+- Issue: https://github.com/Tacdelgineer/desk-weather-bet/issues/1. First comment: v1 (rules-locked, SHA-256 84e0aa5e5b55e5ab3e5958f14b5031e020f41ba2b186457d0a99e84fb1911ed3) marked superseded; v2 (rules-locked-v2, SHA-256 7e99eac0ced1dae151ff4f71294a307f3d51a107a11047bb398be7f288e0ce7e, commit dbb2499978b155dfe7bc76bf6938a3d409bd480e). LIVE_ISSUE written; bot/live.py posts daily picks there (only as Tacdelgineer).
