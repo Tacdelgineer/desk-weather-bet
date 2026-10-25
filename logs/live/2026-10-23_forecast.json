@@ -1,0 +1,10 @@
+{
+ "forecast": "ok",
+ "init": "2026-10-23T00:00:00",
+ "tail": [
+  "step +48h  31s",
+  "step +54h  34s",
+  "step +60h  37s",
+  "saved 2026102300_60h.npz: fields=['2t', 'msl', '10u', '10v', 'tp'] steps=10 run=37s"
+ ]
+}

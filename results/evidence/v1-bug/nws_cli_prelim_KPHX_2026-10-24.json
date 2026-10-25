@@ -1,0 +1,63 @@
+[
+ {
+  "station": "KPHX",
+  "valid": "2026-10-24",
+  "state": "AZ",
+  "wfo": "PSR",
+  "link": "/api/1/nwstext/202610250023-KPSR-CDUS45-CLIPHX",
+  "product": "202610250023-KPSR-CDUS45-CLIPHX",
+  "name": "PHOENIX/SKY HARBOR",
+  "high": 77,
+  "high_record": 99,
+  "high_record_years": [
+   2017
+  ],
+  "high_normal": 86,
+  "high_depart": -9,
+  "high_time": "425 PM",
+  "low": 63,
+  "low_record": 41,
+  "low_record_years": [
+   1920
+  ],
+  "low_normal": 62,
+  "low_depart": 1,
+  "low_time": "709 AM",
+  "precip": 0.0,
+  "precip_normal": 0.02,
+  "precip_month": 0.42,
+  "precip_month_normal": 0.44,
+  "precip_jan1": 3.2,
+  "precip_jan1_normal": 5.79,
+  "precip_jun1": "M",
+  "precip_jun1_normal": "M",
+  "precip_jul1": "M",
+  "precip_dec1": "M",
+  "precip_dec1_normal": "M",
+  "precip_record": 0.22,
+  "precip_record_years": [
+   1919
+  ],
+  "snow": 0.0,
+  "snowdepth": "M",
+  "snow_normal": "M",
+  "snow_month": 0.0,
+  "snow_jun1": "M",
+  "snow_jul1": 0.0,
+  "snow_dec1": "M",
+  "snow_record": "M",
+  "snow_record_years": [],
+  "snow_jul1_normal": "M",
+  "snow_jul1_depart": "M",
+  "snow_dec1_normal": "M",
+  "snow_month_normal": "M",
+  "average_sky_cover": 0.5,
+  "resultant_wind_speed": "M",
+  "resultant_wind_direction": "M",
+  "highest_wind_speed": 17,
+  "highest_wind_direction": 280,
+  "highest_gust_speed": 24,
+  "highest_gust_direction": 360,
+  "average_wind_speed": 5.7
+ }
+]

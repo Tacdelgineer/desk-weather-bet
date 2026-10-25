@@ -1,0 +1,131 @@
+{
+ "settle": {
+  "settled_now": 0,
+  "dry_run_paper_pnl": 0,
+  "live_pnl": 0
+ },
+ "day": "2026-10-23",
+ "market_day": "2026-10-24",
+ "mode": "DRY_RUN",
+ "dry_run_reasons": [
+  "no GO_LIVE file"
+ ],
+ "player": "aifs_cor",
+ "threshold": 0.09,
+ "highs": {
+  "KLAX": {
+   "city": "Los Angeles",
+   "series": "KXHIGHLAX",
+   "raw_high_F": 73.08,
+   "n": 4,
+   "grid": [
+    33.864158630371094,
+    241.60000610351562
+   ]
+  },
+  "KNYC": {
+   "city": "New York City",
+   "series": "KXHIGHNY",
+   "raw_high_F": 61.86,
+   "n": 4,
+   "grid": [
+    40.889915466308594,
+    286.20001220703125
+   ]
+  },
+  "KMIA": {
+   "city": "Miami",
+   "series": "KXHIGHMIA",
+   "raw_high_F": 82.39,
+   "n": 4,
+   "grid": [
+    25.714277267456055,
+    279.6000061035156
+   ]
+  },
+  "KMDW": {
+   "city": "Chicago",
+   "series": "KXHIGHCHI",
+   "raw_high_F": 69.28,
+   "n": 4,
+   "grid": [
+    41.73300552368164,
+    272.1600036621094
+   ]
+  },
+  "KPHX": {
+   "city": "Phoenix",
+   "series": "KXHIGHTPHX",
+   "raw_high_F": 76.31,
+   "n": 4,
+   "grid": [
+    33.30209732055664,
+    248.0
+   ]
+  },
+  "KSFO": {
+   "city": "San Francisco",
+   "series": "KXHIGHTSFO",
+   "raw_high_F": 68.28,
+   "n": 4,
+   "grid": [
+    37.51755142211914,
+    237.6666717529297
+   ]
+  }
+ },
+ "n_candidates": 66,
+ "picks": [
+  {
+   "ticker": "KXHIGHTPHX-26OCT24-T82",
+   "city": "Phoenix",
+   "station": "KPHX",
+   "side": "yes",
+   "price": 0.06,
+   "contracts": 15,
+   "fee": 0.06,
+   "max_cost": 0.96,
+   "p_side": 0.9093,
+   "edge": 0.8453,
+   "mu": 85.49,
+   "sigma": 2.23,
+   "raw_high_F": 76.31,
+   "yes_sub_title": "83\u00b0 or above"
+  },
+  {
+   "ticker": "KXHIGHMIA-26OCT24-T87",
+   "city": "Miami",
+   "station": "KMIA",
+   "side": "yes",
+   "price": 0.01,
+   "contracts": 93,
+   "fee": 0.07,
+   "max_cost": 1.0,
+   "p_side": 0.7204,
+   "edge": 0.7097,
+   "mu": 88.26,
+   "sigma": 1.3,
+   "raw_high_F": 82.39,
+   "yes_sub_title": "88\u00b0 or above"
+  }
+ ],
+ "issue": "no issue configured (LIVE_ISSUE missing)",
+ "would_order": [
+  {
+   "ticker": "KXHIGHTPHX-26OCT24-T82",
+   "side": "yes",
+   "type": "limit",
+   "count": 15,
+   "limit_price": 0.06,
+   "max_cost": 0.96
+  },
+  {
+   "ticker": "KXHIGHMIA-26OCT24-T87",
+   "side": "yes",
+   "type": "limit",
+   "count": 93,
+   "limit_price": 0.01,
+   "max_cost": 1.0
+  }
+ ]
+}

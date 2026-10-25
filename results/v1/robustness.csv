@@ -1,0 +1,19 @@
+case,player,threshold,test_pnl,bets,roi
+base,gfs,0.22,-167.4,410,-0.4961
+base,aifs_raw,0.3,-130.65,254,-0.5921
+base,aifs_cor,0.09,-129.11,687,-0.2277
+fees x1.5,gfs,0.22,-180.95,388,-0.5551
+fees x1.5,aifs_raw,0.3,-131.37,238,-0.6215
+fees x1.5,aifs_cor,0.09,-137.18,656,-0.2498
+threshold -0.02,gfs,0.2,-202.12,487,-0.5064
+threshold -0.02,aifs_raw,0.28,-144.55,292,-0.5816
+threshold -0.02,aifs_cor,0.07,-169.89,816,-0.251
+threshold +0.02,gfs,0.24,-155.51,346,-0.5371
+threshold +0.02,aifs_raw,0.32,-116.9,221,-0.5998
+threshold +0.02,aifs_cor,0.11,-132.26,584,-0.2754
+threshold +0.05,gfs,0.27,-126.25,277,-0.5367
+threshold +0.05,aifs_raw,0.35,-108.36,189,-0.6361
+threshold +0.05,aifs_cor,0.14,-123.49,459,-0.3263
+"fees x1.5, threshold +0.05",gfs,0.27,-130.66,263,-0.5739
+"fees x1.5, threshold +0.05",aifs_raw,0.35,-109.53,180,-0.6577
+"fees x1.5, threshold +0.05",aifs_cor,0.14,-123.29,443,-0.3321

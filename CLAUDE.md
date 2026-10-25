@@ -62,6 +62,7 @@ Everything serves that question:
   - Use the price you could actually have paid at bet time (the ask), never the final price.
   - Use Kalshi's current fee formula from its docs. Look it up; don't guess.
 - **Report everything.** Losses, misses, unfilled orders and bugs you found get reported, not hidden.
+- When something surprising happens (a bug, a failure, an unexpected result), add a dated entry to video/JOURNAL.md with the numbers, the files they come from, and one line on how to show it on screen.
 - **Settle on the right station.** Weather markets settle on the NWS Daily Climate Report for the station named in each market's rules. Use that station, never the city center.
 
 ## Money and safety rules (non-negotiable)
