@@ -222,3 +222,7 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - bot/live.py v2: rolling 30-day correction (results/live_history.csv fills days after the backtest window from our AIFS runs + Kalshi settled values), GFS-gap + edge-cap guards, judge input = backtest's judge_state. 28 tests pass.
 - By-hand v2 DRY_RUN for 2026-10-25 (logs/live/2026-10-24_picks.json): 2 picks (LA NO @0.67 edge 0.163, Miami NO @0.74 edge 0.099), both within 4 °F of GFS, edges ≤ 0.30; 8 candidates guarded. Posted to issue #1. JOURNAL entry vs v1 picks; results/dryrun_v1_vs_v2.json.
 - Next: 7.5 (timers, still DRY_RUN).
+
+**2026-10-25 — 7.5** (⏸)
+- systemd user timers enabled (linger on): dwb-forecast 08:30/10:30 UTC, dwb-picks 16:00 UTC (settle + picks + issue post), dwb-cancel 19:05 UTC; all DRY_RUN until GO_LIVE. Listed with systemctl --user list-timers 'dwb-*'. Manual start of dwb-cancel.service under systemd: exit 0, logs/live/2026-10-25_cancel.json.
+- Waiting for the first automatic run (forecast 2026-10-25 08:30 UTC → logs/timer_forecast.log; picks 16:00 UTC → logs/timer_picks.log). Next session: confirm both logged, then tick 7.5.

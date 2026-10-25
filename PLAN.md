@@ -144,7 +144,7 @@ If a session stops, type `continue` in the same conversation.
 - [x] **7.3 Order test.** With demo keys, place and cancel one demo order. Without them, make a read-only balance call.
   - CHECK: logged.
 - [ ] **7.4 🧑 H2 — GO_LIVE.** Print: "Read RULES.md. If you're OK with it, run: `echo 10 > GO_LIVE` in the repo folder." Until then, the daily job keeps running in DRY_RUN. ⏸
-- [ ] **7.5 Automate.** Only after 7.2's manual run worked: add a daily systemd user timer (or cron) for the morning run, plus the settle job.
+- ⏸ WAITING (first automatic run: 2026-10-25 08:30 UTC forecast, 16:00 UTC picks) **7.5 Automate.** Only after 7.2's manual run worked: add a daily systemd user timer (or cron) for the morning run, plus the settle job.
   - CHECK: the timer is listed, and its first automatic run is logged.
 - [ ] **7.6 Live week.** 7 days ⏸ (calendar). Do Phases 8–10 meanwhile. On day 8: settle, write `results/live.json`, include unfilled orders.
 
