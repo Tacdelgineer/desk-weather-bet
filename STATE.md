@@ -217,3 +217,8 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 
 **2026-10-25 — 7.1** ([x])
 - Issue: https://github.com/Tacdelgineer/desk-weather-bet/issues/1. First comment: v1 (rules-locked, SHA-256 84e0aa5e5b55e5ab3e5958f14b5031e020f41ba2b186457d0a99e84fb1911ed3) marked superseded; v2 (rules-locked-v2, SHA-256 7e99eac0ced1dae151ff4f71294a307f3d51a107a11047bb398be7f288e0ce7e, commit dbb2499978b155dfe7bc76bf6938a3d409bd480e). LIVE_ISSUE written; bot/live.py posts daily picks there (only as Tacdelgineer).
+
+**2026-10-25 — 7.2** ([x])
+- bot/live.py v2: rolling 30-day correction (results/live_history.csv fills days after the backtest window from our AIFS runs + Kalshi settled values), GFS-gap + edge-cap guards, judge input = backtest's judge_state. 28 tests pass.
+- By-hand v2 DRY_RUN for 2026-10-25 (logs/live/2026-10-24_picks.json): 2 picks (LA NO @0.67 edge 0.163, Miami NO @0.74 edge 0.099), both within 4 °F of GFS, edges ≤ 0.30; 8 candidates guarded. Posted to issue #1. JOURNAL entry vs v1 picks; results/dryrun_v1_vs_v2.json.
+- Next: 7.5 (timers, still DRY_RUN).

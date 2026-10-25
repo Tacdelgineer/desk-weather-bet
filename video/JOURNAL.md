@@ -101,3 +101,30 @@ standing above the models.
 
 **On screen:** the v1 → v2 P&L bars side by side on a PAPER MONEY board, the judge's bar crossing zero by a hair, with
 a "designed after seeing TEST" stamp across it.
+
+---
+
+## 2026-10-25 — v2 dry run (market day 2026-10-25) next to the v1 dry run
+
+By hand, `bot/live.py picks --date 2026-10-24`, run 2026-10-25 04:43 UTC (after the nominal 16:00 UTC bet time,
+like the v1 run), DRY_RUN (no GO_LIVE), rules v2, player corrected AIFS + judge. Source:
+logs/live/2026-10-24_picks.json; v1: results/evidence/v1-bug/2026-10-23_picks.json.
+
+| | v1 picks (market day 10-24) | v2 picks (market day 10-25) |
+|---|---|---|
+| pick 1 | Phoenix "83° or above" **YES @ $0.06**, edge 0.8453 | LA "76° to 77°" **NO @ $0.67**, edge 0.1634, judge P(bet) 0.7997 |
+| pick 2 | Miami "88° or above" **YES @ $0.01**, edge 0.7097 | Miami "83° to 84°" **NO @ $0.74**, edge 0.0988, judge P(bet) 0.7939 |
+| corrected high vs GFS | Phoenix 85.49 vs 77.3 (+8.19 °F), Miami 88.26 vs 84.1 (+4.16 °F) | LA 79.35 vs 75.7 (+3.65 °F), Miami 80.87 vs 84.1 (−3.23 °F) |
+| skipped by guards | — (no guards) | 8 of 28 candidates over the threshold: 6 for Chicago (corrected 73.85 vs GFS 69.6, 4.25 °F apart) and 2 for edges above 0.30 (LA 0.3526, Phoenix 0.4635) |
+
+- CHECK passes for the picks: no pick is more than 4 °F from GFS, and no pick has an edge above 0.30. One station's
+  corrected high (Chicago) was more than 4 °F from GFS, so all its candidates were skipped. That's the guard working.
+- On the same raw highs, the v1 line would have said Phoenix 87.68 °F, 8.38 °F above GFS 79.3. In October it
+  still runs hot, which shows the v1 bug wasn't a one-day accident. (results/dryrun_v1_vs_v2.json: v1 coefficients from RULES.json at tag `rules-locked`,
+  applied to the raw highs in logs/live/2026-10-24_picks.json.)
+- v2 picks cheap-to-moderate favourites (NO at 67–74¢) with edges of 10–16¢, not 1–6¢ long shots with 70–85¢ "edges".
+- Still worth watching: two edges above 0.30 got through the correction and were stopped only by the cap. LA's
+  30-day spread is wide (sigma 4.38 °F, bias +6.45 °F).
+
+**On screen:** two log cards side by side, v1 (red stamp "BUG") and v2. The Phoenix line on each is highlighted:
+85.49 vs 77.3 GFS, then 81.76 vs 79.3 GFS.

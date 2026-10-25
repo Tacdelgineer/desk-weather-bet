@@ -1,0 +1,249 @@
+{
+ "settle": {
+  "settled_now": 0,
+  "dry_run_paper_pnl": 0,
+  "live_pnl": 0
+ },
+ "day": "2026-10-24",
+ "market_day": "2026-10-25",
+ "mode": "DRY_RUN",
+ "dry_run_reasons": [
+  "no GO_LIVE file"
+ ],
+ "rules": "v2",
+ "player": "aifs_cor_judge",
+ "threshold": 0.0,
+ "highs": {
+  "KLAX": {
+   "city": "Los Angeles",
+   "series": "KXHIGHLAX",
+   "raw_high_F": 72.9,
+   "n": 4,
+   "grid": [
+    33.864158630371094,
+    241.60000610351562
+   ],
+   "gfs_F": 75.7,
+   "bias_30d": 6.45,
+   "sigma_30d": 4.38,
+   "days_30d": 29,
+   "mu": 79.35
+  },
+  "KNYC": {
+   "city": "New York City",
+   "series": "KXHIGHNY",
+   "raw_high_F": 65.85,
+   "n": 4,
+   "grid": [
+    40.889915466308594,
+    286.20001220703125
+   ],
+   "gfs_F": 67.5,
+   "bias_30d": -0.23,
+   "sigma_30d": 1.6,
+   "days_30d": 30,
+   "mu": 65.62
+  },
+  "KMIA": {
+   "city": "Miami",
+   "series": "KXHIGHMIA",
+   "raw_high_F": 78.54,
+   "n": 4,
+   "grid": [
+    25.714277267456055,
+    279.6000061035156
+   ],
+   "gfs_F": 84.1,
+   "bias_30d": 2.33,
+   "sigma_30d": 1.59,
+   "days_30d": 30,
+   "mu": 80.87
+  },
+  "KMDW": {
+   "city": "Chicago",
+   "series": "KXHIGHCHI",
+   "raw_high_F": 72.38,
+   "n": 4,
+   "grid": [
+    41.73300552368164,
+    272.1600036621094
+   ],
+   "gfs_F": 69.6,
+   "bias_30d": 1.47,
+   "sigma_30d": 2.03,
+   "days_30d": 30,
+   "mu": 73.85
+  },
+  "KPHX": {
+   "city": "Phoenix",
+   "series": "KXHIGHTPHX",
+   "raw_high_F": 79.18,
+   "n": 4,
+   "grid": [
+    33.30209732055664,
+    248.0
+   ],
+   "gfs_F": 79.3,
+   "bias_30d": 2.58,
+   "sigma_30d": 3.68,
+   "days_30d": 30,
+   "mu": 81.76
+  },
+  "KSFO": {
+   "city": "San Francisco",
+   "series": "KXHIGHTSFO",
+   "raw_high_F": 66.09,
+   "n": 4,
+   "grid": [
+    37.51755142211914,
+    237.6666717529297
+   ],
+   "gfs_F": 73.3,
+   "bias_30d": 4.05,
+   "sigma_30d": 2.22,
+   "days_30d": 30,
+   "mu": 70.14
+  }
+ },
+ "n_candidates": 63,
+ "n_over_threshold": 28,
+ "guarded": [
+  {
+   "ticker": "KXHIGHLAX-26OCT25-B78.5",
+   "side": "no",
+   "price": 0.45,
+   "edge": 0.3526,
+   "mu": 79.35,
+   "gfs_F": 75.7,
+   "guard": "edge 0.353 > 0.3"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-T77",
+   "side": "yes",
+   "price": 0.01,
+   "edge": 0.0256,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-T70",
+   "side": "yes",
+   "price": 0.01,
+   "edge": 0.0053,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-B76.5",
+   "side": "yes",
+   "price": 0.06,
+   "edge": 0.1086,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-B70.5",
+   "side": "yes",
+   "price": 0.06,
+   "edge": 0.0432,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-B72.5",
+   "side": "no",
+   "price": 0.53,
+   "edge": 0.1425,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-B74.5",
+   "side": "no",
+   "price": 0.57,
+   "edge": 0.0496,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHTPHX-26OCT25-B82.5",
+   "side": "no",
+   "price": 0.31,
+   "edge": 0.4635,
+   "mu": 81.76,
+   "gfs_F": 79.3,
+   "guard": "edge 0.464 > 0.3"
+  }
+ ],
+ "picks": [
+  {
+   "ticker": "KXHIGHLAX-26OCT25-B76.5",
+   "city": "Los Angeles",
+   "station": "KLAX",
+   "side": "no",
+   "price": 0.67,
+   "contracts": 1,
+   "fee": 0.02,
+   "max_cost": 0.69,
+   "p_side": 0.8534,
+   "edge": 0.1634,
+   "mu": 79.35,
+   "sigma": 4.38,
+   "raw_high_F": 72.9,
+   "bias_30d": 6.45,
+   "days_30d": 29,
+   "gfs_F": 75.7,
+   "guard": "",
+   "yes_sub_title": "76\u00b0 to 77\u00b0",
+   "judge_state": "{\"city\": \"Los Angeles\", \"station\": \"KLAX\", \"market\": \"high between 76\\u00b0F and 77\\u00b0F on 2026-10-25\", \"bet_side\": \"NO\", \"forecast_high_F\": 79.4, \"forecast_error_sd_F\": 4.38, \"model_probability_side_wins\": 0.853, \"price_to_pay\": 0.67, \"fee_per_contract\": 0.02, \"model_edge\": 0.163, \"station_30d_raw_bias_F\": -6.45, \"station_30d_days\": 29, \"bid_ask_spread\": 0.01, \"volume_traded_before_bet\": 3061.72}",
+   "p_bet": 0.7997
+  },
+  {
+   "ticker": "KXHIGHMIA-26OCT25-B83.5",
+   "city": "Miami",
+   "station": "KMIA",
+   "side": "no",
+   "price": 0.74,
+   "contracts": 1,
+   "fee": 0.02,
+   "max_cost": 0.76,
+   "p_side": 0.8588,
+   "edge": 0.0988,
+   "mu": 80.87,
+   "sigma": 1.59,
+   "raw_high_F": 78.54,
+   "bias_30d": 2.33,
+   "days_30d": 30,
+   "gfs_F": 84.1,
+   "guard": "",
+   "yes_sub_title": "83\u00b0 to 84\u00b0",
+   "judge_state": "{\"city\": \"Miami\", \"station\": \"KMIA\", \"market\": \"high between 83\\u00b0F and 84\\u00b0F on 2026-10-25\", \"bet_side\": \"NO\", \"forecast_high_F\": 80.9, \"forecast_error_sd_F\": 1.59, \"model_probability_side_wins\": 0.859, \"price_to_pay\": 0.74, \"fee_per_contract\": 0.02, \"model_edge\": 0.099, \"station_30d_raw_bias_F\": -2.33, \"station_30d_days\": 30, \"bid_ask_spread\": 0.02, \"volume_traded_before_bet\": 2255.95}",
+   "p_bet": 0.7939
+  }
+ ],
+ "issue": "https://github.com/Tacdelgineer/desk-weather-bet/issues/1#issuecomment-6393564505",
+ "would_order": [
+  {
+   "ticker": "KXHIGHLAX-26OCT25-B76.5",
+   "side": "no",
+   "type": "limit",
+   "count": 1,
+   "limit_price": 0.67,
+   "max_cost": 0.69
+  },
+  {
+   "ticker": "KXHIGHMIA-26OCT25-B83.5",
+   "side": "no",
+   "type": "limit",
+   "count": 1,
+   "limit_price": 0.74,
+   "max_cost": 0.76
+  }
+ ]
+}

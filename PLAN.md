@@ -136,7 +136,7 @@ If a session stops, type `continue` in the same conversation.
   2. Commit, tag `rules-locked`, push.
   3. Open a GitHub issue named "Live picks log". Post RULES.md's SHA-256 and the commit hash as the first comment. GitHub comment times are set by the server and can't be back-dated; plain git commit dates can be.
   - CHECK: issue URL in STATE.md.
-- [ ] **7.2 Build `bot/live.py`.**
+- [x] **7.2 Build `bot/live.py`.**
   - Each morning: get the latest data → run AIFS → compute probabilities → choose picks → post picks to the issue → if GO_LIVE, place limit orders → log.
   - Next morning: settle and update P&L.
   - Unit tests for every cap and for DRY_RUN.

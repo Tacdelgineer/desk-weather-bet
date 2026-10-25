@@ -1,0 +1,168 @@
+{
+ "source": "logs/live/2026-10-24_picks.json",
+ "market_day": "2026-10-25",
+ "stations": {
+  "KLAX": {
+   "raw_high_F": 72.9,
+   "gfs_F": 75.7,
+   "v1_corrected_F": 77.48,
+   "v1_minus_gfs_F": 1.78,
+   "v2_corrected_F": 79.35,
+   "v2_minus_gfs_F": 3.65,
+   "v2_bias_30d": 6.45,
+   "v2_sigma_30d": 4.38,
+   "v2_days_30d": 29
+  },
+  "KNYC": {
+   "raw_high_F": 65.85,
+   "gfs_F": 67.5,
+   "v1_corrected_F": 68.22,
+   "v1_minus_gfs_F": 0.72,
+   "v2_corrected_F": 65.62,
+   "v2_minus_gfs_F": -1.88,
+   "v2_bias_30d": -0.23,
+   "v2_sigma_30d": 1.6,
+   "v2_days_30d": 30
+  },
+  "KMIA": {
+   "raw_high_F": 78.54,
+   "gfs_F": 84.1,
+   "v1_corrected_F": 85.87,
+   "v1_minus_gfs_F": 1.77,
+   "v2_corrected_F": 80.87,
+   "v2_minus_gfs_F": -3.23,
+   "v2_bias_30d": 2.33,
+   "v2_sigma_30d": 1.59,
+   "v2_days_30d": 30
+  },
+  "KMDW": {
+   "raw_high_F": 72.38,
+   "gfs_F": 69.6,
+   "v1_corrected_F": 74.15,
+   "v1_minus_gfs_F": 4.55,
+   "v2_corrected_F": 73.85,
+   "v2_minus_gfs_F": 4.25,
+   "v2_bias_30d": 1.47,
+   "v2_sigma_30d": 2.03,
+   "v2_days_30d": 30
+  },
+  "KPHX": {
+   "raw_high_F": 79.18,
+   "gfs_F": 79.3,
+   "v1_corrected_F": 87.68,
+   "v1_minus_gfs_F": 8.38,
+   "v2_corrected_F": 81.76,
+   "v2_minus_gfs_F": 2.46,
+   "v2_bias_30d": 2.58,
+   "v2_sigma_30d": 3.68,
+   "v2_days_30d": 30
+  },
+  "KSFO": {
+   "raw_high_F": 66.09,
+   "gfs_F": 73.3,
+   "v1_corrected_F": 70.46,
+   "v1_minus_gfs_F": -2.84,
+   "v2_corrected_F": 70.14,
+   "v2_minus_gfs_F": -3.16,
+   "v2_bias_30d": 4.05,
+   "v2_sigma_30d": 2.22,
+   "v2_days_30d": 30
+  }
+ },
+ "v2_picks": [
+  {
+   "ticker": "KXHIGHLAX-26OCT25-B76.5",
+   "side": "no",
+   "price": 0.67,
+   "edge": 0.1634,
+   "p_side": 0.8534,
+   "p_bet": 0.7997,
+   "mu": 79.35,
+   "gfs_F": 75.7
+  },
+  {
+   "ticker": "KXHIGHMIA-26OCT25-B83.5",
+   "side": "no",
+   "price": 0.74,
+   "edge": 0.0988,
+   "p_side": 0.8588,
+   "p_bet": 0.7939,
+   "mu": 80.87,
+   "gfs_F": 84.1
+  }
+ ],
+ "v2_guarded": [
+  {
+   "ticker": "KXHIGHLAX-26OCT25-B78.5",
+   "side": "no",
+   "price": 0.45,
+   "edge": 0.3526,
+   "mu": 79.35,
+   "gfs_F": 75.7,
+   "guard": "edge 0.353 > 0.3"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-T77",
+   "side": "yes",
+   "price": 0.01,
+   "edge": 0.0256,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-T70",
+   "side": "yes",
+   "price": 0.01,
+   "edge": 0.0053,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-B76.5",
+   "side": "yes",
+   "price": 0.06,
+   "edge": 0.1086,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-B70.5",
+   "side": "yes",
+   "price": 0.06,
+   "edge": 0.0432,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-B72.5",
+   "side": "no",
+   "price": 0.53,
+   "edge": 0.1425,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT25-B74.5",
+   "side": "no",
+   "price": 0.57,
+   "edge": 0.0496,
+   "mu": 73.85,
+   "gfs_F": 69.6,
+   "guard": "corrected high 73.8F is 4.2F from GFS 69.6F (> 4)"
+  },
+  {
+   "ticker": "KXHIGHTPHX-26OCT25-B82.5",
+   "side": "no",
+   "price": 0.31,
+   "edge": 0.4635,
+   "mu": 81.76,
+   "gfs_F": 79.3,
+   "guard": "edge 0.464 > 0.3"
+  }
+ ]
+}
