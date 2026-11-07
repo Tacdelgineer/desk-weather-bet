@@ -10,3 +10,10 @@ STOP
 __pycache__/
 *.pyc
 logs/*.log
+video/results/
+video/work/
+video/logs/
+video/voice/raw/
+*.wav
+results/preview/*.mp4
+video/chapters/tx/goes_frames.js

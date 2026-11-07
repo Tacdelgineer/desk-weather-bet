@@ -143,14 +143,14 @@ If a session stops, type `continue` in the same conversation.
   - CHECK: tests pass, and one full DRY_RUN is run by hand.
 - [x] **7.3 Order test.** With demo keys, place and cancel one demo order. Without them, make a read-only balance call.
   - CHECK: logged.
-- [ ] **7.4 🧑 H2 — GO_LIVE.** Print: "Read RULES.md. If you're OK with it, run: `echo 10 > GO_LIVE` in the repo folder." Until then, the daily job keeps running in DRY_RUN. ⏸
-- ⏸ WAITING (first automatic run: 2026-10-25 08:30 UTC forecast, 16:00 UTC picks) **7.5 Automate.** Only after 7.2's manual run worked: add a daily systemd user timer (or cron) for the morning run, plus the settle job.
+- [x] **7.4 🧑 H2 — GO_LIVE.** (GO_LIVE = 10 created 2026-10-25 19:50 UTC) Print: "Read RULES.md. If you're OK with it, run: `echo 10 > GO_LIVE` in the repo folder." Until then, the daily job keeps running in DRY_RUN.
+- [x] **7.5 Automate.** (first automatic runs logged 2026-10-25; forecast + picks timers disabled 2026-11-07 after the live week) Only after 7.2's manual run worked: add a daily systemd user timer (or cron) for the morning run, plus the settle job.
   - CHECK: the timer is listed, and its first automatic run is logged.
-- [ ] **7.6 Live week.** 7 days ⏸ (calendar). Do Phases 8–10 meanwhile. On day 8: settle, write `results/live.json`, include unfilled orders.
+- [x] **7.6 Live week.** 7 days (2026-10-26 → 11-01 runs; only 2 completed, 5 crashed — see results/live.json). Do Phases 8–10 meanwhile. On day 8: settle, write `results/live.json`, include unfilled orders.
 
 ## Phase 8 — Footage (tacdel-video pipeline)
 
-- [ ] **8.1 Outline.** Write the chapter outline to `video/OUTLINE.md`, from the chapter list below.
+- [x] **8.1 Outline.** Write the chapter outline to `video/OUTLINE.md`, from the chapter list below.
 - [ ] **8.2 Rooms.** Build rooms from the results files, including the new EVIDENCE room type.
   - Chapter 09 ("the bug"), all numbers from results/evidence/v1-bug/summary.json and results/v1_vs_v2.json:
     - **extrapolation room** (riso): Phoenix's 60 TRAIN dots (`scatter_train.KPHX`, raw AIFS vs actual), the v1 line
@@ -182,7 +182,7 @@ If a session stops, type `continue` in the same conversation.
   - put the twist around 3:00;
   - end on the payoff.
 - [ ] **9.2 Fact check** against the results files, then fix.
-- [ ] **9.3 Voice.** ElevenLabs, the user's v2 voice, one chapter per generation, into `video/voice/`.
+- [ ] **9.3 Voice.** ElevenLabs, the user's voice on **eleven_v4** (not v2; user, 2026-11-07), one chapter per generation, into `video/voice/`, settings exactly as ~/ai-dev-skills/FINAL_VOICE.md.
   - CHECK: durations logged.
 
 ## Phase 10 — Assembly and packaging

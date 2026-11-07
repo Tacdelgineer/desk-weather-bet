@@ -226,3 +226,15 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 **2026-10-25 — 7.5** (⏸)
 - systemd user timers enabled (linger on): dwb-forecast 08:30/10:30 UTC, dwb-picks 16:00 UTC (settle + picks + issue post), dwb-cancel 19:05 UTC; all DRY_RUN until GO_LIVE. Listed with systemctl --user list-timers 'dwb-*'. Manual start of dwb-cancel.service under systemd: exit 0, logs/live/2026-10-25_cancel.json.
 - Waiting for the first automatic run (forecast 2026-10-25 08:30 UTC → logs/timer_forecast.log; picks 16:00 UTC → logs/timer_picks.log). Next session: confirm both logged, then tick 7.5.
+
+**2026-11-07 — 7.4, 7.5, 7.6** ([x])
+- GO_LIVE (10) was created 2026-10-25 19:50 UTC; timers ran automatically from 10-25. Live week = runs 10-26 → 11-01.
+- Settled from Kalshi's own records (tools/kalshi_records.py, read-only → data/live_kalshi/; tools/settle_live.py → results/live.json): 4 real orders, all filled, 2 won / 2 lost, P&L −$0.4959, none outside the window, none unfilled.
+- Only 2 of 7 days traded: picks job crashed from 10-28 (settled_high() float('70° to 71°')). live.py also has no end-date check. JOURNAL entry. dwb-forecast + dwb-picks timers disabled; dwb-cancel left enabled (only cancels resting orders; none exist). STOP file present (not created by Claude).
+- Next: 8.1 outline, style preview.
+
+**2026-11-07 — 8.1** ([x]) + style preview
+- video/OUTLINE.md. Chapter kit copied into video/ (styles, tools). Voice: eleven_v4 per ~/ai-dev-skills/FINAL_VOICE.md; PLAN 9.3 updated.
+- Style preview (not a final chapter): video/chapters/90_scenes.js, data from video/preview/export.py + prep_goes.py; one v4 take of the hook (12/12 words aligned). Output results/preview/style_preview.mp4 + contact_sheet.png (gitignored mp4).
+- Open: owner approves the look; crash fix in live.py not done (live week is over; fix only if a second live week is wanted).
+- Next: 8.2 rooms after approval.

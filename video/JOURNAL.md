@@ -128,3 +128,32 @@ logs/live/2026-10-24_picks.json; v1: results/evidence/v1-bug/2026-10-23_picks.js
 
 **On screen:** two log cards side by side, v1 (red stamp "BUG") and v2. The Phoenix line on each is highlighted:
 85.49 vs 77.3 GFS, then 81.76 vs 79.3 GFS.
+
+---
+
+## 2026-11-07 — the live week: 4 real orders, −$0.50, and the bot crashed on day 3
+
+Settled from Kalshi's own records (`/portfolio/orders`, `/fills`, `/settlements`, read-only; raw copies in
+data/live_kalshi/, not committed). Summary: results/live.json (written by tools/settle_live.py).
+
+| run (16:00 UTC) | market | bought | price | filled | result | P&L |
+|---|---|---|---|---|---|---|
+| 10-26 | KXHIGHTPHX-26OCT27-B85.5 (Phoenix 85–86°) | NO | $0.54 | 1/1 | settled 87 → NO wins | +$0.44 |
+| 10-26 | KXHIGHLAX-26OCT27-B74.5 (LA 74–75°) | NO | $0.71 | 1/1 | settled 75 → YES | −$0.72 |
+| 10-27 | KXHIGHLAX-26OCT28-B73.5 (LA 73–74°) | NO | $0.59 | 1/1 | settled 75 → NO wins | +$0.39 |
+| 10-27 | KXHIGHLAX-26OCT28-B75.5 (LA 75–76°) | NO | $0.59 | 1/1 | settled 75 → YES | −$0.61 |
+
+- Total: 2 won, 2 lost, staked $2.43, fees $0.0659, P&L **−$0.4959**. No unfilled orders. No order outside the
+  locked window (runs 10-26 → 11-01). GO_LIVE appeared 2026-10-25 19:50 UTC, after that day's 16:00 run (DRY_RUN).
+- **Surprise 1 — the crash.** From the 10-28 run on, every picks job died before choosing picks:
+  `bot/live.py settled_high()` did `float(expiration_value)`, and Kalshi returned a bracket string (`'70° to 71°'`)
+  for one history day. So only 2 of the 7 locked days traded; days 3–7 placed nothing (logs/timer_picks.log,
+  systemd journal). The settle step ran first each day, so settlements were still recorded.
+- **Surprise 2 — no end date.** live.py has no check for the last locked day; after 11-01 the timer kept running it
+  (11-02 → 11-06, all crashed). Only the crash (and the $10 cap) stopped orders past the window. Timers
+  dwb-forecast and dwb-picks disabled 2026-11-07.
+- The bot's own ledger rounded fees up to whole cents (−$0.51); Kalshi's records give −$0.4959. Kalshi's numbers are used.
+- Kalshi lists each NO buy as `side=yes, action=sell` on the order and `side=no` on the fill; same position.
+
+**On screen:** the four orders as EVIDENCE cards (Kalshi records, highlighter on each result), then a CRT replay of
+the traceback with "DAY 3" stamped on it, then the stat card −$0.50 · REAL MONEY · $10 TEST.

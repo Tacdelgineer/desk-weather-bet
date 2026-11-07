@@ -1,0 +1,14 @@
+/* Shared fonts for every chapter (local files, SIL OFL 1.1; see fonts/LICENSES.txt) */
+@font-face{font-family:'Inter';font-weight:100 900;src:url(fonts/Inter-latin.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:100 900;src:url(fonts/Inter-sym.woff2) format('woff2');unicode-range:U+2192,U+2248,U+2605,U+2713,U+2717,U+00D7,U+2212,U+2588,U+2591,U+25B6}
+@font-face{font-family:'JetBrains Mono';font-weight:100 800;src:url(fonts/JetBrainsMono-latin.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:100 800;src:url(fonts/JetBrainsMono-sym.woff2) format('woff2');unicode-range:U+2192,U+2248,U+2605,U+2713,U+2717,U+00D7,U+2212,U+2588,U+2591,U+25B6}
+html,body{margin:0;height:100%;background:#0b0b0b;color:#b9b2a6;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+canvas{width:min(calc(100vw - 24px),calc((100vh - 60px)*16/9));height:auto;display:block}
+#hud{width:min(calc(100vw - 24px),calc((100vh - 60px)*16/9));display:flex;flex-direction:column;gap:7px}
+#bar{position:relative;height:6px;background:#272727;border-radius:3px;cursor:pointer}
+#fill{position:absolute;left:0;top:0;bottom:0;background:#e9e2d5;border-radius:3px}
+.tick{position:absolute;top:-3px;width:2px;height:12px;background:#555}
+#row{display:flex;justify-content:space-between;gap:10px;white-space:nowrap;overflow:hidden}
+.clean #hud{display:none} .clean canvas{width:min(100vw,100vh*16/9)}

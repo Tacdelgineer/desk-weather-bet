@@ -1,0 +1,231 @@
+{
+ "label": "REAL MONEY · $10 TEST",
+ "source": "Kalshi /portfolio/orders, /portfolio/fills, /portfolio/settlements (read-only, pulled 2026-11-07 UTC)",
+ "rules": "rules-locked-v2",
+ "window_runs": [
+  "2026-10-26",
+  "2026-10-27",
+  "2026-10-28",
+  "2026-10-29",
+  "2026-10-30",
+  "2026-10-31",
+  "2026-11-01"
+ ],
+ "budget": 10.0,
+ "runs": [
+  {
+   "day": "2026-10-26",
+   "picks_job": "ok",
+   "real_orders": 2
+  },
+  {
+   "day": "2026-10-27",
+   "picks_job": "ok",
+   "real_orders": 2
+  },
+  {
+   "day": "2026-10-28",
+   "picks_job": "crashed",
+   "real_orders": 0
+  },
+  {
+   "day": "2026-10-29",
+   "picks_job": "crashed",
+   "real_orders": 0
+  },
+  {
+   "day": "2026-10-30",
+   "picks_job": "crashed",
+   "real_orders": 0
+  },
+  {
+   "day": "2026-10-31",
+   "picks_job": "crashed",
+   "real_orders": 0
+  },
+  {
+   "day": "2026-11-01",
+   "picks_job": "crashed",
+   "real_orders": 0
+  }
+ ],
+ "runs_after_window": [
+  {
+   "day": "2026-11-02",
+   "picks_job": "crashed"
+  },
+  {
+   "day": "2026-11-03",
+   "picks_job": "crashed"
+  },
+  {
+   "day": "2026-11-04",
+   "picks_job": "crashed"
+  },
+  {
+   "day": "2026-11-05",
+   "picks_job": "crashed"
+  },
+  {
+   "day": "2026-11-06",
+   "picks_job": "crashed"
+  }
+ ],
+ "orders": [
+  {
+   "placed_utc": "2026-10-26T16:01:35.349561Z",
+   "run_day": "2026-10-26",
+   "market": "KXHIGHTPHX-26OCT27-B85.5",
+   "market_day": "2026-10-27",
+   "city": "Phoenix",
+   "bracket": "85° to 86°",
+   "side_held": "no",
+   "limit_price": 0.54,
+   "contracts": 1.0,
+   "filled": 1.0,
+   "status": "executed",
+   "fill_cost": 0.54,
+   "fee": 0.0174,
+   "market_result": "no",
+   "settled_value": "87.00",
+   "revenue": 1.0,
+   "pnl": 0.4426,
+   "won": true,
+   "in_window": true,
+   "bot_ledger_pnl": 0.44
+  },
+  {
+   "placed_utc": "2026-10-26T16:01:35.440306Z",
+   "run_day": "2026-10-26",
+   "market": "KXHIGHLAX-26OCT27-B74.5",
+   "market_day": "2026-10-27",
+   "city": "Los Angeles",
+   "bracket": "74° to 75°",
+   "side_held": "no",
+   "limit_price": 0.71,
+   "contracts": 1.0,
+   "filled": 1.0,
+   "status": "executed",
+   "fill_cost": 0.71,
+   "fee": 0.0145,
+   "market_result": "yes",
+   "settled_value": "75.00",
+   "revenue": 0.0,
+   "pnl": -0.7245,
+   "won": false,
+   "in_window": true,
+   "bot_ledger_pnl": -0.73
+  },
+  {
+   "placed_utc": "2026-10-27T16:01:22.189111Z",
+   "run_day": "2026-10-27",
+   "market": "KXHIGHLAX-26OCT28-B73.5",
+   "market_day": "2026-10-28",
+   "city": "Los Angeles",
+   "bracket": "73° to 74°",
+   "side_held": "no",
+   "limit_price": 0.59,
+   "contracts": 1.0,
+   "filled": 1.0,
+   "status": "executed",
+   "fill_cost": 0.59,
+   "fee": 0.017,
+   "market_result": "no",
+   "settled_value": "75.00",
+   "revenue": 1.0,
+   "pnl": 0.393,
+   "won": true,
+   "in_window": true,
+   "bot_ledger_pnl": 0.39
+  },
+  {
+   "placed_utc": "2026-10-27T16:01:22.283305Z",
+   "run_day": "2026-10-27",
+   "market": "KXHIGHLAX-26OCT28-B75.5",
+   "market_day": "2026-10-28",
+   "city": "Los Angeles",
+   "bracket": "75° to 76°",
+   "side_held": "no",
+   "limit_price": 0.59,
+   "contracts": 1.0,
+   "filled": 1.0,
+   "status": "executed",
+   "fill_cost": 0.59,
+   "fee": 0.017,
+   "market_result": "yes",
+   "settled_value": "75.00",
+   "revenue": 0.0,
+   "pnl": -0.607,
+   "won": false,
+   "in_window": true,
+   "bot_ledger_pnl": -0.61
+  }
+ ],
+ "totals": {
+  "orders": 4,
+  "filled": 4,
+  "unfilled": 0,
+  "settled": 4,
+  "won": 2,
+  "lost": 2,
+  "staked": 2.43,
+  "fees": 0.0659,
+  "revenue": 2.0,
+  "pnl": -0.4959,
+  "orders_outside_window": 0,
+  "runs_completed": 2,
+  "runs_crashed": 5
+ },
+ "crash": "picks job crashed every day from 2026-10-28: live.py settled_high() did float(expiration_value) and Kalshi returned a bracket string ('70° to 71°') for a history day; no picks, no orders on those days",
+ "dry_run_picks_before_go_live": [
+  {
+   "ticker": "KXHIGHTPHX-26OCT24-T82",
+   "side": "yes",
+   "price": 0.06,
+   "market_day": "2026-10-24",
+   "won": false,
+   "pnl": -0.96
+  },
+  {
+   "ticker": "KXHIGHMIA-26OCT24-T87",
+   "side": "yes",
+   "price": 0.01,
+   "market_day": "2026-10-24",
+   "won": false,
+   "pnl": -1.0
+  },
+  {
+   "ticker": "KXHIGHLAX-26OCT25-B76.5",
+   "side": "no",
+   "price": 0.67,
+   "market_day": "2026-10-25",
+   "won": true,
+   "pnl": 0.31
+  },
+  {
+   "ticker": "KXHIGHMIA-26OCT25-B83.5",
+   "side": "no",
+   "price": 0.74,
+   "market_day": "2026-10-25",
+   "won": true,
+   "pnl": 0.24
+  },
+  {
+   "ticker": "KXHIGHCHI-26OCT26-B62.5",
+   "side": "no",
+   "price": 0.61,
+   "market_day": "2026-10-26",
+   "won": true,
+   "pnl": 0.37
+  },
+  {
+   "ticker": "KXHIGHNY-26OCT26-B70.5",
+   "side": "no",
+   "price": 0.59,
+   "market_day": "2026-10-26",
+   "won": true,
+   "pnl": 0.39
+  }
+ ],
+ "note": "Bot ledger fees were rounded up to whole cents; P&L here uses Kalshi's own fee and revenue records."
+}

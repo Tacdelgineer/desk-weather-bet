@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Shot 3 vertical (1080x1920)</title>
+<link rel="stylesheet" href="../styles/fonts.css"></head>
+<body style="margin:0;background:#000">
+<!-- Style preview, shot 3 as a vertical (Shorts) frame. Same drawing as the wide shot (chapters/tx/scatter.js). -->
+<canvas id="c" width="1080" height="1920"></canvas>
+<div id="bar"></div><div id="fill"></div><div id="info"></div>
+<script src="../chapters/data.js"></script>
+<script src="../styles/core.js"></script>
+<script src="../styles/riso.js"></script>
+<script src="../chapters/tx/scatter.js"></script>
+<script>
+function drawV(lt) {
+  const VW = 1080, VH = 1920; T = lt; ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.fillStyle = R.C.paper; ctx.fillRect(0, 0, VW, VH);
+  R.printLine('THE BUG', 90, 260, 96, R.C.white, 1, 'left');
+  R.printLine('PHOENIX', 90, 370, 96, R.C.orange, 1, 'left');
+  example(90, 470, 1, 'PAPER MONEY');
+  bugScatter(lt, { x: 190, y: 640, w: 820, h: 820 }, .82);
+  R.mono('SOURCE: results/evidence/v1-bug/summary.json', 540, 1780, 22, R.C.dim, 'center', 500);
+  const g = ctx.createRadialGradient(540, 960, 700, 540, 960, 1300); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.5)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, VW, VH); ctx.globalAlpha = .9;
+  for (let y = 0; y < VH; y += 540) for (let x = 0; x < VW; x += 960) ctx.drawImage(R.GRAIN[0], x, y); ctx.globalAlpha = 1;
+}
+document.fonts.load('900 64px Inter').then(() => document.fonts.load('700 40px "JetBrains Mono"')).finally(() => { drawV(8); window.READY = true; });
+window.seekV = t => drawV(t);
+</script></body></html>
