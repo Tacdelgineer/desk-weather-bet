@@ -239,3 +239,4 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - Open: owner approves the look; crash fix in live.py not done (live week is over; fix only if a second live week is wanted).
 - Next: 8.2 rooms after approval.
 - Rendered: results/preview/style_preview.mp4 (41.0 s, 1920x1080, 30 fps), contact_sheet.png, shot3_vertical.png. Not pushed: repo is PUBLIC, owner to OK the push (scan clean). live_ledger.json + logs/live/*.json left uncommitted (contain Kalshi order ids).
+- 2026-11-07: owner approved the preview look and the push; pushed. Next: 8.2 rooms in this style.
