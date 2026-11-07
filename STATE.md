@@ -235,6 +235,7 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 
 **2026-11-07 — 8.1** ([x]) + style preview
 - video/OUTLINE.md. Chapter kit copied into video/ (styles, tools). Voice: eleven_v4 per ~/ai-dev-skills/FINAL_VOICE.md; PLAN 9.3 updated.
-- Style preview (not a final chapter): video/chapters/90_scenes.js, data from video/preview/export.py + prep_goes.py; one v4 take of the hook (12/12 words aligned). Output results/preview/style_preview.mp4 + contact_sheet.png (gitignored mp4).
+- Style preview (not a final chapter): video/chapters/90_scenes.js, data from video/preview/export.py + prep_goes.py; one v4 take of the hook (12/12 words aligned, 28 ElevenLabs credits). Output results/preview/style_preview.mp4 + contact_sheet.png (gitignored mp4).
 - Open: owner approves the look; crash fix in live.py not done (live week is over; fix only if a second live week is wanted).
 - Next: 8.2 rooms after approval.
+- Rendered: results/preview/style_preview.mp4 (41.0 s, 1920x1080, 30 fps), contact_sheet.png, shot3_vertical.png. Not pushed: repo is PUBLIC, owner to OK the push (scan clean). live_ledger.json + logs/live/*.json left uncommitted (contain Kalshi order ids).
