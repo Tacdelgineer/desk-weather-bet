@@ -16,19 +16,7 @@ shot(0, 'paper', 'how a bracket pays (real order)', (lt) => {
   PC.src('results/live.json (Kalshi records)', (lt - .5) / .5);
 }, { noCounter: true });
 
-shot(9, 'evidence', 'evidence: the settlement rule', (lt) => {
-  const s = DATA.market.rules, key = s.match(/at [A-Z][a-z]+ \(CLI[A-Z]+\)/)[0], size = 30;
-  EV.sheet(170, 260, 1580, 420, -.006, () => {
-    EV.text('Kalshi market rules · KXHIGHTPHX (daily high, Phoenix)', 50, 70, 24, EV.C.dim, 600, FONT.sans);
-    ctx.font = `500 ${size}px ${FONT.serif}`; const words = s.split(' '); let line = '', y = 160, lines = [];
-    words.forEach(w => { const t = line ? line + ' ' + w : w; if (ctx.measureText(t).width > 1460 && line) { lines.push(line); line = w; } else line = t; }); lines.push(line);
-    lines.forEach((l, i) => { const k = l.indexOf(key.split(' ')[1]);
-      if (k >= 0) { ctx.font = `500 ${size}px ${FONT.serif}`; const x = 60 + ctx.measureText(l.slice(0, k)).width, w = ctx.measureText(key.split(' ').slice(1).join(' ')).width; EV.hilite(x, y + i * 56, w, size, (lt - 1) / .5); }
-      EV.text(l, 60, y + i * 56, size, EV.C.ink, 500, FONT.serif); });
-  });
-  R.fade((lt - 2) / .4, () => EV.text('CLIPHX = the NWS Daily Climate Report for Phoenix', 960, 800, 34, EV.C.ink, 800, FONT.sans, 'center'));
-  EV.source('SOURCE: Kalshi API market rules (results/cities.json)', 96, 1010);
-}, { noCounter: true });
+shot(9, 'evidence', 'evidence: the market page names its data', (lt) => evWeb(lt, 'kalshi_market', { zoom: 2.2, note: 'one station, one source: the market\u2019s own rules' }), { noCounter: true });
 
 shot(17, 'riso', 'settlement check: 720 days', (lt) => {
   const M = DATA.market, n = M.settle_total, cols = 40, s = 26, g = 6, x0 = 960 - (cols * (s + g)) / 2, y0 = 260;
@@ -40,4 +28,9 @@ shot(17, 'riso', 'settlement check: 720 days', (lt) => {
     R.mono(M.mismatches.map(m => `${m.city} ${m.date}: Kalshi ${parseFloat(m.settled_high)} vs NWS ${m.nws_high}`).join('   ·   '), 960, 940, 22, R.C.white, 'center', 600); });
   R.src('results/settlement_check.json', (lt - .5) / .5);
 }, { noCounter: true });
+shot(26, 'evidence', 'evidence: weather app shows Kalshi odds', (lt) => evWeb(lt, 'news_twc', { zoom: 2, note: 'the odds are coming to the weather app' }), { noCounter: true });
+sfx(26, 'paper', .5); sfx(27.6, 'swish', .35);
 sfx(.2, 'paper', .5); sfx(3.4, 'thunk', .6); sfx(9, 'paper', .5); sfx(10, 'swish', .35); sfx(17, 'whoosh', .3); sfx(20.2, 'thunk', .5);
+// real footage: the NWS climate report page, in the corner of the settlement check; the market page itself
+win(13, 17, 'pip', [{ src: '../../results/final_footage/rec/web_kalshi_market.mp4', title: 'kalshi.com' }], { at: 'tr', w: 480, wide: true });
+win(20, 26, 'pip', [{ src: '../../results/final_footage/rec/web_nws_cli_phx.mp4', title: 'NWS climate report' }], { at: 'br', w: 520, wide: true });

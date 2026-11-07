@@ -1,0 +1,9 @@
+Then, ten dollars of real money, for one locked week. On days one and two, the bot placed four bets. Every pick was posted on GitHub before its market settled. Two won. Two lost.
+
+Then, on day three, it crashed. Kalshi started reporting one settled temperature as a range instead of a number, and my bot choked on it. Every morning, for the rest of the week.
+
+So only two of the seven days traded. No order outside the week, nothing left unfilled.
+
+The result: minus fifty cents.
+
+Here's the account itself.

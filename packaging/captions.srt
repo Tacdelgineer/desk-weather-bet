@@ -1,0 +1,475 @@
+1
+00:00:01,500 --> 00:00:07,640
+Three days before Hurricane Melissa hit Jamaica, an AI running on my desk drew this line.
+
+2
+00:00:07,660 --> 00:00:10,640
+It missed the landfall by about fifty kilometres.
+
+3
+00:00:10,660 --> 00:00:14,770
+So can an AI that saw this coming beat the weather betting market?
+
+4
+00:00:21,020 --> 00:00:27,770
+This is AIFS, the weather AI from the European forecast centre, ECMWF.
+
+5
+00:00:27,900 --> 00:00:33,400
+The weights are open, so it runs right here, on a desk computer called a DGX Spark.
+
+6
+00:00:33,420 --> 00:00:34,760
+Here's a real run.
+
+7
+00:00:34,780 --> 00:00:39,400
+One step of the forecast, six hours of weather, takes about three seconds.
+
+8
+00:00:39,420 --> 00:00:43,440
+My old mini PC needed almost nine minutes for the same step.
+
+9
+00:00:43,460 --> 00:00:47,120
+A whole ten-day forecast now takes about three minutes.
+
+10
+00:00:47,140 --> 00:00:49,200
+First check: Los Angeles.
+
+11
+00:00:49,220 --> 00:00:52,760
+The AI against what the airport station actually measured.
+
+12
+00:00:52,780 --> 00:00:55,520
+Within two degrees Celsius, every time.
+
+13
+00:00:55,540 --> 00:00:56,880
+And it's not a toy.
+
+14
+00:00:56,900 --> 00:01:01,250
+ECMWF runs this same model for real, four times a day.
+
+15
+00:01:02,500 --> 00:01:06,730
+Weather AIs made their name on hurricanes, so that's where I started.
+
+16
+00:01:07,060 --> 00:01:09,530
+Three big Atlantic storms from last year.
+
+17
+00:01:09,780 --> 00:01:13,290
+For each one, I took the AI's forecast from three days before.
+
+18
+00:01:13,700 --> 00:01:17,610
+Melissa: the line runs almost on top of the real track.
+
+19
+00:01:17,700 --> 00:01:21,770
+Imelda, passing Bermuda: about sixty kilometres off.
+
+20
+00:01:22,020 --> 00:01:25,760
+Erin, off the Outer Banks: about a hundred and twenty.
+
+21
+00:01:25,780 --> 00:01:27,000
+Here's every run.
+
+22
+00:01:27,020 --> 00:01:29,440
+Five days out, it can be way off.
+
+23
+00:01:29,460 --> 00:01:33,560
+One day out, three of the four land within about thirty-five kilometres.
+
+24
+00:01:33,580 --> 00:01:37,600
+Isaias, this year's storm, ran right here on the desk.
+
+25
+00:01:37,620 --> 00:01:39,200
+So the AI is good.
+
+26
+00:01:39,220 --> 00:01:41,850
+The question is whether good is worth money.
+
+27
+00:01:43,100 --> 00:01:44,730
+Now the betting part.
+
+28
+00:01:44,860 --> 00:01:49,330
+Kalshi runs a market every day on the high temperature in big US cities.
+
+29
+00:01:49,420 --> 00:01:51,010
+I picked the six busiest.
+
+30
+00:01:51,260 --> 00:01:53,050
+The bets come in brackets.
+
+31
+00:01:53,180 --> 00:01:57,730
+This was one of my real bets: Phoenix, eighty-five to eighty-six degrees.
+
+32
+00:01:58,060 --> 00:02:00,210
+I bought NO for fifty-four cents.
+
+33
+00:02:00,540 --> 00:02:03,090
+If the high lands anywhere else, it pays a dollar.
+
+34
+00:02:03,420 --> 00:02:04,690
+It hit eighty-seven.
+
+35
+00:02:04,940 --> 00:02:05,810
+Paid.
+
+36
+00:02:05,980 --> 00:02:07,250
+Who decides the high?
+
+37
+00:02:07,580 --> 00:02:11,970
+The market's own rules: one airport station, and the data from The Weather Company.
+
+38
+00:02:12,380 --> 00:02:16,930
+I checked every backtest day against the National Weather Service's own climate reports.
+
+39
+00:02:17,260 --> 00:02:20,370
+Seven hundred eighteen out of seven hundred twenty matched.
+
+40
+00:02:20,700 --> 00:02:22,130
+And this is going mainstream.
+
+41
+00:02:22,300 --> 00:02:25,170
+Kalshi's odds are coming to the weather app on your phone.
+
+42
+00:02:26,420 --> 00:02:28,570
+There are people selling bots for this.
+
+43
+00:02:28,900 --> 00:02:34,410
+This one is a weather bot for sixty-seven dollars, built on the free GFS forecast.
+
+44
+00:02:34,820 --> 00:02:36,370
+But there's a trap.
+
+45
+00:02:36,500 --> 00:02:38,650
+The market pays on one thermometer.
+
+46
+00:02:38,900 --> 00:02:44,370
+In Los Angeles, it's at the airport, and the AI's nearest point is eight kilometres away.
+
+47
+00:02:44,580 --> 00:02:46,080
+There's a second trap.
+
+48
+00:02:46,100 --> 00:02:49,440
+The AI only looks at the sky every six hours.
+
+49
+00:02:49,460 --> 00:02:52,880
+The real peak, mid-afternoon, falls in between.
+
+50
+00:02:52,900 --> 00:02:54,640
+So its high reads cold.
+
+51
+00:02:54,660 --> 00:02:57,200
+In LA, by six degrees on average.
+
+52
+00:02:57,220 --> 00:02:59,610
+In New York, almost nothing.
+
+53
+00:02:59,700 --> 00:03:04,970
+Straight out of the box, the raw AI is worse than the free forecast in four of six cities.
+
+54
+00:03:06,220 --> 00:03:07,650
+The fix is simple.
+
+55
+00:03:07,740 --> 00:03:12,930
+For each station, take the AI's average miss over the last thirty days, and add it back.
+
+56
+00:03:13,260 --> 00:03:18,090
+After the fix, the average miss drops from three and a half degrees to under two.
+
+57
+00:03:18,220 --> 00:03:19,810
+Better than the free forecast.
+
+58
+00:03:20,220 --> 00:03:21,930
+New York got a little worse.
+
+59
+00:03:21,980 --> 00:03:23,570
+It was fine to begin with.
+
+60
+00:03:24,820 --> 00:03:26,610
+So, the backtest.
+
+61
+00:03:26,740 --> 00:03:28,810
+Sixty days I didn't tune on.
+
+62
+00:03:28,900 --> 00:03:38,410
+Four players, same rules, paper money: the free forecast, the raw AI, the corrected AI with a simple rule, and the corrected AI with a judge.
+
+63
+00:03:38,740 --> 00:03:40,050
+Three of them lose.
+
+64
+00:03:40,100 --> 00:03:43,530
+The simple rule loses the most: over a hundred dollars.
+
+65
+00:03:43,780 --> 00:03:44,490
+Here's why.
+
+66
+00:03:44,820 --> 00:03:50,330
+Score every forecast against what really happened, and the market's own price beats all of them.
+
+67
+00:03:50,420 --> 00:03:52,170
+The market already knows.
+
+68
+00:03:52,260 --> 00:03:53,410
+I made it easier.
+
+69
+00:03:53,460 --> 00:03:54,410
+I made it harder.
+
+70
+00:03:54,660 --> 00:03:56,890
+Higher fees, pickier thresholds.
+
+71
+00:03:57,140 --> 00:03:58,730
+No version made money.
+
+72
+00:03:59,980 --> 00:04:04,370
+The fourth player has a judge: a small decision model, running here too.
+
+73
+00:04:04,700 --> 00:04:08,130
+It reads each bet's numbers and says bet, or skip.
+
+74
+00:04:08,380 --> 00:04:09,570
+Here it says bet.
+
+75
+00:04:09,900 --> 00:04:12,610
+Here it skips a bet the simple rule would take.
+
+76
+00:04:12,780 --> 00:04:14,370
+That one would have lost a dollar.
+
+77
+00:04:14,620 --> 00:04:16,450
+And here, a close call.
+
+78
+00:04:16,620 --> 00:04:18,610
+Right on the line, so it skips.
+
+79
+00:04:18,860 --> 00:04:23,210
+Over sixty days, the judge ends up two dollars and ninety-four cents ahead.
+
+80
+00:04:23,260 --> 00:04:25,960
+The simple rule: down a hundred and six.
+
+81
+00:04:25,980 --> 00:04:27,450
+That's about break-even.
+
+82
+00:04:27,500 --> 00:04:29,010
+Not proof of an edge.
+
+83
+00:04:30,260 --> 00:04:32,490
+And here's the part I almost missed.
+
+84
+00:04:32,580 --> 00:04:34,650
+I nearly went live with a bug.
+
+85
+00:04:34,820 --> 00:04:38,810
+The first version fit a straight line for each station, on summer days.
+
+86
+00:04:39,140 --> 00:04:43,890
+In October, Phoenix's forecast was colder than anything in that summer cloud.
+
+87
+00:04:44,020 --> 00:04:47,690
+The line just kept going, and said eighty-five and a half degrees.
+
+88
+00:04:48,100 --> 00:04:50,960
+The National Weather Service said seventy-nine.
+
+89
+00:04:50,980 --> 00:04:53,640
+I caught it in a dry run, with no money.
+
+90
+00:04:53,660 --> 00:04:59,560
+I locked new rules, version two, and posted their fingerprints on GitHub before any real bet.
+
+91
+00:04:59,580 --> 00:05:03,880
+That bug would have bet on a six-cent long shot, calling it a huge edge.
+
+92
+00:05:03,900 --> 00:05:06,480
+The real high was seventy-seven.
+
+93
+00:05:06,500 --> 00:05:10,720
+On paper, version one of the live player lost ninety-three dollars.
+
+94
+00:05:10,740 --> 00:05:13,280
+Version two made two dollars ninety-four.
+
+95
+00:05:13,300 --> 00:05:16,320
+But I designed version two after seeing those days.
+
+96
+00:05:16,340 --> 00:05:19,130
+So the only honest test left was real money.
+
+97
+00:05:20,380 --> 00:05:24,130
+Then, ten dollars of real money, for one locked week.
+
+98
+00:05:24,460 --> 00:05:27,690
+On days one and two, the bot placed four bets.
+
+99
+00:05:27,820 --> 00:05:31,130
+Every pick was posted on GitHub before its market settled.
+
+100
+00:05:31,260 --> 00:05:32,210
+Two won.
+
+101
+00:05:32,300 --> 00:05:33,410
+Two lost.
+
+102
+00:05:33,500 --> 00:05:36,210
+Then, on day three, it crashed.
+
+103
+00:05:36,300 --> 00:05:41,970
+Kalshi started reporting one settled temperature as a range instead of a number, and my bot choked on it.
+
+104
+00:05:42,220 --> 00:05:44,610
+Every morning, for the rest of the week.
+
+105
+00:05:44,700 --> 00:05:47,010
+So only two of the seven days traded.
+
+106
+00:05:47,100 --> 00:05:49,970
+No order outside the week, nothing left unfilled.
+
+107
+00:05:50,300 --> 00:05:52,930
+The result: minus fifty cents.
+
+108
+00:05:53,020 --> 00:05:54,610
+Here's the account itself.
+
+109
+00:06:01,020 --> 00:06:05,730
+So, can an AI that saw a hurricane coming beat the weather betting market?
+
+110
+00:06:05,900 --> 00:06:06,920
+Not yet.
+
+111
+00:06:06,940 --> 00:06:08,480
+The forecast is great.
+
+112
+00:06:08,500 --> 00:06:13,080
+But the market's price is better, because it already knows what the AI knows.
+
+113
+00:06:13,100 --> 00:06:17,960
+My best player was about break-even on paper, and down fifty cents with real money.
+
+114
+00:06:17,980 --> 00:06:19,640
+Three things you can use.
+
+115
+00:06:19,660 --> 00:06:24,320
+One: a great forecast isn't an edge if the market already has it.
+
+116
+00:06:24,340 --> 00:06:27,560
+Two: check where the market measures, and when.
+
+117
+00:06:27,580 --> 00:06:30,920
+Three: test your bot on days you didn't tune it on.
+
+118
+00:06:30,940 --> 00:06:34,840
+Everything is open: the code, the rules, every pick.
+
+119
+00:06:34,860 --> 00:06:37,650
+Would you have trusted that eighty-five and a half degrees?

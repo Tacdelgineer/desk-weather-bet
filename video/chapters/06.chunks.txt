@@ -1,0 +1,6 @@
+The fix is simple.
+For each station, take the AI's average miss over the last thirty days, and add it back.
+After the fix, the average miss drops from three and a half degrees to under two.
+Better than the free forecast.
+New York got a little worse.
+It was fine to begin with.

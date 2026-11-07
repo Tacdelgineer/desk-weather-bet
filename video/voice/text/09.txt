@@ -1,0 +1,9 @@
+And here's the part I almost missed. I nearly went live with a bug. The first version fit a straight line for each station, on summer days. In October, Phoenix's forecast was colder than anything in that summer cloud. The line just kept going, and said eighty-five and a half degrees.
+
+The National Weather Service said seventy-nine.
+
+I caught it in a dry run, with no money. I locked new rules, version two, and posted their fingerprints on GitHub before any real bet.
+
+That bug would have bet on a six-cent long shot, calling it a huge edge. The real high was seventy-seven.
+
+On paper, version one of the live player lost ninety-three dollars. Version two made two dollars ninety-four. But I designed version two after seeing those days. So the only honest test left was real money.

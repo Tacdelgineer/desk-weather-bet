@@ -1,0 +1,7 @@
+There are people selling bots for this. This one is a weather bot for sixty-seven dollars, built on the free GFS forecast.
+
+But there's a trap. The market pays on one thermometer. In Los Angeles, it's at the airport, and the AI's nearest point is eight kilometres away.
+
+There's a second trap. The AI only looks at the sky every six hours. The real peak, mid-afternoon, falls in between. So its high reads cold. In LA, by six degrees on average. In New York, almost nothing.
+
+Straight out of the box, the raw AI is worse than the free forecast in four of six cities.

@@ -19,3 +19,5 @@ shot(10, 'riso', 'the repo', (lt) => {
   R.fade((lt - 2.4) / .4, () => R.mono('Not financial advice. It’s an experiment.', 960, 760, 26, R.C.dim, 'center', 600));
 }, { noCounter: true });
 [0.5, 1.3, 2.1, 2.9].forEach(t => sfx(t, 'thunk', .4)); sfx(10, 'whoosh', .3);
+// slow push-ins so the board never sits still (it holds longest on the voice clock)
+win(5, 10, 'punch', [], { k: 1.08, cx: 120, cy: 600 });

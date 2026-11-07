@@ -1,0 +1,18 @@
+{
+ "name": "bot_listing",
+ "url": "https://www.indiehackers.com/product/predict-profit",
+ "label": "Indie Hackers product page",
+ "captured_utc": "2026-11-07T02:02:07.659Z",
+ "title": "Predict & Profit - Indie Hackers",
+ "phrase": "$67 digital product",
+ "rects": [
+  [
+   866.078125,
+   514,
+   138.59375,
+   25
+  ]
+ ],
+ "found": true,
+ "blurred_items": 1
+}

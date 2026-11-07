@@ -1,0 +1,12 @@
+So, the backtest.
+Sixty days I didn't tune on.
+Four players, same rules, paper money: the free forecast, the raw AI, the corrected AI with a simple rule, and the corrected AI with a judge.
+Three of them lose.
+The simple rule loses the most: over a hundred dollars.
+Here's why.
+Score every forecast against what really happened, and the market's own price beats all of them.
+The market already knows.
+I made it easier.
+I made it harder.
+Higher fees, pickier thresholds.
+No version made money.

@@ -5,3 +5,12 @@
 - IBTrACS v04r01 (NOAA NCEI): Knapp et al. (2010), International Best Track Archive for Climate Stewardship.
 - NWS Daily Climate Reports via the Iowa Environmental Mesonet (IEM) archive.
 - Satellite imagery: NOAA GOES-19 ABI Level-2 Cloud and Moisture Imagery (band 13), mesoscale sectors, via NOAA Open Data Dissemination (NODD) on AWS. Courtesy of NOAA/NESDIS.
+- Kalshi market rules and order records: kalshi.com public market pages and the account's own API records (read-only).
+- News screenshot: Claims Journal (Bloomberg News), "Kalshi Weather Odds Are Coming to a Weather App Near You", Aug 31, 2026.
+- Product page screenshot: Indie Hackers ("Predict & Profit"), seller name blurred.
+- Model card screenshot: Hugging Face, ecmwf/aifs-single-2.0.
+- Decision model: Strands Decider 2B (run locally).
+- Voice: ElevenLabs (eleven_v4), the channel owner's own voice.
+- Visual style: built on the riso-rooms and hand-drawn-canvas-animation skills by IshaanKalra2103 (MIT), inspired by
+  Kevin Ngo's "a small light, room by room" and "life of a fruit fly" (@kevin_t_ngo).
+- Fonts: Inter and JetBrains Mono (SIL OFL 1.1). Terminal recordings: VHS (charmbracelet).

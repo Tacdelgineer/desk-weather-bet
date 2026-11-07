@@ -157,3 +157,17 @@ data/live_kalshi/, not committed). Summary: results/live.json (written by tools/
 
 **On screen:** the four orders as EVIDENCE cards (Kalshi records, highlighter on each result), then a CRT replay of
 the traceback with "DAY 3" stamped on it, then the stat card −$0.50 · REAL MONEY · $10 TEST.
+
+---
+
+## 2026-11-07 — the market doesn't settle on the NWS report any more (in its own words)
+
+The Kalshi NYC market page, captured 2026-11-07 (results/evidence/web/kalshi_market.png), says the market resolves
+on the maximum "recorded at New York City (CLINYC) … according to The Weather Company", and "Outcome verified from The
+Weather Company". The partnership was announced late August 2026 (results/evidence/web/news_twc.png). Our backtest
+check still found Kalshi's settled highs equal to the NWS climate report on 718 of 720 station-days
+(results/settlement_check.json), so the backtest is unaffected; the video now says "one airport station, and the data
+from The Weather Company".
+
+**On screen:** ch 04, EVIDENCE shot of the market page, highlighter on "according to The Weather Company", then the
+718/720 tiles.

@@ -27,3 +27,8 @@ shot(15, 'riso', 'sanity check: LA vs NWS', (lt) => {
   R.src('results/aifs_la_sanity.json', (lt - .5) / .5);
 }, { noCounter: true });
 sfx(8, 'whoosh', .3); sfx(9, 'swish', .3); sfx(15, 'whoosh', .3);
+// real footage: the actual terminal run (VHS recording, sped up) beside the CRT replay; the public model card
+const REC = '../../results/final_footage/rec/';
+win(2.5, 8, 'split', [{ src: REC + 'vhs_aifs_run_fast.mp4', title: 'REAL TERMINAL · SPED UP' }], { title: 'THE REAL RUN', look: 'riso', wide: true });
+shot(22, 'evidence', 'evidence: AIFS model card', (lt) => evWeb(lt, 'aifs_card', { zoom: 1.4, note: 'open weights from ECMWF, running on this desk' }), { noCounter: true });
+sfx(22, 'paper', .5);

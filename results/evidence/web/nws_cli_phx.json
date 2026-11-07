@@ -1,0 +1,18 @@
+{
+ "name": "nws_cli_phx",
+ "url": "https://forecast.weather.gov/product.php?site=PSR&issuedby=PHX&product=CLI&format=txt",
+ "label": "NWS Daily Climate Report · Phoenix",
+ "captured_utc": "2026-11-07T01:59:47.430Z",
+ "title": "National Weather Service",
+ "phrase": "MAXIMUM",
+ "rects": [
+  [
+   413.09375,
+   95.5625,
+   54.625,
+   15
+  ]
+ ],
+ "blurred": [],
+ "found": true
+}

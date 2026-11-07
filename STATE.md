@@ -248,3 +248,22 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - Check: tools/check.cjs = 0 page errors on all 13 pages; contact sheets reviewed (video/work/sheets/, gitignored).
 - Not built (no file to back a number): the "$67 bots", the afternoon peak, the Weather Channel app; the AIFS model card and public pages come with 8.3 recordings.
 - Next: 8.3 recordings (VHS terminal + Playwright of public pages), then 8.4 render (shots → results/final_footage/{wide,vertical}/ + ORDER.txt).
+
+**2026-11-07 — owner changes + 8.3 → 10.3 (in progress)**
+- Pushed 8.2. Ch 00 now opens on the storm + the question only (money result kept for ch 10).
+- New beats: afternoon peak (ch 05, actual − raw AIFS per station from results/v2/corrections.json), the weather-app news
+  article (ch 04, EVIDENCE, no numbers), a $67 bot listing (ch 05, EVIDENCE, seller name blurred; names kept in the
+  gitignored video/rec/blur.local.json).
+- 8.3: Playwright captures of 6 public pages → results/evidence/web/*.png/json + results/final_footage/rec/web_*.mp4;
+  VHS: real AIFS run (2026-11-06T06, 60 h, 57 s), GPU query, bot cap tests + the real DRY_RUN log
+  (results/final_footage/rec/vhs_*.mp4). Kalshi page says it settles "according to The Weather Company" (JOURNAL).
+- 9.1/9.2: video/SCRIPT.md (1,026 words), Check lines verified against results files. 9.3: 11 eleven_v4 takes
+  (one each, 2,504 credits; all words present — Whisper misses were digits only).
+- Assembly: tools/warp.py lines each shot up to its phrase; tools/build_chapters.sh renders; tools/split_footage.py cuts
+  shots for 8.4; packaging/make.py writes README results, titles, description, thumbnail prompts.
+
+**2026-11-07 — 8.3–10.3 closed** ([x]; 10.4, 10.5 ⏸ owner)
+- dwb-cancel.timer disabled (owner); no dwb timers enabled.
+- 8.4: split_footage.py made safe to re-run (an interrupted run had left a broken ch 04 vertical file) and finished: 40 shots wide + vertical, 3 stat cards, results/final_footage/ORDER.txt (398.9 s = full_render.mp4). Every file plays. 8.5 footage locked.
+- 10.3: packaging/make.py → packaging/TITLES.md, DESCRIPTION.md, THUMBNAILS.md (prompts for the owner's 3 thumbnails, each number with its results file), README.md results.
+- 🧑 Next: 10.4 record REC-01 (Kalshi account, 8 s at 5:53, see video/RECORDINGS.md) and lay it over the slate in CapCut; 10.5 thumbnails + upload.

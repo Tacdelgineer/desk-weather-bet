@@ -39,3 +39,5 @@ shot(16, 'riso', 'the locked week: 2 of 7 days', (lt) => {
 shot(22, 'riso', 'stat card (REAL MONEY)', liveCard, { noCounter: true });
 recSlot('REC-01', 'Your Kalshi account: the 4 live orders and their fills (the first 2 days of the week)', 'balance, account number, name, email', 28, 36);
 sfx(0, 'paper', .5); [0, 1, 2, 3].forEach(i => sfx(2.4 + i * .35, 'swish', .3)); sfx(16, 'whoosh', .3); sfx(22, 'thunk', .5);
+// real footage: the public picks log, every pick posted before its market settled
+win(5.5, 10, 'split', [{ src: '../../results/final_footage/rec/web_picks_issue.mp4', title: 'github.com · issue #1' }], { title: 'POSTED BEFORE SETTLEMENT', look: 'riso', wide: true });

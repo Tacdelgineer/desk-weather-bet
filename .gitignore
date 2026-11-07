@@ -18,3 +18,5 @@ video/voice/raw/
 results/preview/*.mp4
 video/chapters/tx/*_frames.js
 results/live_ledger.json
+video/rec/blur.local.json
+video/chapters/tx/web_frames.js

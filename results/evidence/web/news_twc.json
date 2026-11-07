@@ -1,0 +1,24 @@
+{
+ "name": "news_twc",
+ "url": "https://www.claimsjournal.com/news/national/2026/08/31/339851.htm",
+ "label": "News · Kalshi and The Weather Company",
+ "captured_utc": "2026-11-07T02:01:55.423Z",
+ "title": "Kalshi Weather Odds Are Coming to a Weather App Near You",
+ "phrase": "real-time weather probabilities for some users of its weather.com website and mobile app",
+ "rects": [
+  [
+   640.90625,
+   556.453125,
+   457.09375,
+   17
+  ],
+  [
+   490,
+   582.046875,
+   168.109375,
+   17
+  ]
+ ],
+ "blurred": [],
+ "found": true
+}

@@ -1,0 +1,7 @@
+This is AIFS, the weather AI from the European forecast centre, ECMWF. The weights are open, so it runs right here, on a desk computer called a DGX Spark. Here's a real run.
+
+One step of the forecast, six hours of weather, takes about three seconds. My old mini PC needed almost nine minutes for the same step. A whole ten-day forecast now takes about three minutes.
+
+First check: Los Angeles. The AI against what the airport station actually measured. Within two degrees Celsius, every time.
+
+And it's not a toy. ECMWF runs this same model for real, four times a day.

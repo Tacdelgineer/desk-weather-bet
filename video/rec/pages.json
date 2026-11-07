@@ -1,0 +1,52 @@
+[
+ {
+  "name": "kalshi_market",
+  "label": "Kalshi · Highest temperature in NYC",
+  "url": "https://kalshi.com/markets/kxhighny",
+  "wait": 8000,
+  "hide": [
+   "[role=dialog]",
+   "[data-state=open][aria-hidden=true]",
+   "div[class*=overlay]",
+   "div[class*=Overlay]",
+   "div[class*=backdrop]"
+  ],
+  "phrase": "according to The Weather Company"
+ },
+ {
+  "name": "nws_cli_phx",
+  "label": "NWS Daily Climate Report · Phoenix",
+  "url": "https://forecast.weather.gov/product.php?site=PSR&issuedby=PHX&product=CLI&format=txt",
+  "phrase": "MAXIMUM"
+ },
+ {
+  "name": "aifs_card",
+  "label": "ECMWF AIFS Single v2 model card · Hugging Face",
+  "url": "https://huggingface.co/ecmwf/aifs-single-2.0"
+ },
+ {
+  "name": "picks_issue",
+  "label": "GitHub · Live picks log (issue #1)",
+  "url": "https://github.com/Tacdelgineer/desk-weather-bet/issues/1"
+ },
+ {
+  "name": "news_twc",
+  "label": "News · Kalshi and The Weather Company",
+  "url": "https://www.claimsjournal.com/news/national/2026/08/31/339851.htm",
+  "phrase": "real-time weather probabilities for some users of its weather.com website and mobile app",
+  "hide": [
+   "iframe",
+   "img[src*=truvideo]",
+   "a[href*=truvideo]",
+   "[id*=ad-]",
+   "[class*=advert]"
+  ]
+ },
+ {
+  "name": "bot_listing",
+  "label": "Indie Hackers product page",
+  "url": "https://www.indiehackers.com/product/predict-profit",
+  "phrase": "$67 digital product",
+  "blur_local": true
+ }
+]

@@ -1,14 +1,14 @@
 {"_": "NN: [file, title, seconds, [chapters/tx files]] — manual-mode footage pages built by tools/mkroom.py; 90 = style preview",
  "00": ["cold_open", "Cold open", 14, ["goes_melissa.js", "goes_melissa_frames.js", "sattrack.js", "coldopen.js", "shots.js"]],
  "01": ["title", "Title", 5, ["shots.js"]],
- "02": ["desk_ai", "Desk AI", 22, ["shots.js"]],
+ "02": ["desk_ai", "Desk AI", 30, ["evidence.js", "web_frames.js", "evweb.js", "shots.js"]],
  "03": ["hurricanes", "Hurricanes", 34, ["goes_melissa.js", "goes_melissa_frames.js", "goes_imelda.js", "goes_imelda_frames.js", "goes_erin.js", "goes_erin_frames.js", "sattrack.js", "shots.js"]],
- "04": ["market", "The market", 26, ["evidence.js", "shots.js"]],
- "05": ["trap", "The trap", 20, ["shots.js"]],
+ "04": ["market", "The market", 33, ["evidence.js", "web_frames.js", "evweb.js", "shots.js"]],
+ "05": ["trap", "The trap", 36, ["evidence.js", "web_frames.js", "evweb.js", "shots.js"]],
  "06": ["fix", "The fix", 16, ["shots.js"]],
  "07": ["backtest", "Backtest", 30, ["shots.js"]],
  "08": ["judge", "The judge", 30, ["shots.js"]],
  "09": ["bug", "The bug", 36, ["evidence.js", "scatter.js", "shots.js"]],
  "10": ["real_money", "Real money", 36, ["evidence.js", "shots.js"]],
  "11": ["verdict", "Verdict", 16, ["shots.js"]],
- "90": ["style_preview", "Style preview", 41, ["evidence.js", "scatter.js", "goes_melissa.js", "goes_melissa_frames.js", "sattrack.js", "coldopen.js", "shots.js"]]}
+ "_90": ["style_preview", "Style preview", 41, ["evidence.js", "scatter.js", "goes_melissa.js", "goes_melissa_frames.js", "sattrack.js", "coldopen.js", "shots.js"]]}

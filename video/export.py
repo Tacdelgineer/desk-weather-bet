@@ -39,11 +39,19 @@ def mae(rs, col):
     v = [abs(float(r["actual"]) - float(r[col])) for r in rs if r[col]]
     return round(stt.mean(v), 2) if v else None
 by_st = []
+from datetime import datetime
+from zoneinfo import ZoneInfo
+def lst_hours(tz):   # local standard time of the 00/06/12/18 UTC samples (RULES.md: the station's local-standard-time day)
+    off = datetime(2026, 1, 15, tzinfo=ZoneInfo(tz)).utcoffset().total_seconds() / 3600
+    return sorted(int((h + off) % 24) for h in (0, 6, 12, 18))
 for c in cities:
     rs = [r for r in rows if r["station"] == c["station"]]
     raw_bias = round(stt.mean(float(r["actual"]) - float(r["aifs_raw_mu"]) for r in rs if r["aifs_raw_mu"]), 2)
     by_st.append(dict(city=c["city"], station=c["station"], n=len(rs), gfs=mae(rs, "gfs_mu"), raw=mae(rs, "aifs_raw_mu"),
-                      v1=mae(rs, "aifs_fit_mu"), v2=mae(rs, "aifs_cor_mu"), raw_bias=raw_bias))
+                      v1=mae(rs, "aifs_fit_mu"), v2=mae(rs, "aifs_cor_mu"), raw_bias=raw_bias,
+                      # afternoon peak: v2 correction file, bias_raw = raw − actual, so actual − raw = −bias_raw
+                      lst_samples=lst_hours(c["tz"]), peak_train=round(-J("v2/corrections.json")[c["station"]]["aifs_high"]["bias_raw_train"], 2),
+                      peak_test=round(-J("v2/corrections.json")[c["station"]]["aifs_high"]["bias_raw_test"], 2)))
 vv = J("v1_vs_v2.json")
 lac = next(c for c in cities if c["station"] == "KLAX")
 glat, glon = la["grid_point"][0], la["grid_point"][1] - 360

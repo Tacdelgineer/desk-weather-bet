@@ -1,0 +1,11 @@
+The fourth player has a judge: a small decision model, running here too.
+It reads each bet's numbers and says bet, or skip.
+Here it says bet.
+Here it skips a bet the simple rule would take.
+That one would have lost a dollar.
+And here, a close call.
+Right on the line, so it skips.
+Over sixty days, the judge ends up two dollars and ninety-four cents ahead.
+The simple rule: down a hundred and six.
+That's about break-even.
+Not proof of an edge.

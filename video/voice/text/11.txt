@@ -1,0 +1,5 @@
+So, can an AI that saw a hurricane coming beat the weather betting market? Not yet. The forecast is great. But the market's price is better, because it already knows what the AI knows. My best player was about break-even on paper, and down fifty cents with real money.
+
+Three things you can use. One: a great forecast isn't an edge if the market already has it. Two: check where the market measures, and when. Three: test your bot on days you didn't tune it on.
+
+Everything is open: the code, the rules, every pick. Would you have trusted that eighty-five and a half degrees?

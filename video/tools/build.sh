@@ -10,6 +10,6 @@ PY=${PY:-"uv run -q --no-project --with numpy --with scipy python"}
 mkdir -p work/render work/audio results/final/chapters logs
 $PY tools/sfx.py "$PAGE" voice/$N.wav work/audio/${N}_mix.wav work/audio/${N}_meta.json
 DUR=$(python3 -c "import json;print(json.load(open('work/audio/${N}_meta.json'))['DUR'])")
-node "$SKILLS/tacdel-shorts/tools/render.cjs" "$PAGE" work/render/${N}_raw.mp4 "$DUR" -
+node tools/render.cjs "$PAGE" work/render/${N}_raw.mp4 "$DUR" -
 python3 tools/compose.py work/render/${N}_raw.mp4 work/audio/${N}_mix.wav work/audio/${N}_meta.json chapters results/final/chapters/$NAME.mp4
 echo "BUILD OK $N $(date +%T)"

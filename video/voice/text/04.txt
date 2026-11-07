@@ -1,0 +1,7 @@
+Now the betting part. Kalshi runs a market every day on the high temperature in big US cities. I picked the six busiest. The bets come in brackets. This was one of my real bets: Phoenix, eighty-five to eighty-six degrees. I bought NO for fifty-four cents. If the high lands anywhere else, it pays a dollar. It hit eighty-seven. Paid.
+
+Who decides the high? The market's own rules: one airport station, and the data from The Weather Company.
+
+I checked every backtest day against the National Weather Service's own climate reports. Seven hundred eighteen out of seven hundred twenty matched.
+
+And this is going mainstream. Kalshi's odds are coming to the weather app on your phone.

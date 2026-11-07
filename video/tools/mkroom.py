@@ -7,7 +7,7 @@ chapters.json entry: "NN": ["file_name", "Title", seconds, ["tx file", ...]]. On
 loaded (the satellite frame files are large). If voice/NN.words.json exists its words are loaded for cue(); otherwise
 WORDS is empty and shots use plain seconds. Project tool (the kit's mkpage.py needs a voice take for every page).
 """
-import json, os, sys
+import json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kit
 ROOT = kit.ROOT
@@ -17,6 +17,14 @@ for n in sys.argv[1:] or sorted(CH):
     wf = f'{ROOT}/voice/{n}.words.json'
     words = json.load(open(wf))['words'] if os.path.exists(wf) else []
     open(f'{ROOT}/chapters/{n}.words.js', 'w').write('window.WORDS = ' + json.dumps(words, separators=(',', ':')) + ';\n')
+    # the voice clock (tools/warp.py): DUR becomes the video length, WARP maps video time -> footage time
+    W = json.load(open(f'{ROOT}/chapters/{n}.warp.json')) if os.path.exists(f'{ROOT}/chapters/{n}.warp.json') else None
+    warp = W['warp'] if W else []
+    if W: dur = W['video_dur']
+    # sentences of the take, for captions (master.py)
+    tf = f'{ROOT}/voice/text/{n}.txt'
+    sents = [s.strip() for s in re.split(r'(?<=[.?!])\s+', ' '.join(open(tf).read().split())) if s.strip()] if os.path.exists(tf) else []
+    open(f'{ROOT}/chapters/{n}.chunks.txt', 'w').write('\n'.join(sents) + ('\n' if sents else ''))
     for t in tx: assert os.path.exists(f'{ROOT}/chapters/tx/{t}'), f'missing chapters/tx/{t} (run prep_goes.py?)'
     TXS = '\n'.join(f'<script src="tx/{t}"></script>' for t in tx)
     page = f'''<!doctype html>
@@ -37,7 +45,7 @@ for n in sys.argv[1:] or sorted(CH):
 <script>
 const TITLE = {json.dumps(n + ' · ' + title, ensure_ascii=False)}, VOICE = {json.dumps(f'../voice/{n}.wav' if words else '')};
 const DUR = {dur};
-const WARP = [];
+const WARP = {json.dumps(warp)};
 </script>
 <script src="{n}.words.js"></script>
 <script src="data.js"></script>
