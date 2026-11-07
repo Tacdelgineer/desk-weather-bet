@@ -17,3 +17,4 @@ video/voice/raw/
 *.wav
 results/preview/*.mp4
 video/chapters/tx/goes_frames.js
+results/live_ledger.json

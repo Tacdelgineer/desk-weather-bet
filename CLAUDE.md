@@ -67,6 +67,8 @@ Everything serves that question:
 
 ## Money and safety rules (non-negotiable)
 
+- **Commit only named files.** Never `git add -A`, `git add .` or `git commit -a` in this repo: stage each file by name and
+  check `git diff --cached --stat` before committing. The repo is public.
 - **Keys stay out of the repo.** Kalshi keys live outside it; the paths are in DECISIONS.md.
   - Never print, log or commit keys, key IDs or account details.
   - The only money number that may appear anywhere is this test's P&L.
