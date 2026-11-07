@@ -1,21 +1,30 @@
-"""Style preview, shot 1: real GOES-19 band-13 frames of Hurricane MELISSA (data/goes/melissa/*.nc, NOAA) as 1000x1000
-JPGs, plus AIFS's 3-days-before forecast track and the IBTrACS best track (results/hurricanes.json) projected into the
-same pixels with the GOES fixed-grid equations (GOES-R PUG vol. 4, 7.1.2.8). Writes video/work/goes_melissa/*.jpg and
-video/chapters/goes.js. Safe to re-run.  Run: uv run python video/preview/prep_goes.py"""
+"""Real GOES-19 band-13 frames of one hurricane (data/goes/<storm>/*.nc, NOAA) as JPGs, plus AIFS's N-days-before
+forecast track and the IBTrACS best track (results/hurricanes.json) projected into the same pixels with the GOES
+fixed-grid equations (GOES-R PUG vol. 4, 7.1.2.8).
+
+  uv run python video/prep_goes.py STORM [STEP PX DAYS_BEFORE]     (default: MELISSA 2 1000 3)
+
+Writes video/work/goes_<storm>_<px>/*.jpg, video/chapters/tx/goes_<storm>.js (window.GOES[storm]) and
+video/chapters/tx/goes_<storm>_frames.js (data URLs: file:// images would taint the canvas). Safe to re-run."""
+import base64
 import datetime as dt
 import json
+import sys
 from pathlib import Path
 
 import h5netcdf
 import numpy as np
 from PIL import Image
 
-ROOT = Path(__file__).resolve().parents[2]
-SRC = ROOT / "data" / "goes" / "melissa"
-OUT = ROOT / "video" / "work" / "goes_melissa"
+ROOT = Path(__file__).resolve().parents[1]
+STORM = (sys.argv[1] if len(sys.argv) > 1 else "MELISSA").upper()
+STEP = int(sys.argv[2]) if len(sys.argv) > 2 else 2
+PX = int(sys.argv[3]) if len(sys.argv) > 3 else 1000
+DAYS = int(sys.argv[4]) if len(sys.argv) > 4 else 3
+SRC = ROOT / "data" / "goes" / STORM.lower()
+OUT = ROOT / "video" / "work" / f"goes_{STORM.lower()}_{PX}"
+TX = ROOT / "video" / "chapters" / "tx"
 OUT.mkdir(parents=True, exist_ok=True)
-STEP = 2            # every 2nd one-minute frame -> 91 frames
-PX = 1000           # 500x500 at 2 km -> 1000x1000
 
 
 def grid(h):
@@ -43,10 +52,8 @@ def to_xy(lat, lon, p):
 
 def to_px(lat, lon, x, y, p):
     a, b = to_xy(lat, lon, p)
-    col = (a - x[0]) / (x[1] - x[0])
-    row = (b - y[0]) / (y[1] - y[0])
     k = PX / len(x)
-    return round(float(col * k), 1), round(float(row * k), 1)
+    return round(float((a - x[0]) / (x[1] - x[0]) * k), 1), round(float((b - y[0]) / (y[1] - y[0]) * k), 1)
 
 
 files = sorted(SRC.glob("*.nc"))[::STEP]
@@ -67,28 +74,24 @@ for i, f in enumerate(files):
             if "_FillValue" in a:
                 v[raw == a["_FillValue"]] = np.nan
             img = np.nan_to_num(np.clip((300 - v) / (300 - 190), 0, 1))   # same stretch as fetch/goes_loop.py
-            Image.fromarray((img * 255).astype(np.uint8)).resize((PX, PX), Image.BICUBIC).save(jpg, quality=88)
+            Image.fromarray((img * 255).astype(np.uint8)).resize((PX, PX), Image.BICUBIC).save(jpg, quality=85)
 assert len(centres) == 1, f"sector moved during the loop: {centres}"
 
 hur = json.loads((ROOT / "results" / "hurricanes.json").read_text())
-st = next(s for s in hur["storms"] if s["name"] == "MELISSA")
-run = next(r for r in st["runs"] if r["days_before"] == 3)
+st = next(s for s in hur["storms"] if s["name"] == STORM)
+run = next(r for r in st["runs"] if r["days_before"] == DAYS)
 init = dt.datetime.fromisoformat(run["init"])
-ai = [dict(h=r["step"], t=(init + dt.timedelta(hours=r["step"])).strftime("%Y-%m-%d %H:%M"),
-           px=to_px(r["lat"], r["lon"], x, y, p)) for r in run["track"]]
+ai = [dict(h=r["step"], px=to_px(r["lat"], r["lon"], x, y, p)) for r in run["track"]]
 t0, t1 = init, init + dt.timedelta(hours=run["track"][-1]["step"])
 bt = [dict(t=b["time"][:16], px=to_px(b["lat"], b["lon"], x, y, p)) for b in st["best_track"]
       if t0 <= dt.datetime.fromisoformat(b["time"]) <= t1]
-data = dict(
-    storm=st["name"], ref_event=st["ref_event"], ref_time=st["ref_time"], ref_px=to_px(*st["ref_pos"], x, y, p),
-    run_init=run["init"], days_before=run["days_before"], ref_error_km=run["ref_error_km"], error_km=run["error_km"],
-    ai=ai, best=bt, frames=len(files), frame_times=times, px=PX,
-    source="NOAA GOES-19 ABI L2 CMIP, mesoscale sector, band 13 IR (noaa-goes19 on AWS)",
-    track_source="results/hurricanes.json: ECMWF real-time AIFS Single (archive) · IBTrACS best track")
-(ROOT / "video" / "chapters" / "tx" / "goes.js").write_text("window.GOES = " + json.dumps(data) + ";\n")
-import base64
-# file:// images would taint the canvas (no frame export), so the frames ship as data URLs
-(ROOT / "video" / "chapters" / "tx" / "goes_frames.js").write_text("window.GOES_IMG = " + json.dumps(
+data = dict(storm=st["name"], ref_event=st["ref_event"], ref_kind=st["ref_kind"], ref_time=st["ref_time"],
+            ref_px=to_px(*st["ref_pos"], x, y, p), run_init=run["init"], days_before=run["days_before"],
+            ref_error_km=run["ref_error_km"], error_km=run["error_km"], ai=ai, best=bt, frames=len(files),
+            frame_times=times, px=PX)
+TX.mkdir(parents=True, exist_ok=True)
+(TX / f"goes_{STORM.lower()}.js").write_text(f"(window.GOES = window.GOES || {{}})[{json.dumps(STORM)}] = " + json.dumps(data) + ";\n")
+(TX / f"goes_{STORM.lower()}_frames.js").write_text(f"(window.GOES_IMG = window.GOES_IMG || {{}})[{json.dumps(STORM)}] = " + json.dumps(
     ["data:image/jpeg;base64," + base64.b64encode((OUT / f"{i:03d}.jpg").read_bytes()).decode() for i in range(len(files))]) + ";\n")
-print(len(files), "frames", times[0], "->", times[-1], "| ref px", data["ref_px"], "| AI points in frame:",
+print(STORM, len(files), "frames", times[0], "->", times[-1], "| ref px", data["ref_px"], "| AI points in frame:",
       sum(0 <= a["px"][0] <= PX and 0 <= a["px"][1] <= PX for a in ai), "/", len(ai))

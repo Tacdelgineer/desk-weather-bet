@@ -151,7 +151,7 @@ If a session stops, type `continue` in the same conversation.
 ## Phase 8 — Footage (tacdel-video pipeline)
 
 - [x] **8.1 Outline.** Write the chapter outline to `video/OUTLINE.md`, from the chapter list below.
-- [ ] **8.2 Rooms.** Build rooms from the results files, including the new EVIDENCE room type.
+- [x] **8.2 Rooms.** (built as chapter-kit pages in the approved preview style: video/chapters/NN_scenes.js, data from video/export.py) Build rooms from the results files, including the new EVIDENCE room type.
   - Chapter 09 ("the bug"), all numbers from results/evidence/v1-bug/summary.json and results/v1_vs_v2.json:
     - **extrapolation room** (riso): Phoenix's 60 TRAIN dots (`scatter_train.KPHX`, raw AIFS vs actual), the v1 line
       (`v1_a`, `v1_b`) drawn across them, then extended past the cloud down to the October raw high (`raw_high_F`),

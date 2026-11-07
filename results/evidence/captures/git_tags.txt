@@ -1,0 +1,32 @@
+$ git tag -n
+rules-locked    7.1: RULES.md + RULES.json (corrected AIFS + one-line rule, threshold 0.09, corrections frozen); live.py posts only as the channel account
+rules-locked-v2 RULES.md v2: rolling correction + guards (v1 rules-locked superseded, see video/JOURNAL.md)
+
+$ git show rules-locked-v2 --stat
+tag rules-locked-v2
+
+RULES.md v2: rolling correction + guards (v1 rules-locked superseded, see video/JOURNAL.md)
+commit dbb2499978b155dfe7bc76bf6938a3d409bd480e
+v2 rules: rolling 30-day station correction + GFS-gap and edge-cap guards; v1/v2 results side by side
+
+ CLAUDE.md                       |     2 +-
+ DECISIONS.md                    |     8 +
+ PLAN.md                         |    22 +-
+ RULES.json                      |    54 +-
+ RULES.md                        |    44 +-
+ STATE.md                        |     6 +
+ backtest/compare_versions.py    |    49 +
+ backtest/correct.py             |    32 +-
+ backtest/handcheck.py           |    22 +-
+ backtest/judge_inputs.py        |    43 +-
+ backtest/rolling.py             |    53 +
+ backtest/sim.py                 |    13 +-
+ bot/live.py                     |   146 +-
+ bot/open_issue.sh               |    22 +-
+ bot/write_rules.py              |    58 +-
+ logs/handcheck.md               |    87 +-
+ results/.done/7.2_backfill      |     0
+ results/backtest.json           |   556 +-
+
+$ git show rules-locked-v2:RULES.md | sha256sum
+7e99eac0ced1dae151ff4f71294a307f3d51a107a11047bb398be7f288e0ce7e  -

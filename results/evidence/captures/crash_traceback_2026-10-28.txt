@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "~/desk-weather-bet/bot/live.py", line 499, in <module>
+    main()
+  File "~/desk-weather-bet/bot/live.py", line 488, in main
+    res = {"settle": job_settle(day), **job_picks(day)}
+                                        ^^^^^^^^^^^^^^
+  File "~/desk-weather-bet/bot/live.py", line 358, in job_picks
+    corr = corrections_for(day, public)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/desk-weather-bet/bot/live.py", line 257, in corrections_for
+    return {st: rolling_correction(h, run_date) for st, h in station_history(run_date, kalshi).items()}
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/desk-weather-bet/bot/live.py", line 203, in station_history
+    act = settled_high(kalshi, c["series"], d)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/desk-weather-bet/bot/live.py", line 179, in settled_high
+    return float(m["expiration_value"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: '70° to 71°'

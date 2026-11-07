@@ -240,3 +240,11 @@ Kalshi key re-checked with one read-only call: OK. Tasks that depend on the weat
 - Next: 8.2 rooms after approval.
 - Rendered: results/preview/style_preview.mp4 (41.0 s, 1920x1080, 30 fps), contact_sheet.png, shot3_vertical.png. Not pushed: repo is PUBLIC, owner to OK the push (scan clean). live_ledger.json + logs/live/*.json left uncommitted (contain Kalshi order ids).
 - 2026-11-07: owner approved the preview look and the push; pushed. Next: 8.2 rooms in this style.
+
+**2026-11-07 — 8.2** ([x])
+- Owner chose option 1 for the pushed ledger: history left alone; ledger gitignored + untracked; CLAUDE.md now says commit only named files (DECISIONS.md).
+- Rooms = footage pages in the approved preview style (riso / EVIDENCE / CRT / papercut), one per chapter 00–11, 2–5 shots each, 5–36 s; built by video/tools/mkroom.py from chapters/chapters.json; all numbers from video/export.py (the one export step) + video/prep_goes.py (real GOES frames for MELISSA, IMELDA, ERIN). Real captures for CRT/evidence in results/evidence/captures/ (git tags, issue #1 first comment, day-3 traceback; home paths cut).
+- Chapter 09 has everything 8.2 asks for: scatter, NWS-vs-bot EVIDENCE, tags + public hashes (CRT), both stat cards. Chapter 10 has REC-01 slot (Kalshi account).
+- Check: tools/check.cjs = 0 page errors on all 13 pages; contact sheets reviewed (video/work/sheets/, gitignored).
+- Not built (no file to back a number): the "$67 bots", the afternoon peak, the Weather Channel app; the AIFS model card and public pages come with 8.3 recordings.
+- Next: 8.3 recordings (VHS terminal + Playwright of public pages), then 8.4 render (shots → results/final_footage/{wide,vertical}/ + ORDER.txt).
